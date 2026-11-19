@@ -6,20 +6,37 @@
 
   const all = () => [...App.userWords.all().map((w) => ({ ...w, user: true })), ...App.data.P.words];
 
+  const WLV = { 1: '基本', 2: 'よく使う', 3: '専門用語' };
+  let filter = 0;
+
   function wordRow(w) {
+    const lv = App.level();
     const en = plain(w.en, 'en');
+    const ex = (w.ex || []).find((x) => x.lv === lv) || (w.ex || [])[0];
     return `
       <div class="word ${w.user ? 'mine' : ''}">
         <div class="w-main">
-          <p class="w-en" lang="en">${esc(w.en)}${w.user ? '<span class="mine-tag">自分</span>' : ''}</p>
+          <p class="w-en" lang="en">${esc(w.en)}${w.user ? '<span class="mine-tag">自分</span>' : w.lv ? `<span class="wlv wlv${w.lv}">${WLV[w.lv]}</span>` : ''}</p>
           ${w.kana ? `<p class="w-kana">${html(w.kana, 'kana')}</p>` : ''}
+          ${lv === 3 && w.ipa ? `<p class="w-ipa">${esc(w.ipa)}</p>` : ''}
           <p class="w-ja">${esc(w.ja)}</p>
+          ${w.tip ? `<p class="w-tip">${icon('lightbulb')}<span>${html(w.tip, 'kana')}</span></p>` : ''}
           ${w.note ? `<p class="w-note">${esc(w.note)}</p>` : ''}
         </div>
         <div class="w-act">
           ${App.sayBtns(en, 'en', { label: false })}
           ${w.user ? `<button type="button" class="say-btn" data-go="words-edit-${esc(w.id)}" aria-label="編集">${icon('pencil')}</button>` : ''}
         </div>
+        ${ex ? `
+        <div class="w-ex">
+          <span class="chip lv${ex.lv}">例文・${App.LEVELS[ex.lv - 1].label}</span>
+          <div class="w-ex-text">
+            <p class="ex-en" lang="en">${esc(ex.en)}</p>
+            ${ex.kana ? `<p class="ex-kana">${html(ex.kana, 'kana')}</p>` : ''}
+            <p class="ex-ja">${esc(ex.ja)}</p>
+          </div>
+          ${App.sayBtns(ex.en, 'en', { label: false })}
+        </div>` : ''}
       </div>`;
   }
   App.wordRow = wordRow;
@@ -33,17 +50,26 @@
   function list(el) {
     el.innerHTML = `
       ${App.topBar('単語帳', `<button type="button" class="tb-btn primary" data-go="words-add">${icon('plus')}<span>追加</span></button>`)}
+      <div class="lv-wrap"><p class="lv-label">例文のレベル</p>${App.levelSeg()}</div>
       <div class="search-box">${icon('search')}<input id="words-q" type="search" placeholder="英語・日本語で探す" autocomplete="off" value="${esc(query)}"></div>
+      <div class="chips">${['すべて', '基本', 'よく使う', '専門用語', '自分'].map((t, i) => `<button type="button" class="chip-btn ${i === filter ? 'on' : ''}" data-f="${i}">${t}</button>`).join('')}</div>
       <main class="list-body" id="words-list"></main>`;
     const input = $('#words-q');
     const draw = () => {
       query = input.value;
       const q = norm(query);
-      const ws = all().filter((w) => !q || [w.en, w.ja, w.kana, w.note].some((t) => norm(t).includes(q)));
+      const ws = all()
+        .filter((w) => !filter || (filter === 4 ? w.user : !w.user && (w.lv || 1) === filter))
+        .filter((w) => !q || [w.en, w.ja, w.kana, w.note, ...(w.ex || []).map((x) => x.en + x.ja)].some((t) => norm(t).includes(q)));
       $('#words-list').innerHTML = `<p class="count">${ws.length}語${App.userWords.all().length ? `（自分で追加 ${App.userWords.all().length}語）` : ''}</p>` +
         (ws.map(wordRow).join('') || '<p class="empty">見つかりませんでした。「＋追加」で自分の単語を足せます。</p>');
     };
     input.addEventListener('input', draw);
+    el.querySelectorAll('[data-f]').forEach((b) => b.addEventListener('click', () => {
+      filter = Number(b.dataset.f);
+      el.querySelectorAll('[data-f]').forEach((x) => x.classList.toggle('on', x === b));
+      draw();
+    }));
     draw();
   }
 

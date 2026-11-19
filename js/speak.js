@@ -12,29 +12,60 @@
   const needsReview = (p) => (p.review || []).some((k) => ['en', 'kana', 'enAlt', 'responses'].includes(k));
 
   // ---------- フレーズ1つの表示（話す・検索・練習で共通） ----------
+  const LV_CHIP = { 1: 'かんたん', 2: 'ふつう', 3: '専門的' };
   function phraseBlock(p, { title = '' } = {}) {
-    const en = pick(p, 'en');
+    const lv = App.level();
+    const en = App.lvText(p, 'en');
+    const kana = App.lvText(p, 'kana');
     const enPlain = plain(en, 'en');
     const resp = p.responses || [];
-    const alts = p.enAlt || [];
+    // ほかの言い方：ほかのレベルの文＋ enAlt（同じ文は1回だけ）
+    const seen = new Set([enPlain]);
+    const alts = [];
+    for (const l of [1, 2, 3]) {
+      if (l === lv) continue;
+      const t = App.lvText(p, 'en', l);
+      if (seen.has(plain(t, 'en'))) continue;
+      seen.add(plain(t, 'en'));
+      alts.push({ label: LV_CHIP[l], en: t, kana: App.lvText(p, 'kana', l), cls: 'lv' + l });
+    }
+    for (const a of p.enAlt || []) {
+      if (seen.has(plain(a.en, 'en'))) continue;
+      seen.add(plain(a.en, 'en'));
+      alts.push(a);
+    }
+    const ts = App.terms(enPlain, lv === 1 ? 1 : 2);
     return `
       <article class="pb" data-pid="${esc(p.id)}">
         ${title ? `<p class="pb-title">${title}</p>` : ''}
         <p class="pb-en" lang="en">${html(en, 'en')}</p>
-        ${p.kana ? `<p class="pb-kana">${html(pick(p, 'kana'), 'kana')}</p>` : ''}
+        ${kana ? `<p class="pb-kana">${html(kana, 'kana')}</p>` : ''}
         <p class="pb-ja">${html(pick(p, 'staff'), 'staff')}</p>
         <div class="pb-actions">
           ${App.sayBtns(enPlain)}
           ${resp.length ? `<button type="button" class="resp-btn" data-resp="${esc(p.id)}">${icon('message-square-text')}<span>こう言われたら</span><b>${resp.length}</b></button>` : ''}
         </div>
+        ${ts.length ? termRow(ts, lv) : ''}
         ${alts.length ? `<div class="pb-alts"><p class="alts-head">ほかの言い方</p>` + alts.map((a) => `
           <div class="alt">
-            <span class="chip">${esc(a.label)}</span>
+            <span class="chip ${a.cls || ''}">${esc(a.label)}</span>
             <div class="alt-text"><p class="alt-en" lang="en">${html(a.en, 'en')}</p>${a.kana ? `<p class="alt-kana">${html(a.kana, 'kana')}</p>` : ''}</div>
             ${App.sayBtns(plain(a.en, 'en'), 'en', { slow: false, label: false })}
           </div>`).join('') + '</div>' : ''}
         ${needsReview(p) ? '<span class="rv-tag">要確認</span>' : ''}
       </article>`;
+  }
+  // 文の中のむずかしい単語（タップでゆっくり読み上げ）
+  function termRow(ts, lv) {
+    return `<div class="pb-terms"><p class="alts-head">${icon('volume-2')}むずかしい単語（タップでゆっくり）</p><div class="terms">` + ts.map((w) => {
+      const word = w.en.replace(/\s*\([^)]*\)/g, '').split(' / ')[0];
+      return `<button type="button" class="term" data-say="${esc(word)}" data-lang="en" data-slow="1">
+        <span class="t-en" lang="en">${esc(word)}</span>
+        <span class="t-kana">${html(w.kana.split(' ／ ')[0], 'kana')}</span>
+        ${lv === 3 && w.ipa ? `<span class="t-ipa">${esc(w.ipa.split(' ・ ')[0])}</span>` : ''}
+        <span class="t-ja">${esc(w.ja)}</span>
+      </button>`;
+    }).join('') + '</div></div>';
   }
   App.phraseBlock = phraseBlock;
 
@@ -99,6 +130,7 @@
       <section class="speak-card">
         ${App.topBar(`<span class="step">${NUM[n - 1]}</span> ${esc(scene.title)}`, `<button type="button" class="tb-btn" id="btn-toc">${icon('list')}<span>目次</span></button>`)}
         ${toolRow()}
+        <div class="lv-wrap">${App.levelSeg()}</div>
         <main class="speak-body">${blocks}</main>
         <nav class="nav-bar">
           <button type="button" class="nav-btn back" ${n === 1 ? 'disabled' : `data-go="speak-${n - 1}"`} data-dir="left">${icon('chevron-left')}<span>戻る</span></button>
@@ -122,6 +154,7 @@
     el.innerHTML = `
       ${App.topBar('問題があったとき', '', `speak-${lastCard}`)}
       ${toolRow('problem')}
+      <div class="lv-wrap">${App.levelSeg()}</div>
       <div class="chips">${scene.groups.map((name, i) => `<button type="button" class="chip-btn ${i === problemGroup ? 'on' : ''}" data-go="speak-problem-${i}">${esc(name)}</button>`).join('')}</div>
       <main class="speak-body">${list.map((p) => phraseBlock(p)).join('')}</main>`;
   }
@@ -131,6 +164,7 @@
     el.innerHTML = `
       ${App.topBar('困ったときの一言', '', `speak-${lastCard}`)}
       ${toolRow('handy')}
+      <div class="lv-wrap">${App.levelSeg()}</div>
       <main class="speak-body">${list.map((p) => phraseBlock(p)).join('')}</main>`;
   }
 
@@ -147,8 +181,8 @@
       const q = norm(input.value);
       const out = $('#speak-results');
       if (!q) { out.innerHTML = '<p class="empty">言葉を入れると、関係するフレーズが出ます。</p>'; return; }
-      const ph = P().phrases.filter((p) => p.en && [p.staff, p.easy, p.en, ...(p.tags || [])].some((t) => norm(t).includes(q)));
-      const words = [...P().words, ...App.userWords.all()].filter((w) => [w.en, w.ja, w.note].some((t) => norm(t).includes(q)));
+      const ph = P().phrases.filter((p) => p.en && [p.staff, p.easy, p.en, p.lv?.['1']?.en, p.lv?.['3']?.en, ...(p.tags || [])].some((t) => norm(t).includes(q)));
+      const words = [...P().words, ...App.userWords.all()].filter((w) => [w.en, w.ja, w.note, w.kana].some((t) => norm(t).includes(q)));
       const qa = App.qaSearch ? App.qaSearch(input.value) : [];
       let h = '';
       if (ph.length) h += `<h3 class="sec-head">フレーズ（${ph.length}）</h3>` + ph.map((p) => phraseBlock(p)).join('');

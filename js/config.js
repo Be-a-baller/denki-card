@@ -33,6 +33,11 @@
       ${App.topBar('設定')}
       <main class="config">
         <section class="cfg">
+          <h2>英語のレベル</h2>
+          ${App.levelSeg()}
+          <p class="note">初級＝短くかんたんな文 ／ 中級＝ふつうの文 ／ 上級＝「絶縁抵抗」「地絡」などの専門用語を入れた文と発音記号。話す・練習・単語帳の上でも切り替えられます。</p>
+        </section>
+        <section class="cfg">
           <h2>お客さんに見せる情報</h2>
           <label class="field"><span>会社名（自分の会社）</span>
             <input id="c-company" type="text" autocomplete="organization" value="${esc(s.company)}" placeholder="例：〇〇電気保安">

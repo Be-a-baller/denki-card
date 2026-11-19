@@ -61,6 +61,7 @@ const App = (() => {
       phone: (s.phone ?? d.phone ?? '').trim(),
       rate: s.rate ?? 0.9,
       rateSlow: s.rateSlow ?? 0.6,
+      level: [1, 2, 3].includes(s.level) ? s.level : 2,
     };
   }
   function saveSettings(patch) { LS.set('settings', Object.assign(LS.get('settings', {}), patch)); }
@@ -248,7 +249,14 @@ const App = (() => {
       const say = e.target.closest('[data-say]');
       if (say) { e.stopPropagation(); speech.speak(say.dataset.say, say.dataset.lang || 'en', { slow: say.dataset.slow === '1', btn: say }); return; }
       const goBtn = e.target.closest('[data-go]');
-      if (goBtn) { go(goBtn.dataset.go, goBtn.dataset.dir || 'fade'); }
+      if (goBtn) { go(goBtn.dataset.go, goBtn.dataset.dir || 'fade'); return; }
+      const lvBtn = e.target.closest('[data-level]');
+      if (lvBtn) {
+        const y = window.scrollY;
+        saveSettings({ level: Number(lvBtn.dataset.level) });
+        toast(LEVELS[Number(lvBtn.dataset.level) - 1].label + 'にしました');
+        render(); window.scrollTo(0, y);
+      }
     });
     $('#overlay').addEventListener('click', (e) => {
       if ($('#overlay').dataset.tapclose && !e.target.closest('[data-say],button,a,input')) closeOverlay();
@@ -272,6 +280,58 @@ const App = (() => {
       <h1 class="tb-title">${title}</h1>
       <div class="tb-right">${right}</div>
     </header>`;
+  }
+
+  // ---------- レベル（初級・中級・上級） ----------
+  const LEVELS = [
+    { id: 1, label: '初級', sub: 'かんたん' },
+    { id: 2, label: '中級', sub: 'ふつう' },
+    { id: 3, label: '上級', sub: '専門用語' },
+  ];
+  const level = () => settings().level;
+  // レベルに合った言い方（key: en / kana）。初級は lv.1 → enAlt「かんたん」→ en、上級は lv.3 → en
+  function lvText(p, key, lv = level()) {
+    if (lv === 1) {
+      if (p.lv && p.lv['1'] && p.lv['1'][key]) return p.lv['1'][key];
+      const easy = (p.enAlt || []).find((a) => a.label === 'かんたん');
+      if (easy && easy[key]) return easy[key];
+    }
+    if (lv === 3 && p.lv && p.lv['3'] && p.lv['3'][key]) return p.lv['3'][key];
+    return pick(p, key);
+  }
+  // 切り替えボタン（押すと保存して画面を描き直す）
+  function levelSeg() {
+    const lv = level();
+    return `<div class="lv-seg" role="radiogroup" aria-label="レベル">${LEVELS.map((l) => `
+      <button type="button" role="radio" aria-checked="${l.id === lv}" class="lv-btn ${l.id === lv ? 'on' : ''}" data-level="${l.id}"><b>${l.label}</b><small>${l.sub}</small></button>`).join('')}</div>`;
+  }
+  // 文の中の、むずかしい単語を見つける（単語帳から）
+  let termIndex = null;
+  function terms(enText, min = 2, max = 4) {
+    if (!termIndex) {
+      termIndex = [];
+      for (const w of data.P.words) {
+        for (const v of w.en.replace(/\([^)]*\)/g, '').split('/')) {
+          const t = v.trim().toLowerCase();
+          if (t.length > 2) termIndex.push({ t, w });
+        }
+      }
+      termIndex.sort((a, b) => b.t.length - a.t.length);
+    }
+    const s = String(enText).toLowerCase();
+    const used = [];
+    const out = [];
+    for (const { t, w } of termIndex) {
+      if ((w.lv || 1) < min || out.includes(w)) continue;
+      const m = new RegExp('\\b' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).exec(s);
+      if (!m) continue;
+      const a = m.index, b = a + t.length;
+      if (used.some(([x, y]) => a < y && b > x)) continue;
+      used.push([a, b]);
+      out.push(w);
+      if (out.length >= max) break;
+    }
+    return out;
   }
 
   // ---------- 練習の記録・自分の単語・自分のQ&A ----------
@@ -363,7 +423,7 @@ const App = (() => {
   return {
     $, $$, esc, icon, norm, data, LS, idb, settings, saveSettings, noticePhotoURL, resetPhotoURL,
     pick, html, plain, langKey, reviewed, speech, toast, overlay, closeOverlay, sheet, closeSheet,
-    animateIn, route, go, render, sayBtns, topBar, progress, userWords, userQA, newId,
+    animateIn, route, go, render, sayBtns, topBar, progress, LEVELS, level, lvText, levelSeg, terms, userWords, userQA, newId,
     toCSV, parseCSV, download, reviewCount, init,
   };
 })();

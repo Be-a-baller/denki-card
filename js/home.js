@@ -15,12 +15,12 @@
     const t = App.todayPhrase ? App.todayPhrase() : null;
     let today = '';
     if (t) {
-      const en = App.plain(pick(t, 'en'), 'en');
+      const en = App.plain(App.lvText(t, 'en'), 'en');
       today = `
         <section class="today">
-          <div class="today-head">${icon('star')}<span>今日の1フレーズ</span></div>
-          <p class="today-en" lang="en">${html(pick(t, 'en'), 'en')}</p>
-          ${t.kana ? `<p class="today-kana">${html(pick(t, 'kana'), 'kana')}</p>` : ''}
+          <div class="today-head">${icon('star')}<span>今日の1フレーズ</span><span class="today-lv">${App.LEVELS[App.level() - 1].label}</span></div>
+          <p class="today-en" lang="en">${html(App.lvText(t, 'en'), 'en')}</p>
+          ${t.kana ? `<p class="today-kana">${html(App.lvText(t, 'kana'), 'kana')}</p>` : ''}
           <p class="today-ja">${html(pick(t, 'staff'), 'staff')}</p>
           <div class="today-act">${App.sayBtns(en)}<button type="button" class="link-btn" data-go="practice">練習する ${icon('chevron-right')}</button></div>
         </section>`;
@@ -55,7 +55,8 @@
         <ol class="help-list">
           <li><b class="h-show">見せる</b>お客さんに言葉を選んでもらい、<b>「次へ」</b>を押すだけ。返事は下のボタンで。</li>
           <li><b class="h-speak">話す</b>英語とカタカナを見ながら自分で話す。<b>「こう言われたら」</b>で返し方。</li>
-          <li><b class="h-practice">練習</b>家で。聞いてまねする・クイズ・発音チェック。</li>
+          <li><b class="h-practice">練習</b>家で。聞いてまねする・クイズ・専門用語クイズ・発音チェック。</li>
+          <li><b>初級・中級・上級</b>話す・練習・単語帳の上で切り替え。上級は「絶縁抵抗」などの専門用語入りの文。</li>
           <li><b class="h-words">単語帳</b>ChatGPTで調べた言い方は<b>「＋追加」</b>でメモ。</li>
           <li><b class="h-qa">Q&A</b>答えに困ったら検索。なければ<b>「AIに聞く」</b>。</li>
         </ol>

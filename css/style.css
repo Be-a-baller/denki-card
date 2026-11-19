@@ -550,3 +550,47 @@ ruby rt { font-size: .45em; font-weight: 500; color: var(--text-sub); }
 .i-x { --src: url(../img/icons/x.svg); }
 .i-zap-off { --src: url(../img/icons/zap-off.svg); }
 .i-zap { --src: url(../img/icons/zap.svg); }
+
+/* ===== レベル（初級・中級・上級） ===== */
+.lv-wrap { padding: 0 10px 10px; }
+.lv-wrap.flat { padding: 0; }
+.lv-label { font-size: 14px; font-weight: 700; color: var(--text-sub); margin: 0 0 4px 2px; }
+.lv-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; background: var(--surface-2); border: 2px solid var(--line); border-radius: 14px; }
+.lv-btn { min-height: 52px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.15; color: var(--text-sub); transition: background-color .2s, color .2s; }
+.lv-btn b { font-size: 18px; font-weight: 800; }
+.lv-btn small { font-size: 12px; font-weight: 700; }
+.lv-btn.on { background: var(--text); color: var(--bg); }
+.chip.lv1 { background: var(--c-show-soft); color: var(--c-show); }
+.chip.lv2 { background: var(--c-speak-soft); color: var(--c-speak); }
+.chip.lv3 { background: var(--c-practice-soft); color: var(--c-practice); }
+.today-lv { margin-left: auto; font-size: 13px; color: var(--text-sub); border: 1.5px solid var(--line); border-radius: 999px; padding: 0 8px; }
+
+/* 文の中のむずかしい単語 */
+.pb-terms { margin-top: 10px; }
+.terms { display: flex; flex-wrap: wrap; gap: 8px; }
+.term { display: flex; flex-direction: column; align-items: flex-start; text-align: left; min-height: 44px; padding: 6px 12px; border-radius: 12px; background: var(--c-words-soft); border: 2px solid transparent; }
+.term:active { border-color: var(--c-words); }
+.t-en { font-size: 17px; font-weight: 800; color: var(--text); }
+.t-kana { font-size: 15px; }
+.t-kana b { color: var(--kana); }
+.t-ipa { font-size: 13px; color: var(--text-sub); font-family: "Lucida Sans Unicode", "Arial Unicode MS", system-ui, sans-serif; }
+.t-ja { font-size: 13px; color: var(--text-sub); }
+
+/* 単語帳の発音・例文 */
+.word { flex-wrap: wrap; }
+.w-ipa { font-size: 15px; color: var(--text-sub); font-family: "Lucida Sans Unicode", "Arial Unicode MS", system-ui, sans-serif; }
+.w-tip { display: flex; gap: 6px; align-items: flex-start; font-size: 14px; color: var(--text); background: var(--surface-2); border-radius: 10px; padding: 6px 8px; margin-top: 6px; }
+.w-tip .icon { flex: none; color: var(--warn); margin-top: 2px; }
+.w-ex { flex-basis: 100%; display: flex; gap: 8px; align-items: flex-start; border-top: 1.5px dashed var(--line); padding-top: 10px; margin-top: 2px; flex-wrap: wrap; }
+.w-ex .chip { margin-top: 2px; }
+.w-ex-text { flex: 1; min-width: 0; }
+.w-ex.in-quiz { margin-top: 12px; text-align: left; }
+.ex-en { font-size: 17px; font-weight: 700; line-height: 1.4; }
+.ex-kana { font-size: 14px; }
+.ex-kana b { color: var(--kana); }
+.ex-ja { font-size: 14px; color: var(--text-sub); }
+.wlv { display: inline-block; vertical-align: middle; margin-left: 8px; font-size: 12px; font-weight: 800; border-radius: 6px; padding: 1px 6px; background: var(--surface-2); color: var(--text-sub); }
+.wlv3 { background: var(--c-practice-soft); color: var(--c-practice); }
+.quiz-q .wlv { margin: 8px 0 0; }
+.stat-num small { font-size: 16px; color: var(--text-sub); }
+.w-tip b { color: var(--kana); }

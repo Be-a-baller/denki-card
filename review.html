@@ -71,6 +71,7 @@
     h += row('やさしい日本語' + rv(p, 'easy'), p.easy && ruby(p.easy), 'easy');
     h += row('英語' + rv(p, 'en'), p.en && ph(esc(p.en)), 'en');
     h += row('カタカナ' + rv(p, 'kana'), p.kana && kana(p.kana), 'kana');
+    if (p.lv) h += row('レベル別' + rv(p, 'lv'), Object.entries(p.lv).map(([k, a]) => `<div class="alt"><span class="lbl">${k === '1' ? '初級' : '上級'}</span><b>${ph(esc(a.en))}</b><br><span class="kana v">${kana(a.kana)}</span></div>`).join(''));
     if (p.enAlt) h += row('別の言い方' + rv(p, 'enAlt'), p.enAlt.map((a) => `<div class="alt"><span class="lbl">${esc(a.label)}</span><b>${ph(esc(a.en))}</b><br><span class="kana v">${kana(a.kana)}</span></div>`).join(''));
     h += row('中国語' + rv(p, 'zh'), p.zh && ph(esc(p.zh)));
     if (p.ifNoCompany) h += row('会社名が空のとき', `${ph(esc(p.ifNoCompany.staff))}<br><b>${ph(esc(p.ifNoCompany.en))}</b>`);
@@ -113,7 +114,7 @@
     }
     if (f === 'all' || f === 'words') {
       h += '<h2>単語帳</h2><table><tr><th>英語</th><th>カタカナ</th><th>日本語</th></tr>' +
-        P.words.map((w) => `<tr><td><b>${esc(w.en)}</b>${rv(w, 'en')}${w.note ? `<br><small>${esc(w.note)}</small>` : ''}</td><td class="v kana">${kana(w.kana)}${rv(w, 'kana')}</td><td>${esc(w.ja)}</td></tr>`).join('') + '</table>';
+        P.words.map((w) => `<tr><td><b>${esc(w.en)}</b>${rv(w, 'en')}${w.note ? `<br><small>${esc(w.note)}</small>` : ''}</td><td class="v kana">${kana(w.kana)}${rv(w, 'kana')}${w.ipa ? `<br><small>${esc(w.ipa)}</small>` : ''}${w.tip ? `<br><small>コツ：${kana(w.tip)}</small>` : ''}</td><td>${esc(w.ja)}${(w.ex || []).map((x) => `<div class="alt"><span class="lbl">${['初級', '中級', '上級'][x.lv - 1]}</span><b>${esc(x.en)}</b><br><span class="kana v">${kana(x.kana)}</span><br><small>${esc(x.ja)}</small></div>`).join('')}</td></tr>`).join('') + '</table>';
     }
     document.getElementById('out').innerHTML = h;
   }

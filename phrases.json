@@ -1,748 +1,4261 @@
 {
-  "version": 2,
-  "_howto": [
-    "文を直すときは、このファイルだけ直せばOK。",
-    "staff=ふつうの日本語（意味・母用） / easy=やさしい日本語（{漢字|かんじ}でふりがな） / en=英語 / kana=カタカナ読み（*…* が強く言うところ） / zh=中国語（見せるモードだけ）",
-    "enAlt=言い方の別パターン / responses=お客さんにこう言われたら（they=お客さん、say=返し方）",
-    "{company}=母の会社名 {client}=委託元（TEPCO）{minutes}=所要時間 {phone}=問い合わせ番号。設定画面の値に置き換わる。",
-    "ifNoCompany=会社名が未設定のときに代わりに使う文。",
-    "review=要確認の印。公式の言い方・ネイティブの確認で直したら、その項目名を消す。",
-    "modes=どのモードに出すか（show=見せる / speak=話す / practice=練習）。"
-  ],
-
-  "langs": {
-    "ja": { "label": "にほんご", "sub": "やさしい日本語", "voice": "ja-JP" },
-    "en": { "label": "English", "sub": "英語", "voice": "en-US" },
-    "zh": { "label": "中文", "sub": "中国語", "voice": "zh-CN" }
+ "version": 3,
+ "_howto": [
+  "文を直すときは、このファイルだけ直せばOK。",
+  "staff=ふつうの日本語（意味・母用） / easy=やさしい日本語（{漢字|かんじ}でふりがな） / en=英語 / kana=カタカナ読み（*…* が強く言うところ） / zh=中国語（見せるモードだけ）",
+  "enAlt=言い方の別パターン / responses=お客さんにこう言われたら（they=お客さん、say=返し方）",
+  "{company}=母の会社名 {client}=委託元（TEPCO）{minutes}=所要時間 {phone}=問い合わせ番号。設定画面の値に置き換わる。",
+  "ifNoCompany=会社名が未設定のときに代わりに使う文。",
+  "review=要確認の印。公式の言い方・ネイティブの確認で直したら、その項目名を消す。",
+  "modes=どのモードに出すか（show=見せる / speak=話す / practice=練習）。",
+  "lv=レベル別の言い方（\"1\"=初級 かんたん / \"3\"=上級 専門用語入り）。中級は en。lv がないレベルは、初級→enAlt の「かんたん」→en の順で代わりを使う。",
+  "単語の lv=むずかしさ（1=基本 2=よく使う 3=専門用語）/ ipa=発音記号 / tip=発音のコツ / ex=例文（lv 1〜3 を1つずつ）"
+ ],
+ "langs": {
+  "ja": {
+   "label": "にほんご",
+   "sub": "やさしい日本語",
+   "voice": "ja-JP"
   },
-
-  "defaults": {
-    "minutes": 20,
-    "company": "",
-    "client": { "staff": "東京電力", "easy": "{東京電力|とうきょうでんりょく}", "en": "TEPCO", "zh": "东京电力" },
-    "phone": ""
+  "en": {
+   "label": "English",
+   "sub": "英語",
+   "voice": "en-US"
   },
-
-  "scenes": [
-    { "id": "notice",   "title": "お知らせ",           "icon": "mail",            "flow": 1 },
-    { "id": "greeting", "title": "あいさつ",           "icon": "hand-heart",      "flow": 2 },
-    { "id": "id",       "title": "身分証",             "icon": "id-card",         "flow": 3 },
-    { "id": "enter",    "title": "上がってよいか",     "icon": "door-open",       "flow": 4 },
-    { "id": "panel",    "title": "分電盤を見せて",     "icon": "panel-top",       "flow": 5, "breakerLink": true },
-    { "id": "question", "title": "いつもと違うこと",   "icon": "circle-help",     "flow": 6 },
-    { "id": "checking", "title": "点検中",             "icon": "search",          "flow": 7 },
-    { "id": "result",   "title": "結果",               "icon": "clipboard-check", "flow": 8 },
-    { "id": "thanks",   "title": "お礼",               "icon": "heart",           "flow": 9 },
-    { "id": "problem",  "title": "問題があったとき",   "icon": "triangle-alert",
-      "groups": ["漏電", "コンセント", "ブレーカーの容量", "配線・延長コード", "電気工事店へ", "会社に確認"] },
-    { "id": "handy",    "title": "困ったときの一言",   "icon": "message-circle" }
-  ],
-
-  "phrases": [
+  "zh": {
+   "label": "中文",
+   "sub": "中国語",
+   "voice": "zh-CN"
+  }
+ },
+ "defaults": {
+  "minutes": 20,
+  "company": "",
+  "client": {
+   "staff": "東京電力",
+   "easy": "{東京電力|とうきょうでんりょく}",
+   "en": "TEPCO",
+   "zh": "东京电力"
+  },
+  "phone": ""
+ },
+ "scenes": [
+  {
+   "id": "notice",
+   "title": "お知らせ",
+   "icon": "mail",
+   "flow": 1
+  },
+  {
+   "id": "greeting",
+   "title": "あいさつ",
+   "icon": "hand-heart",
+   "flow": 2
+  },
+  {
+   "id": "id",
+   "title": "身分証",
+   "icon": "id-card",
+   "flow": 3
+  },
+  {
+   "id": "enter",
+   "title": "上がってよいか",
+   "icon": "door-open",
+   "flow": 4
+  },
+  {
+   "id": "panel",
+   "title": "分電盤を見せて",
+   "icon": "panel-top",
+   "flow": 5,
+   "breakerLink": true
+  },
+  {
+   "id": "question",
+   "title": "いつもと違うこと",
+   "icon": "circle-help",
+   "flow": 6
+  },
+  {
+   "id": "checking",
+   "title": "点検中",
+   "icon": "search",
+   "flow": 7
+  },
+  {
+   "id": "result",
+   "title": "結果",
+   "icon": "clipboard-check",
+   "flow": 8
+  },
+  {
+   "id": "thanks",
+   "title": "お礼",
+   "icon": "heart",
+   "flow": 9
+  },
+  {
+   "id": "problem",
+   "title": "問題があったとき",
+   "icon": "triangle-alert",
+   "groups": [
+    "漏電",
+    "コンセント",
+    "ブレーカーの容量",
+    "配線・延長コード",
+    "電気工事店へ",
+    "会社に確認"
+   ]
+  },
+  {
+   "id": "handy",
+   "title": "困ったときの一言",
+   "icon": "message-circle"
+  }
+ ],
+ "phrases": [
+  {
+   "id": "notice.about",
+   "scene": "notice",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "お知らせ",
+    "ポスト",
+    "手紙",
+    "チラシ",
+    "案内"
+   ],
+   "staff": "1週間前にポストに入れたお知らせの件で来ました。",
+   "easy": "1{週間|しゅうかん} {前|まえ}に ポストに {入|い}れた お{知|し}らせの ことで {来|き}ました。",
+   "en": "I'm here about the notice we put in your mailbox last week.",
+   "kana": "アイム *ヒ*ア ア*バ*ウト ザ *ノ*ウティス ウィ プット イン ユア *メ*イルボックス ラスト *ウィ*ーク",
+   "enAlt": [
     {
-      "id": "notice.about", "scene": "notice", "modes": ["show", "speak", "practice"],
-      "tags": ["お知らせ", "ポスト", "手紙", "チラシ", "案内"],
-      "staff": "1週間前にポストに入れたお知らせの件で来ました。",
-      "easy": "1{週間|しゅうかん} {前|まえ}に ポストに {入|い}れた お{知|し}らせの ことで {来|き}ました。",
-      "en": "I'm here about the notice we put in your mailbox last week.",
-      "kana": "アイム *ヒ*ア ア*バ*ウト ザ *ノ*ウティス ウィ プット イン ユア *メ*イルボックス ラスト *ウィ*ーク",
-      "enAlt": [
-        { "label": "かんたん", "en": "I'm here about this notice.", "kana": "アイム *ヒ*ア ア*バ*ウト ディス *ノ*ウティス" },
-        { "label": "ていねい", "en": "I'm visiting about the notice we left in your mailbox a week ago.", "kana": "アイム *ヴィ*ジティング ア*バ*ウト ザ *ノ*ウティス ウィ *レ*フト イン ユア *メ*イルボックス ア *ウィ*ーク ア*ゴ*ウ" }
-      ],
-      "zh": "我是为一周前放进您信箱的通知而来的。",
-      "responses": [
-        { "they": "I didn't see it.", "theyJa": "見ていません。",
-          "say": "That's okay. Let me explain briefly.", "sayKana": "ザッツ オウ*ケ*イ。レット ミー イクスプ*レ*イン *ブ*リーフリー", "sayJa": "大丈夫です。簡単に説明しますね。" },
-        { "they": "What is this about?", "theyJa": "何の件ですか？",
-          "say": "It's a free electrical safety check.", "sayKana": "イッツ ア *フ*リー イ*レ*クトリカル *セ*イフティ チェック", "sayJa": "無料の電気の安全点検です。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-
-    {
-      "id": "greeting.hello", "scene": "greeting", "modes": ["show", "speak", "practice"],
-      "tags": ["あいさつ", "名乗る", "東京電力", "委託", "会社"],
-      "staff": "こんにちは。{company}の者です。{client}の委託で、電気の安全点検に来ました。",
-      "easy": "こんにちは。{company}の {者|もの}です。{client}に たのまれて、{電気|でんき}の {安全|あんぜん} チェックに {来|き}ました。",
-      "en": "Hello. I'm from {company}. I'm here to do an electrical safety check on behalf of {client}.",
-      "kana": "ハ*ロ*ウ。アイム フロム {company}。アイム *ヒ*ア トゥ ドゥ アン イ*レ*クトリカル *セ*イフティ チェック オン ビ*ハ*ーフ オヴ *テ*プコ",
-      "zh": "您好。我是{company}的工作人员，受{client}委托，来做用电安全检查。",
-      "ifNoCompany": {
-        "staff": "こんにちは。{client}の委託で、電気の安全点検に来ました。",
-        "easy": "こんにちは。{client}に たのまれて、{電気|でんき}の {安全|あんぜん} チェックに {来|き}ました。",
-        "en": "Hello. I'm here to do an electrical safety check on behalf of {client}.",
-        "kana": "ハ*ロ*ウ。アイム *ヒ*ア トゥ ドゥ アン イ*レ*クトリカル *セ*イフティ チェック オン ビ*ハ*ーフ オヴ *テ*プコ",
-        "zh": "您好。我受{client}委托，来做用电安全检查。"
-      },
-      "enAlt": [
-        { "label": "かんたん", "en": "Hi. Electrical safety check, for {client}.", "kana": "*ハ*イ。イ*レ*クトリカル *セ*イフティ チェック、フォー *テ*プコ" },
-        { "label": "ていねい", "en": "Good afternoon. I'm working for {client}, and I'm here for an electrical safety inspection.", "kana": "グッド アフタ*ヌ*ーン。アイム *ワ*ーキング フォー *テ*プコ、アンド アイム *ヒ*ア フォー アン イ*レ*クトリカル *セ*イフティ インス*ペ*クション" }
-      ],
-      "responses": [
-        { "they": "Are you from TEPCO?", "theyJa": "東京電力の人ですか？",
-          "say": "We do these checks on behalf of TEPCO.", "sayKana": "ウィ ドゥ *ディ*ーズ チェックス オン ビ*ハ*ーフ オヴ *テ*プコ", "sayJa": "東京電力の代わりに点検をしています。" },
-        { "they": "What kind of check?", "theyJa": "何の点検ですか？",
-          "say": "I check your breaker box to make sure there is no electrical leak.", "sayKana": "アイ *チェ*ック ユア ブ*レ*イカー ボックス トゥ メイク *シュ*ア ゼア イズ *ノ*ウ イ*レ*クトリカル *リー*ク", "sayJa": "電気がもれていないか、ブレーカーの箱を確認します。" },
-        { "they": "Sorry, I'm busy now.", "theyJa": "すみません、今忙しいです。",
-          "say": "No problem. When would be a good time?", "sayKana": "*ノ*ウ プ*ロ*ブレム。*ウェ*ン ウッド ビー ア グッド *タ*イム？", "sayJa": "大丈夫です。いつならご都合がよいですか？" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-    {
-      "id": "greeting.free", "scene": "greeting", "modes": ["show", "speak", "practice"],
-      "tags": ["無料", "お金", "料金", "タダ", "費用"],
-      "staff": "料金はかかりません。",
-      "easy": "お{金|かね}は かかりません。",
-      "en": "It's free of charge.",
-      "kana": "イッツ *フ*リー オヴ *チャ*ージ",
-      "enAlt": [
-        { "label": "かんたん", "en": "It's free.", "kana": "イッツ *フ*リー" },
-        { "label": "ていねい", "en": "There is no charge for this inspection.", "kana": "ゼア イズ *ノ*ウ チャージ フォー ディス インス*ペ*クション" }
-      ],
-      "zh": "不收取任何费用。",
-      "responses": [
-        { "they": "Really? Nothing at all?", "theyJa": "本当に？まったく？",
-          "say": "Yes, it's completely free.", "sayKana": "*イ*エス、イッツ コンプ*リ*ートリー *フ*リー", "sayJa": "はい、完全に無料です。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-    {
-      "id": "greeting.time", "scene": "greeting", "modes": ["show", "speak", "practice"],
-      "tags": ["時間", "何分", "所要時間", "どのくらい"],
-      "staff": "{minutes}分くらいで終わります。",
-      "easy": "{minutes}{分|ふん}くらいで おわります。",
-      "en": "It takes about {minutes} minutes.",
-      "kana": "イット *テ*イクス ア*バ*ウト {minutes} *ミ*ニッツ",
-      "enAlt": [
-        { "label": "かんたん", "en": "About {minutes} minutes.", "kana": "ア*バ*ウト {minutes} *ミ*ニッツ" },
-        { "label": "ていねい", "en": "It should only take about {minutes} minutes.", "kana": "イット シュッド *オ*ウンリー テイク ア*バ*ウト {minutes} *ミ*ニッツ" }
-      ],
-      "zh": "大约需要{minutes}分钟。",
-      "responses": [
-        { "they": "That long?", "theyJa": "そんなにかかるの？",
-          "say": "I'll be as quick as I can.", "sayKana": "アイル ビー アズ ク*ウィ*ック アズ アイ *キャ*ン", "sayJa": "できるだけ早く終わらせます。" },
-        { "they": "I only have five minutes.", "theyJa": "5分しかありません。",
-          "say": "I'll do my best to finish quickly.", "sayKana": "アイル ドゥ マイ *ベ*スト トゥ *フィ*ニッシュ ク*ウィ*ックリー", "sayJa": "早く終わるようにがんばります。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-
-    {
-      "id": "id.show", "scene": "id", "modes": ["show", "speak", "practice"],
-      "tags": ["身分証", "社員証", "ID", "名札", "証明"],
-      "staff": "こちらが身分証です。",
-      "easy": "これが わたしの {身分証|みぶんしょう}です。（{名前|なまえ}と {会社|かいしゃ}が {書|か}いて あります）",
-      "en": "This is my ID card.",
-      "kana": "ディス イズ マイ アイ*ディ*ー カード",
-      "enAlt": [
-        { "label": "かんたん", "en": "Here's my ID.", "kana": "*ヒ*アズ マイ アイ*ディ*ー" },
-        { "label": "ていねい", "en": "Please take a look at my identification card.", "kana": "プリーズ テイク ア *ル*ック アット マイ アイデンティフィ*ケ*イション カード" }
-      ],
-      "zh": "这是我的工作证。",
-      "responses": [
-        { "they": "Can I call your company to check?", "theyJa": "会社に電話して確かめてもいい？",
-          "say": "Of course. Here is the phone number.", "sayKana": "オヴ *コ*ース。*ヒ*ア イズ ザ *フォ*ウン ナンバー", "sayJa": "もちろんです。こちらが電話番号です。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-
-    {
-      "id": "enter.may", "scene": "enter", "modes": ["show", "speak", "practice"],
-      "tags": ["上がる", "入る", "家", "お邪魔"],
-      "staff": "お家に上がってもよいですか？",
-      "easy": "おうちに {入|はい}っても いいですか？",
-      "en": "May I come in?",
-      "kana": "メイ アイ カム *イ*ン？",
-      "enAlt": [
-        { "label": "かんたん", "en": "Can I come in?", "kana": "キャン アイ カム *イ*ン？" },
-        { "label": "ていねい", "en": "Would it be all right if I came inside?", "kana": "ウッド イット ビー オール *ラ*イト イフ アイ ケイム イン*サ*イド？" }
-      ],
-      "zh": "我可以进屋吗？",
-      "responses": [
-        { "they": "Please take off your shoes.", "theyJa": "靴を脱いでください。",
-          "say": "Of course.", "sayKana": "オヴ *コ*ース", "sayJa": "もちろんです。" },
-        { "they": "Wait a moment, please.", "theyJa": "ちょっと待ってください。",
-          "say": "Sure, take your time.", "sayKana": "*シュ*ア、テイク ユア *タ*イム", "sayJa": "はい、ごゆっくりどうぞ。" },
-        { "they": "No, sorry. Not today.", "theyJa": "すみません、今日はだめです。",
-          "say": "I understand. I'll come back another day.", "sayKana": "アイ アンダー*ス*タンド。アイル カム *バ*ック ア*ナ*ザー デイ", "sayJa": "分かりました。また別の日に来ます。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
+     "label": "かんたん",
+     "en": "I'm here about this notice.",
+     "kana": "アイム *ヒ*ア ア*バ*ウト ディス *ノ*ウティス"
     },
     {
-      "id": "enter.shoes", "scene": "enter", "modes": ["speak", "practice"],
-      "tags": ["靴", "脱ぐ"],
-      "staff": "靴を脱いで上がりますね。",
-      "en": "I'll take off my shoes.",
-      "kana": "アイル テイク *オ*フ マイ *シュ*ーズ",
-      "review": ["en", "kana"]
-    },
-
-    {
-      "id": "panel.show", "scene": "panel", "modes": ["show", "speak", "practice"],
-      "tags": ["分電盤", "ブレーカー", "箱", "見せて", "場所"],
-      "staff": "分電盤（ブレーカーの箱）を見せてください。",
-      "easy": "ブレーカーの {箱|はこ}を {見|み}せて ください。",
-      "en": "Could you show me your breaker box?",
-      "kana": "クッジュー *ショ*ウ ミー ユア ブ*レ*イカー ボックス？",
-      "enAlt": [
-        { "label": "かんたん", "en": "Where is your breaker box?", "kana": "*ウェ*ア イズ ユア ブ*レ*イカー ボックス？" },
-        { "label": "ていねい", "en": "Could you please show me where your electrical panel is?", "kana": "クッジュー プリーズ *ショ*ウ ミー ウェア ユア イ*レ*クトリカル *パ*ネル イズ？" }
-      ],
-      "zh": "请让我看一下配电箱（电闸箱）。",
-      "responses": [
-        { "they": "I don't know where it is.", "theyJa": "どこにあるか分かりません。",
-          "say": "It's usually near the entrance or the kitchen. May I look?", "sayKana": "イッツ *ユ*ージュアリー ニア ジ *エ*ントランス オア ザ *キ*ッチン。メイ アイ *ル*ック？", "sayJa": "たいてい玄関か台所の近くにあります。探してもいいですか？" },
-        { "they": "What's a breaker box?", "theyJa": "ブレーカーの箱って何？",
-          "say": "It's the box with the switches for your electricity.", "sayKana": "イッツ ザ *ボ*ックス ウィズ ザ ス*ウィ*ッチズ フォー ユア イレク*ト*リシティ", "sayJa": "電気のスイッチが並んでいる箱です。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-    {
-      "id": "panel.stool", "scene": "panel", "modes": ["show", "speak", "practice"],
-      "tags": ["踏み台", "台", "高い", "届かない"],
-      "staff": "踏み台を使ってもよいですか？",
-      "easy": "{台|だい}に のっても いいですか？",
-      "en": "May I use a step stool?",
-      "kana": "メイ アイ *ユ*ーズ ア ス*テ*ップ ストゥール？",
-      "zh": "我可以用一下垫脚凳吗？",
-      "review": ["en", "kana", "zh"]
-    },
-
-    {
-      "id": "question.unusual", "scene": "question", "modes": ["show", "speak", "practice"],
-      "tags": ["質問", "いつもと違う", "異常", "気になる", "照明"],
-      "staff": "最近、電気や照明でいつもと違うことはありましたか？",
-      "easy": "さいきん、{電気|でんき}や あかりで いつもと {違|ちが}うことは ありましたか？",
-      "en": "Have you noticed anything unusual with the electricity or lights lately?",
-      "kana": "ハヴ ユー *ノ*ウティスト *エ*ニシング アン*ユ*ージュアル ウィズ ジ イレク*ト*リシティ オア *ラ*イツ *レ*イトリー？",
-      "enAlt": [
-        { "label": "かんたん", "en": "Any problems with the electricity?", "kana": "*エ*ニ プ*ロ*ブレムズ ウィズ ジ イレク*ト*リシティ？" },
-        { "label": "ていねい", "en": "Have you had any trouble with the lights or the breakers recently?", "kana": "ハヴ ユー ハド *エ*ニ ト*ラ*ブル ウィズ ザ *ラ*イツ オア ザ ブ*レ*イカーズ *リ*ースントリー？" }
-      ],
-      "zh": "最近，电灯或用电方面有没有什么异常？",
-      "responses": [
-        { "they": "The lights flicker sometimes.", "theyJa": "ときどき電気がチカチカします。",
-          "say": "I see. I'll check it carefully.", "sayKana": "アイ *シ*ー。アイル *チェ*ック イット *ケ*アフリー", "sayJa": "そうですか。よく確認しますね。" },
-        { "they": "The breaker trips a lot.", "theyJa": "ブレーカーがよく落ちます。",
-          "say": "I see. Do you use many appliances at the same time?", "sayKana": "アイ *シ*ー。ドゥ ユー ユーズ *メ*ニ ア*プラ*イアンスィズ アット ザ セイム *タ*イム？", "sayJa": "そうですか。電気製品を同時にたくさん使いますか？" },
-        { "they": "No, nothing.", "theyJa": "いいえ、何もありません。",
-          "say": "Good. Thank you.", "sayKana": "*グ*ッド。*サ*ンキュー", "sayJa": "よかったです。ありがとうございます。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-
-    {
-      "id": "checking.start", "scene": "checking", "modes": ["show", "speak", "practice"],
-      "tags": ["点検", "始める", "待って"],
-      "staff": "今から点検します。少しお待ちください。",
-      "easy": "いまから チェック します。すこし {待|ま}って ください。",
-      "en": "I'll start the check now. Please wait a moment.",
-      "kana": "アイル *ス*タート ザ チェック *ナ*ウ。プリーズ *ウェ*イト ア *モ*ウメント",
-      "enAlt": [
-        { "label": "かんたん", "en": "I'll check it now. Just a moment.", "kana": "アイル *チェ*ック イット *ナ*ウ。ジャスト ア *モ*ウメント" }
-      ],
-      "zh": "现在开始检查，请稍等。",
-      "responses": [
-        { "they": "Will the power go off?", "theyJa": "電気は止まりますか？",
-          "say": "Usually, the power stays on.", "sayKana": "*ユ*ージュアリー、ザ *パ*ワー ステイズ *オ*ン", "sayJa": "通常、電気は止まりません。" },
-        { "they": "How long will it take?", "theyJa": "どのくらいかかりますか？",
-          "say": "Just a few minutes.", "sayKana": "ジャスト ア *フュ*ー *ミ*ニッツ", "sayJa": "数分で終わります。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-    {
-      "id": "checking.measure", "scene": "checking", "modes": ["speak", "practice"],
-      "tags": ["測定", "測る", "計器", "もれ", "漏電"],
-      "staff": "この測定器で、電気がもれていないか調べています。",
-      "en": "I'm using this meter to check for electrical leaks.",
-      "kana": "アイム *ユ*ージング ディス *ミ*ーター トゥ *チェ*ック フォー イ*レ*クトリカル *リー*クス",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "checking.done", "scene": "checking", "modes": ["speak", "practice"],
-      "tags": ["終わり", "完了"],
-      "staff": "終わりました。",
-      "en": "All done.",
-      "kana": "オール *ダ*ン",
-      "enAlt": [
-        { "label": "ていねい", "en": "The check is finished.", "kana": "ザ *チェ*ック イズ *フィ*ニッシュト" }
-      ],
-      "review": ["en", "enAlt", "kana"]
-    },
-
-    {
-      "id": "result.ok", "scene": "result", "modes": ["show", "speak", "practice"],
-      "tags": ["結果", "異常なし", "問題ない", "大丈夫"],
-      "staff": "点検の結果、異常はありませんでした。",
-      "easy": "チェックの けっか、{問題|もんだい}は ありませんでした。",
-      "en": "Everything looks fine. No problems were found.",
-      "kana": "*エ*ヴリシング ルックス *ファ*イン。*ノ*ウ プ*ロ*ブレムズ ワー *ファ*ウンド",
-      "enAlt": [
-        { "label": "かんたん", "en": "Everything is OK.", "kana": "*エ*ヴリシング イズ オウ*ケ*イ" },
-        { "label": "ていねい", "en": "The inspection is complete, and we found no problems.", "kana": "ジ インス*ペ*クション イズ コンプ*リ*ート、アンド ウィ ファウンド *ノ*ウ プ*ロ*ブレムズ" }
-      ],
-      "zh": "检查结果没有发现异常。",
-      "review": ["en", "enAlt", "kana", "zh"]
-    },
-    {
-      "id": "result.consult1", "scene": "result", "modes": ["show", "speak", "practice"],
-      "tags": ["結果", "要相談", "気になる", "問題"],
-      "staff": "気になるところがありました。",
-      "easy": "{気|き}になる ところが ありました。",
-      "en": "I found something that needs attention.",
-      "kana": "アイ ファウンド *サ*ムシング ザット ニーズ ア*テ*ンション",
-      "enAlt": [
-        { "label": "かんたん", "en": "I found a small problem.", "kana": "アイ ファウンド ア スモール プ*ロ*ブレム" }
-      ],
-      "zh": "发现了一个需要注意的地方。",
-      "responses": [
-        { "they": "Is it dangerous?", "theyJa": "危ないですか？",
-          "say": "It's not an emergency, but please have it checked soon.", "sayKana": "イッツ ノット アン イ*マ*ージェンシー、バット プリーズ ハヴ イット *チェ*ックト *ス*ーン", "sayJa": "今すぐ危ないわけではありませんが、早めに見てもらってください。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-    {
-      "id": "result.consult2", "scene": "result", "modes": ["show", "speak", "practice"],
-      "tags": ["電気工事店", "相談", "修理", "電気屋"],
-      "staff": "電気工事店に相談してください。",
-      "easy": "{電気|でんき}の {工事|こうじ}を する お{店|みせ}に {相談|そうだん}して ください。",
-      "en": "Please contact an electrician.",
-      "kana": "プリーズ *コ*ンタクト アン イレク*トゥ*リシャン",
-      "enAlt": [
-        { "label": "ていねい", "en": "We recommend that you talk to a licensed electrician.", "kana": "ウィ レコ*メ*ンド ザット ユー *ト*ーク トゥ ア *ラ*イセンスト イレク*トゥ*リシャン" }
-      ],
-      "zh": "请联系电工（电气施工店）咨询。",
-      "responses": [
-        { "they": "Do you know a good electrician?", "theyJa": "いい電気工事店を知っていますか？",
-          "say": "Let me check with my office.", "sayKana": "レット ミー *チェ*ック ウィズ マイ *オ*フィス", "sayJa": "会社に確認しますね。" },
-        { "they": "Can you fix it?", "theyJa": "あなたが直せますか？",
-          "say": "Sorry, I can't repair it. An electrician can.", "sayKana": "*ソ*ーリー、アイ *キャ*ント リ*ペ*ア イット。アン イレク*トゥ*リシャン *キャ*ン", "sayJa": "すみません、私は修理できません。電気工事店ならできます。" }
-      ],
-      "review": ["en", "enAlt", "kana", "zh", "responses"]
-    },
-    {
-      "id": "result.paper", "scene": "result", "modes": ["show", "speak", "practice"],
-      "tags": ["結果", "紙", "用紙", "お知らせ"],
-      "staff": "結果はこちらの紙に書いてあります。",
-      "easy": "けっかは この {紙|かみ}に {書|か}いて あります。",
-      "en": "The results are written on this sheet.",
-      "kana": "ザ リ*ザ*ルツ アー *リ*トゥン オン ディス *シ*ート",
-      "zh": "检查结果写在这张纸上。",
-      "review": ["staff", "en", "kana", "zh"]
-    },
-
-    {
-      "id": "thanks.main", "scene": "thanks", "modes": ["show", "speak", "practice"],
-      "tags": ["お礼", "ありがとう", "協力"],
-      "staff": "ご協力ありがとうございました。",
-      "easy": "{協力|きょうりょく}して くれて、ありがとう ございました。",
-      "en": "Thank you for your cooperation.",
-      "kana": "*サ*ンキュー フォー ユア コウアパ*レ*イション",
-      "enAlt": [
-        { "label": "かんたん", "en": "Thank you so much!", "kana": "*サ*ンキュー ソウ *マ*ッチ！" },
-        { "label": "ていねい", "en": "Thank you very much for your time today.", "kana": "*サ*ンキュー ヴェリ *マ*ッチ フォー ユア *タ*イム トゥ*デ*イ" }
-      ],
-      "zh": "感谢您的配合。",
-      "review": ["en", "enAlt", "kana", "zh"]
-    },
-    {
-      "id": "thanks.bye", "scene": "thanks", "modes": ["speak", "practice"],
-      "tags": ["さようなら", "失礼します"],
-      "staff": "失礼します。良い一日を。",
-      "en": "Have a nice day.",
-      "kana": "ハヴ ア *ナ*イス デイ",
-      "review": ["en", "kana"]
-    },
-
-    {
-      "id": "problem.leak", "scene": "problem", "group": "漏電", "modes": ["speak", "practice"],
-      "tags": ["漏電", "ろうでん", "電気がもれる", "感電", "もれ"],
-      "staff": "電気が少しもれている可能性があります。",
-      "en": "There may be a small electrical leak.",
-      "kana": "ゼア メイ ビー ア スモール イ*レ*クトリカル *リー*ク",
-      "enAlt": [
-        { "label": "かんたん", "en": "Some electricity may be leaking.", "kana": "*サ*ム イレク*ト*リシティ メイ ビー *リー*キング" },
-        { "label": "くわしく", "en": "My meter shows a small leak. It can cause an electric shock or a fire.", "kana": "マイ *ミ*ーター ショウズ ア スモール *リー*ク。イット キャン *コ*ーズ アン イ*レ*クトリック *ショ*ック オア ア *ファ*イア" }
-      ],
-      "responses": [
-        { "they": "Is it dangerous?", "theyJa": "危ないですか？",
-          "say": "It's not urgent, but please contact an electrician soon.", "sayKana": "イッツ ノット *ア*ージェント、バット プリーズ *コ*ンタクト アン イレク*トゥ*リシャン *ス*ーン", "sayJa": "急ぎではありませんが、早めに電気工事店に連絡してください。" },
-        { "they": "Where is it leaking?", "theyJa": "どこでもれているの？",
-          "say": "I can't tell exactly. An electrician can find out.", "sayKana": "アイ *キャ*ント テル イグ*ザ*クトリー。アン イレク*トゥ*リシャン キャン ファインド *ア*ウト", "sayJa": "はっきりとは分かりません。電気工事店なら調べられます。" }
-      ],
-      "review": ["staff", "en", "enAlt", "kana", "responses"]
-    },
-    {
-      "id": "problem.leak.cause", "scene": "problem", "group": "漏電", "modes": ["speak", "practice"],
-      "tags": ["漏電", "火事", "感電", "危険"],
-      "staff": "漏電は、感電や火事の原因になることがあります。",
-      "en": "An electrical leak can cause an electric shock or a fire.",
-      "kana": "アン イ*レ*クトリカル *リー*ク キャン *コ*ーズ アン イ*レ*クトリック *ショ*ック オア ア *ファ*イア",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "problem.leak.nobreaker", "scene": "problem", "group": "漏電", "modes": ["speak", "practice"],
-      "tags": ["漏電ブレーカー", "ない", "付いていない"],
-      "staff": "この家には漏電ブレーカーが付いていません。付けることをおすすめします。",
-      "en": "This home doesn't have a safety breaker. I recommend installing one.",
-      "kana": "ディス *ホ*ウム *ダ*ズント ハヴ ア *セ*イフティ ブ*レ*イカー。アイ レコ*メ*ンド イン*ス*トーリング *ワ*ン",
-      "review": ["en", "kana"]
-    },
-
-    {
-      "id": "problem.outlet.burn", "scene": "problem", "group": "コンセント", "modes": ["speak", "practice"],
-      "tags": ["コンセント", "焦げ", "こげ", "黒い", "熱い"],
-      "staff": "このコンセントに焦げた跡があります。",
-      "en": "There's a burn mark on this outlet.",
-      "kana": "ゼアズ ア *バ*ーン マーク オン ディス *ア*ウトレット",
-      "responses": [
-        { "they": "Can I still use it?", "theyJa": "まだ使えますか？",
-          "say": "Please stop using it until an electrician checks it.", "sayKana": "プリーズ *ス*トップ *ユ*ージング イット アン*ティ*ル アン イレク*トゥ*リシャン *チェ*ックス イット", "sayJa": "電気工事店に見てもらうまで、使わないでください。" }
-      ],
-      "review": ["en", "kana", "responses"]
-    },
-    {
-      "id": "problem.outlet.loose", "scene": "problem", "group": "コンセント", "modes": ["speak", "practice"],
-      "tags": ["コンセント", "ゆるい", "ぐらぐら", "抜ける"],
-      "staff": "このコンセントがゆるくなっています。",
-      "en": "This outlet is loose.",
-      "kana": "ディス *ア*ウトレット イズ *ル*ース",
-      "enAlt": [
-        { "label": "くわしく", "en": "The plug doesn't fit tightly. That can make it get hot.", "kana": "ザ プ*ラ*グ ダズント フィット *タ*イトリー。ザット キャン メイク イット ゲット *ホ*ット" }
-      ],
-      "review": ["en", "enAlt", "kana"]
-    },
-    {
-      "id": "problem.outlet.crack", "scene": "problem", "group": "コンセント", "modes": ["speak", "practice"],
-      "tags": ["コンセント", "ひび", "割れ", "交換"],
-      "staff": "コンセントにひびがあります。交換をおすすめします。",
-      "en": "This outlet has a crack. I recommend replacing it.",
-      "kana": "ディス *ア*ウトレット ハズ ア ク*ラ*ック。アイ レコ*メ*ンド リプ*レ*イスィング イット",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "problem.outlet.dust", "scene": "problem", "group": "コンセント", "modes": ["speak", "practice"],
-      "tags": ["コンセント", "ほこり", "掃除", "トラッキング", "火事"],
-      "staff": "プラグのまわりにほこりがたまっています。火事の原因になるので、掃除してください。",
-      "en": "There's dust around this plug. It can cause a fire, so please clean it.",
-      "kana": "ゼアズ *ダ*スト ア*ラ*ウンド ディス プ*ラ*グ。イット キャン *コ*ーズ ア *ファ*イア、ソウ プリーズ *ク*リーン イット",
-      "review": ["en", "kana"]
-    },
-
-    {
-      "id": "problem.capacity", "scene": "problem", "group": "ブレーカーの容量", "modes": ["speak", "practice"],
-      "tags": ["ブレーカー", "落ちる", "容量", "アンペア", "使いすぎ"],
-      "staff": "電気製品を同時にたくさん使うと、ブレーカーが落ちやすくなります。",
-      "en": "If you use many appliances at the same time, the breaker may trip.",
-      "kana": "イフ ユー ユーズ *メ*ニ ア*プラ*イアンスィズ アット ザ セイム *タ*イム、ザ ブ*レ*イカー メイ ト*リ*ップ",
-      "enAlt": [
-        { "label": "かんたん", "en": "Too many things at once can turn off the power.", "kana": "*トゥ*ー メニ *シ*ングズ アット *ワ*ンス キャン ターン *オ*フ ザ *パ*ワー" }
-      ],
-      "review": ["en", "enAlt", "kana"]
-    },
-    {
-      "id": "problem.capacity.contract", "scene": "problem", "group": "ブレーカーの容量", "modes": ["speak", "practice"],
-      "tags": ["アンペア", "契約", "容量", "上げる"],
-      "staff": "契約のアンペアを上げることもできます。電気の契約先にご相談ください。",
-      "en": "You may be able to increase your contract amps. Please ask your electricity company.",
-      "kana": "ユー メイ ビー エイブル トゥ イン*ク*リース ユア *コ*ントラクト *ア*ンプス。プリーズ *ア*スク ユア イレク*ト*リシティ カンパニー",
-      "review": ["staff", "en", "kana"]
-    },
-    {
-      "id": "problem.capacity.share", "scene": "problem", "group": "ブレーカーの容量", "modes": ["speak", "practice"],
-      "tags": ["電子レンジ", "エアコン", "ドライヤー", "同時", "分ける"],
-      "staff": "電子レンジやドライヤーは、同時に使わないようにしてください。",
-      "en": "Please try not to use the microwave and the hair dryer at the same time.",
-      "kana": "プリーズ トライ *ノ*ット トゥ ユーズ ザ *マ*イクロウェイヴ アンド ザ *ヘ*ア ドライヤー アット ザ セイム *タ*イム",
-      "review": ["en", "kana"]
-    },
-
-    {
-      "id": "problem.wiring.old", "scene": "problem", "group": "配線・延長コード", "modes": ["speak", "practice"],
-      "tags": ["配線", "古い", "劣化"],
-      "staff": "配線が古くなっています。",
-      "en": "The wiring is getting old.",
-      "kana": "ザ *ワ*イアリング イズ ゲッティング *オ*ウルド",
-      "enAlt": [
-        { "label": "くわしく", "en": "The wiring is old. I recommend having an electrician check it.", "kana": "ザ *ワ*イアリング イズ *オ*ウルド。アイ レコ*メ*ンド ハヴィング アン イレク*トゥ*リシャン *チェ*ック イット" }
-      ],
-      "review": ["en", "enAlt", "kana"]
-    },
-    {
-      "id": "problem.wiring.cord", "scene": "problem", "group": "配線・延長コード", "modes": ["speak", "practice"],
-      "tags": ["延長コード", "タコ足", "つなぎすぎ", "電源タップ"],
-      "staff": "1つの延長コードにたくさんつなぐと危ないです。",
-      "en": "Plugging too many things into one extension cord is dangerous.",
-      "kana": "プ*ラ*ギング *トゥ*ー メニ シングズ イントゥ *ワ*ン イクス*テ*ンション コード イズ *デ*インジャラス",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "problem.wiring.under", "scene": "problem", "group": "配線・延長コード", "modes": ["speak", "practice"],
-      "tags": ["コード", "家具", "下", "踏む", "束ねる"],
-      "staff": "コードを家具の下に置いたり、束ねたりしないでください。",
-      "en": "Please don't put cords under furniture or bundle them up.",
-      "kana": "プリーズ *ド*ウント プット *コ*ーズ アンダー *ファ*ーニチャー オア *バ*ンドル ゼム *ア*ップ",
-      "review": ["en", "kana"]
-    },
-
-    {
-      "id": "problem.electrician", "scene": "problem", "group": "電気工事店へ", "modes": ["speak", "practice"],
-      "tags": ["電気工事店", "修理", "電気屋", "頼む"],
-      "staff": "近くの電気工事店に修理を頼んでください。",
-      "en": "Please ask a local electrician to repair it.",
-      "kana": "プリーズ *ア*スク ア *ロ*ウカル イレク*トゥ*リシャン トゥ リ*ペ*ア イット",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "problem.electrician.cost", "scene": "problem", "group": "電気工事店へ", "modes": ["speak", "practice"],
-      "tags": ["修理代", "費用", "有料", "お金"],
-      "staff": "点検は無料ですが、修理は電気工事店への支払いが必要です。",
-      "en": "The check is free, but you will need to pay the electrician for repairs.",
-      "kana": "ザ *チェ*ック イズ *フ*リー、バット ユー ウィル ニード トゥ *ペ*イ ジ イレク*トゥ*リシャン フォー リ*ペ*アズ",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "problem.electrician.choice", "scene": "problem", "group": "電気工事店へ", "modes": ["speak", "practice"],
-      "tags": ["判断", "決める", "お客さん"],
-      "staff": "修理するかどうかは、お客様のご判断です。",
-      "en": "It's up to you whether to repair it.",
-      "kana": "イッツ *ア*ップ トゥ ユー *ウェ*ザー トゥ リ*ペ*ア イット",
-      "review": ["en", "kana"]
-    },
-
-    {
-      "id": "problem.office", "scene": "problem", "group": "会社に確認", "modes": ["speak", "practice"],
-      "tags": ["会社", "確認", "電話", "待って", "分からない"],
-      "staff": "会社に確認するので、少しお待ちください。",
-      "en": "Let me call my office to check. Please wait a moment.",
-      "kana": "レット ミー *コ*ール マイ *オ*フィス トゥ *チェ*ック。プリーズ *ウェ*イト ア *モ*ウメント",
-      "enAlt": [
-        { "label": "かんたん", "en": "Let me check with my office.", "kana": "レット ミー *チェ*ック ウィズ マイ *オ*フィス" }
-      ],
-      "review": ["en", "enAlt", "kana"]
-    },
-    {
-      "id": "problem.office.number", "scene": "problem", "group": "会社に確認", "modes": ["speak", "practice"],
-      "tags": ["問い合わせ", "電話番号", "会社", "聞いて"],
-      "staff": "詳しくは、こちらの番号にお問い合わせください。",
-      "en": "For more details, please call this number.",
-      "kana": "フォー *モ*ア *デ*ィテイルズ、プリーズ *コ*ール ディス *ナ*ンバー",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "problem.office.notsure", "scene": "problem", "group": "会社に確認", "modes": ["speak", "practice"],
-      "tags": ["分からない", "はっきり", "断定"],
-      "staff": "はっきりとは言えません。",
-      "en": "I can't say for sure.",
-      "kana": "アイ *キャ*ント セイ フォー *シュ*ア",
-      "review": ["en", "kana"]
-    },
-
-    {
-      "id": "handy.again", "scene": "handy", "modes": ["speak", "practice"],
-      "tags": ["もう一度", "聞き返す", "聞こえない"],
-      "staff": "もう一度言ってください。",
-      "en": "Sorry, could you say that again?",
-      "kana": "*ソ*ーリー、クッジュー セイ ザット ア*ゲ*ン？",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "handy.slow", "scene": "handy", "modes": ["speak", "practice"],
-      "tags": ["ゆっくり", "速い"],
-      "staff": "ゆっくり話してください。",
-      "en": "Could you speak more slowly, please?",
-      "kana": "クッジュー スピーク モア *ス*ロウリー、プリーズ？",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "handy.english", "scene": "handy", "modes": ["speak", "practice"],
-      "tags": ["英語", "少し", "話せない"],
-      "staff": "英語は少しだけ話せます。",
-      "en": "I only speak a little English.",
-      "kana": "アイ *オ*ウンリー スピーク ア *リ*トル *イ*ングリッシュ",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "handy.screen", "scene": "handy", "modes": ["speak", "practice"],
-      "tags": ["画面", "見て", "スマホ"],
-      "staff": "この画面を見てください。",
-      "en": "Please look at this screen.",
-      "kana": "プリーズ *ル*ック アット ディス ス*ク*リーン",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "handy.wait", "scene": "handy", "modes": ["speak", "practice"],
-      "tags": ["待って", "少々"],
-      "staff": "少々お待ちください。",
-      "en": "Just a moment, please.",
-      "kana": "ジャスト ア *モ*ウメント、プリーズ",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "handy.see", "scene": "handy", "modes": ["speak", "practice"],
-      "tags": ["分かりました", "了解", "相づち"],
-      "staff": "分かりました。",
-      "en": "I see. / I understand.",
-      "kana": "アイ *シ*ー ／ アイ アンダー*ス*タンド",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "handy.light", "scene": "handy", "modes": ["speak", "practice"],
-      "tags": ["電気をつける", "暗い", "照明"],
-      "staff": "電気をつけてもいいですか？",
-      "en": "May I turn on the light?",
-      "kana": "メイ アイ ターン *オ*ン ザ *ラ*イト？",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "handy.move", "scene": "handy", "modes": ["speak", "practice"],
-      "tags": ["どかす", "物", "荷物", "届かない"],
-      "staff": "こちらの物を少しどかしていただけますか？",
-      "en": "Could you move this a little, please?",
-      "kana": "クッジュー *ム*ーヴ ディス ア *リ*トル、プリーズ？",
-      "review": ["en", "kana"]
-    },
-    {
-      "id": "handy.sorry", "scene": "handy", "modes": ["speak", "practice"],
-      "tags": ["すみません", "失礼", "謝る"],
-      "staff": "失礼しました。",
-      "en": "Sorry about that.",
-      "kana": "*ソ*ーリー ア*バ*ウト ザット",
-      "review": ["en", "kana"]
+     "label": "ていねい",
+     "en": "I'm visiting about the notice we left in your mailbox a week ago.",
+     "kana": "アイム *ヴィ*ジティング ア*バ*ウト ザ *ノ*ウティス ウィ *レ*フト イン ユア *メ*イルボックス ア *ウィ*ーク ア*ゴ*ウ"
     }
-  ],
-
-  "choices": [
-    { "id": "flicker", "icon": "lightbulb",    "staff": "電気がチカチカする",   "easy": "あかりが チカチカ する",                         "en": "The lights flicker",                           "zh": "灯一闪一闪的",           "review": ["en", "zh"] },
-    { "id": "trip",    "icon": "zap-off",      "staff": "ブレーカーがよく落ちる", "easy": "{電気|でんき}が よく {急|きゅう}に {消|き}える", "en": "The power often goes off (the breaker trips)", "zh": "经常跳闸（突然断电）",   "review": ["en", "zh"] },
-    { "id": "smell",   "icon": "flame",        "staff": "焦げたにおいがする",   "easy": "こげた においが する",                           "en": "I smell something burning",                    "zh": "有烧焦的味道",           "review": ["en", "zh"] },
-    { "id": "none",    "icon": "circle-check", "staff": "特にない",             "easy": "とくに ない",                                     "en": "Nothing unusual",                              "zh": "没有特别的问题",         "review": ["en", "zh"] }
-  ],
-
-  "results": [
-    { "id": "ok",      "button": "異常なし", "tone": "ok",   "icon": "circle-check",   "phrases": ["result.ok", "result.paper"] },
-    { "id": "consult", "button": "要相談",   "tone": "warn", "icon": "triangle-alert", "phrases": ["result.consult1", "result.consult2", "result.paper"] }
-  ],
-
-  "replies": [
-    { "id": "yes",  "icon": "check",       "staff": "はい",           "easy": "はい",                  "en": "Yes",                "zh": "是的",       "review": ["zh"] },
-    { "id": "no",   "icon": "x",           "staff": "いいえ",         "easy": "いいえ",                "en": "No",                 "zh": "不是",       "review": ["zh"] },
-    { "id": "wait", "icon": "hand",        "staff": "ちょっと待って", "easy": "ちょっと {待|ま}って",  "en": "Wait a moment",      "zh": "请稍等",     "review": ["en", "zh"] },
-    { "id": "dunno","icon": "circle-help", "staff": "分かりません",   "easy": "わかりません",          "en": "I don't understand", "zh": "我不明白",   "review": ["en", "zh"] }
-  ],
-
-  "faq": [
+   ],
+   "zh": "我是为一周前放进您信箱的通知而来的。",
+   "responses": [
     {
-      "id": "faq.cost", "icon": "circle-check",
-      "q": { "staff": "お金はかかりますか？", "easy": "お{金|かね}は かかりますか？", "en": "Does this cost money?", "zh": "需要付钱吗？" },
-      "a": { "staff": "かかりません。点検は無料です。", "easy": "かかりません。チェックは ただ（{無料|むりょう}）です。", "en": "No. The check is free of charge.", "kana": "*ノ*ウ。ザ *チェ*ック イズ *フ*リー オヴ *チャ*ージ", "zh": "不需要。检查是免费的。" },
-      "review": ["en", "kana", "zh"]
+     "they": "I didn't see it.",
+     "theyJa": "見ていません。",
+     "say": "That's okay. Let me explain briefly.",
+     "sayKana": "ザッツ オウ*ケ*イ。レット ミー イクスプ*レ*イン *ブ*リーフリー",
+     "sayJa": "大丈夫です。簡単に説明しますね。"
     },
     {
-      "id": "faq.scam", "icon": "id-card",
-      "q": { "staff": "詐欺ではありませんか？", "easy": "うその {人|ひと}じゃ ないですか？", "en": "Is this a scam?", "zh": "这是诈骗吗？" },
-      "a": { "staff": "{client}の委託で点検しています。心配なときは、こちらに電話して確かめてください。{phone}",
-             "easy": "{client}に たのまれて チェックして います。しんぱいな ときは、ここに {電話|でんわ}して ください。{phone}",
-             "en": "No. We do this check on behalf of {client}. If you are worried, please call this number: {phone}",
-             "kana": "*ノ*ウ。ウィ ドゥ ディス *チェ*ック オン ビ*ハ*ーフ オヴ *テ*プコ。イフ ユー アー *ワ*リード、プリーズ *コ*ール ディス *ナ*ンバー",
-             "zh": "不是。我们受{client}委托进行检查。如果您不放心，请拨打这个电话确认：{phone}" },
-      "showCompany": true,
-      "review": ["en", "kana", "zh"]
-    },
-    {
-      "id": "faq.time", "icon": "hourglass",
-      "q": { "staff": "どのくらい時間がかかりますか？", "easy": "どのくらい {時間|じかん}が かかりますか？", "en": "How long will it take?", "zh": "需要多长时间？" },
-      "a": { "staff": "{minutes}分くらいです。", "easy": "{minutes}{分|ふん}くらいです。", "en": "About {minutes} minutes.", "kana": "ア*バ*ウト {minutes} *ミ*ニッツ", "zh": "大约{minutes}分钟。" },
-      "review": ["en", "kana", "zh"]
-    },
-    {
-      "id": "faq.busy", "icon": "calendar",
-      "q": { "staff": "今日は都合が悪いです。", "easy": "きょうは つごうが わるいです。", "en": "Today is not a good day.", "zh": "今天不方便。" },
-      "a": { "staff": "分かりました。また後日伺います。お知らせに書いてある番号にお電話ください。",
-             "easy": "わかりました。また べつの {日|ひ}に {来|き}ます。お{知|し}らせに {書|か}いて ある {番号|ばんごう}に {電話|でんわ}して ください。",
-             "en": "No problem. We will come back another day. You can also call the number on the notice.",
-             "kana": "*ノ*ウ プ*ロ*ブレム。ウィ ウィル カム *バ*ック ア*ナ*ザー デイ。ユー キャン *オ*ールソウ *コ*ール ザ *ナ*ンバー オン ザ *ノ*ウティス",
-             "zh": "没关系。我们改天再来。您也可以拨打通知上的电话号码。" },
-      "review": ["en", "kana", "zh"]
+     "they": "What is this about?",
+     "theyJa": "何の件ですか？",
+     "say": "It's a free electrical safety check.",
+     "sayKana": "イッツ ア *フ*リー イ*レ*クトリカル *セ*イフティ チェック",
+     "sayJa": "無料の電気の安全点検です。"
     }
-  ],
-
-  "breakerImage": "img/breaker.svg",
-  "breaker": [
-    {
-      "no": 1, "id": "main", "x": 18, "y": 12,
-      "name": { "staff": "メインブレーカー", "easy": "いちばん {大|おお}きい スイッチ", "en": "Main breaker", "kana": "*メ*イン ブ*レ*イカー", "zh": "总开关" },
-      "desc": { "staff": "家全体の電気をまとめて止めるスイッチです。電気を一度に使いすぎると切れます。",
-                "easy": "{家|いえ} ぜんぶの {電気|でんき}を まとめて {止|と}める スイッチです。{電気|でんき}を いっぺんに つかいすぎると {切|き}れます。",
-                "en": "This switch turns off all the power in your home at once. It switches off if you use too much electricity at the same time.",
-                "kana": "ディス ス*ウィ*ッチ ターンズ *オ*フ オール ザ *パ*ワー イン ユア *ホ*ウム アット *ワ*ンス",
-                "zh": "这个开关可以一次切断全家的电。同时用电过多时，它会自动跳闸。" },
-      "review": ["en", "kana", "zh"]
-    },
-    {
-      "no": 2, "id": "safety", "x": 47, "y": 12,
-      "name": { "staff": "漏電ブレーカー", "easy": "あんぜんの スイッチ", "en": "Safety breaker", "kana": "*セ*イフティ ブ*レ*イカー", "zh": "漏电保护开关" },
-      "desc": { "staff": "電気がもれたら自動で電気を止めて、感電や火事を防ぐスイッチです。",
-                "easy": "{電気|でんき}が もれたら、じどうで {電気|でんき}を {止|と}めて、ビリッと する ことや {火事|かじ}を ふせぐ スイッチです。",
-                "en": "If electricity leaks, this switch turns off the power automatically. It protects you from electric shock and fire.",
-                "kana": "イフ イレク*ト*リシティ *リー*クス、ディス ス*ウィ*ッチ ターンズ オフ ザ *パ*ワー オートゥ*マ*ティカリー",
-                "zh": "一旦漏电，这个开关会自动断电，防止触电和火灾。" },
-      "review": ["en", "kana", "zh"]
-    },
-    {
-      "no": 3, "id": "branch", "x": 80, "y": 12,
-      "name": { "staff": "分岐ブレーカー（小さいブレーカー）", "easy": "へやごとの {小|ちい}さい スイッチ", "en": "Circuit breakers", "kana": "*サ*ーキット ブ*レ*イカーズ", "zh": "分路开关（小开关）" },
-      "desc": { "staff": "部屋や場所ごとの電気のスイッチです。使いすぎた場所だけ電気が切れます。",
-                "easy": "へやや ばしょ ごとの {電気|でんき}の スイッチです。つかいすぎた ところ だけ {電気|でんき}が {切|き}れます。",
-                "en": "Each small switch controls one area, like the kitchen or a bedroom. If one area uses too much power, only that switch turns off.",
-                "kana": "*イ*ーチ スモール ス*ウィ*ッチ コント*ロ*ウルズ *ワ*ン *エ*アリア、ライク ザ *キ*ッチン オア ア *ベ*ッドルーム",
-                "zh": "每个小开关控制一个区域，比如厨房或卧室。某个区域用电过多时，只有那个开关会跳闸。" },
-      "review": ["en", "kana", "zh"]
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "I'm here regarding the safety inspection notice we left in your mailbox last week.",
+     "kana": "アイム ヒア リ*ガ*ーディング ザ *セ*イフティ インス*ペ*クション *ノ*ウティス ウィ *レ*フト イン ユア *メ*イルボックス *ラ*スト ウィーク"
     }
-  ],
-
-  "words": [
-    { "id": "w.electrician",  "en": "electrician",                          "kana": "イレク*トゥ*リシャン",                 "ja": "電気工事店・電気屋さん", "note": "Please contact an electrician.（電気工事店に相談してください）", "review": ["en", "kana"] },
-    { "id": "w.main",         "en": "main breaker",                         "kana": "*メ*イン ブ*レ*イカー",                 "ja": "メインブレーカー", "review": ["en", "kana"] },
-    { "id": "w.safety",       "en": "safety breaker / earth leakage breaker", "kana": "*セ*イフティ ブ*レ*イカー ／ *ア*ース *リー*キッジ ブ*レ*イカー", "ja": "漏電ブレーカー", "note": "お客さんには safety breaker のほうが伝わりやすい", "review": ["en", "kana"] },
-    { "id": "w.circuit",      "en": "circuit breaker",                      "kana": "*サ*ーキット ブ*レ*イカー",             "ja": "分岐ブレーカー（小さいブレーカー）", "review": ["en", "kana"] },
-    { "id": "w.panel",        "en": "breaker box / electrical panel",       "kana": "ブ*レ*イカー ボックス ／ イ*レ*クトリカル *パ*ネル", "ja": "分電盤", "review": ["en", "kana"] },
-    { "id": "w.outlet",       "en": "outlet",                               "kana": "*ア*ウトレット",                         "ja": "コンセント", "note": "「コンセント」は英語では通じない", "review": ["en", "kana"] },
-    { "id": "w.plug",         "en": "plug",                                 "kana": "プ*ラ*グ",                               "ja": "プラグ（差し込む側）", "review": ["en", "kana"] },
-    { "id": "w.wiring",       "en": "wiring",                               "kana": "*ワ*イアリング",                         "ja": "配線", "review": ["en", "kana"] },
-    { "id": "w.meter",        "en": "meter",                                "kana": "*ミ*ーター",                             "ja": "メーター・測定器", "review": ["en", "kana"] },
-    { "id": "w.inspection",   "en": "inspection / safety check",            "kana": "インス*ペ*クション ／ *セ*イフティ チェック", "ja": "点検", "review": ["en", "kana"] },
-    { "id": "w.shock",        "en": "electric shock",                       "kana": "イ*レ*クトリック *ショ*ック",             "ja": "感電", "review": ["en", "kana"] },
-    { "id": "w.leak",         "en": "electrical leak",                      "kana": "イ*レ*クトリカル *リー*ク",               "ja": "漏電", "review": ["en", "kana"] },
-    { "id": "w.fire",         "en": "fire",                                 "kana": "*ファ*イア",                             "ja": "火事", "review": ["en", "kana"] },
-    { "id": "w.cord",         "en": "extension cord",                       "kana": "イクス*テ*ンション コード",               "ja": "延長コード", "review": ["en", "kana"] },
-    { "id": "w.strip",        "en": "power strip",                          "kana": "*パ*ワー ストリップ",                     "ja": "電源タップ（タコ足）", "review": ["en", "kana"] },
-    { "id": "w.appliance",    "en": "appliance",                            "kana": "ア*プラ*イアンス",                       "ja": "電気製品・家電", "review": ["en", "kana"] },
-    { "id": "w.switch",       "en": "switch",                               "kana": "ス*ウィ*ッチ",                           "ja": "スイッチ", "review": ["en", "kana"] },
-    { "id": "w.trip",         "en": "trip (The breaker trips.)",            "kana": "ト*リ*ップ",                             "ja": "（ブレーカーが）落ちる", "review": ["en", "kana"] },
-    { "id": "w.flicker",      "en": "flicker",                              "kana": "フ*リ*ッカー",                           "ja": "チカチカする", "review": ["en", "kana"] },
-    { "id": "w.burn",         "en": "burn mark",                            "kana": "*バ*ーン マーク",                         "ja": "焦げ跡", "review": ["en", "kana"] },
-    { "id": "w.crack",        "en": "crack",                                "kana": "ク*ラ*ック",                             "ja": "ひび", "review": ["en", "kana"] },
-    { "id": "w.loose",        "en": "loose",                                "kana": "*ル*ース",                               "ja": "ゆるい・ぐらぐら", "review": ["en", "kana"] },
-    { "id": "w.dust",         "en": "dust",                                 "kana": "*ダ*スト",                               "ja": "ほこり", "review": ["en", "kana"] },
-    { "id": "w.moisture",     "en": "moisture",                             "kana": "*モ*イスチャー",                         "ja": "湿気", "review": ["en", "kana"] },
-    { "id": "w.repair",       "en": "repair",                               "kana": "リ*ペ*ア",                               "ja": "修理する", "review": ["en", "kana"] },
-    { "id": "w.replace",      "en": "replace",                              "kana": "リプ*レ*イス",                           "ja": "交換する", "review": ["en", "kana"] },
-    { "id": "w.free",         "en": "free of charge",                       "kana": "*フ*リー オヴ *チャ*ージ",                "ja": "無料", "review": ["en", "kana"] },
-    { "id": "w.id",           "en": "ID card",                              "kana": "アイ*ディ*ー カード",                     "ja": "身分証", "review": ["en", "kana"] },
-    { "id": "w.notice",       "en": "notice",                               "kana": "*ノ*ウティス",                           "ja": "お知らせ", "review": ["en", "kana"] },
-    { "id": "w.mailbox",      "en": "mailbox",                              "kana": "*メ*イルボックス",                       "ja": "郵便受け・ポスト", "review": ["en", "kana"] },
-    { "id": "w.amps",         "en": "amps (contract amps)",                 "kana": "*ア*ンプス",                             "ja": "アンペア（契約アンペア）", "review": ["en", "kana"] },
-    { "id": "w.outage",       "en": "power outage",                         "kana": "*パ*ワー *ア*ウテッジ",                   "ja": "停電", "review": ["en", "kana"] },
-    { "id": "w.ground",       "en": "ground wire",                          "kana": "グ*ラ*ウンド ワイア",                     "ja": "アース線", "review": ["en", "kana"] },
-    { "id": "w.aircon",       "en": "air conditioner",                      "kana": "*エ*ア コン*ディ*ショナー",               "ja": "エアコン", "review": ["en", "kana"] },
-    { "id": "w.microwave",    "en": "microwave",                            "kana": "*マ*イクロウェイヴ",                     "ja": "電子レンジ", "review": ["en", "kana"] },
-    { "id": "w.stool",        "en": "step stool",                           "kana": "ス*テ*ップ ストゥール",                   "ja": "踏み台", "review": ["en", "kana"] },
-    { "id": "w.entrance",     "en": "entrance",                             "kana": "*エ*ントランス",                         "ja": "玄関", "review": ["en", "kana"] },
-    { "id": "w.office",       "en": "office",                               "kana": "*オ*フィス",                             "ja": "会社・事務所", "note": "Let me call my office.（会社に電話します）", "review": ["en", "kana"] },
-    { "id": "w.dangerous",    "en": "dangerous",                            "kana": "*デ*インジャラス",                       "ja": "危ない", "review": ["en", "kana"] },
-    { "id": "w.urgent",       "en": "urgent",                               "kana": "*ア*ージェント",                         "ja": "急ぎの", "review": ["en", "kana"] },
-    { "id": "w.recommend",    "en": "recommend",                            "kana": "レコ*メ*ンド",                           "ja": "すすめる", "note": "I recommend replacing it.（交換をおすすめします）", "review": ["en", "kana"] }
-  ]
+   }
+  },
+  {
+   "id": "greeting.hello",
+   "scene": "greeting",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "あいさつ",
+    "名乗る",
+    "東京電力",
+    "委託",
+    "会社"
+   ],
+   "staff": "こんにちは。{company}の者です。{client}の委託で、電気の安全点検に来ました。",
+   "easy": "こんにちは。{company}の {者|もの}です。{client}に たのまれて、{電気|でんき}の {安全|あんぜん} チェックに {来|き}ました。",
+   "en": "Hello. I'm from {company}. I'm here to do an electrical safety check on behalf of {client}.",
+   "kana": "ハ*ロ*ウ。アイム フロム {company}。アイム *ヒ*ア トゥ ドゥ アン イ*レ*クトリカル *セ*イフティ チェック オン ビ*ハ*ーフ オヴ *テ*プコ",
+   "zh": "您好。我是{company}的工作人员，受{client}委托，来做用电安全检查。",
+   "ifNoCompany": {
+    "staff": "こんにちは。{client}の委託で、電気の安全点検に来ました。",
+    "easy": "こんにちは。{client}に たのまれて、{電気|でんき}の {安全|あんぜん} チェックに {来|き}ました。",
+    "en": "Hello. I'm here to do an electrical safety check on behalf of {client}.",
+    "kana": "ハ*ロ*ウ。アイム *ヒ*ア トゥ ドゥ アン イ*レ*クトリカル *セ*イフティ チェック オン ビ*ハ*ーフ オヴ *テ*プコ",
+    "zh": "您好。我受{client}委托，来做用电安全检查。"
+   },
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Hi. Electrical safety check, for {client}.",
+     "kana": "*ハ*イ。イ*レ*クトリカル *セ*イフティ チェック、フォー *テ*プコ"
+    },
+    {
+     "label": "ていねい",
+     "en": "Good afternoon. I'm working for {client}, and I'm here for an electrical safety inspection.",
+     "kana": "グッド アフタ*ヌ*ーン。アイム *ワ*ーキング フォー *テ*プコ、アンド アイム *ヒ*ア フォー アン イ*レ*クトリカル *セ*イフティ インス*ペ*クション"
+    }
+   ],
+   "responses": [
+    {
+     "they": "Are you from TEPCO?",
+     "theyJa": "東京電力の人ですか？",
+     "say": "We do these checks on behalf of TEPCO.",
+     "sayKana": "ウィ ドゥ *ディ*ーズ チェックス オン ビ*ハ*ーフ オヴ *テ*プコ",
+     "sayJa": "東京電力の代わりに点検をしています。"
+    },
+    {
+     "they": "What kind of check?",
+     "theyJa": "何の点検ですか？",
+     "say": "I check your breaker box to make sure there is no electrical leak.",
+     "sayKana": "アイ *チェ*ック ユア ブ*レ*イカー ボックス トゥ メイク *シュ*ア ゼア イズ *ノ*ウ イ*レ*クトリカル *リー*ク",
+     "sayJa": "電気がもれていないか、ブレーカーの箱を確認します。"
+    },
+    {
+     "they": "Sorry, I'm busy now.",
+     "theyJa": "すみません、今忙しいです。",
+     "say": "No problem. When would be a good time?",
+     "sayKana": "*ノ*ウ プ*ロ*ブレム。*ウェ*ン ウッド ビー ア グッド *タ*イム？",
+     "sayJa": "大丈夫です。いつならご都合がよいですか？"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "Hello. I'm here on behalf of {client} to carry out the periodic electrical safety inspection required by law.",
+     "kana": "ハ*ロ*ウ。アイム ヒア オン ビ*ハ*ーフ オヴ *テ*プコ トゥ *キャ*リー アウト ザ ピアリ*オ*ディカル イ*レ*クトリカル *セ*イフティ インス*ペ*クション リク*ワ*イアド バイ *ロ*ー"
+    }
+   }
+  },
+  {
+   "id": "greeting.free",
+   "scene": "greeting",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "無料",
+    "お金",
+    "料金",
+    "タダ",
+    "費用"
+   ],
+   "staff": "料金はかかりません。",
+   "easy": "お{金|かね}は かかりません。",
+   "en": "It's free of charge.",
+   "kana": "イッツ *フ*リー オヴ *チャ*ージ",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "It's free.",
+     "kana": "イッツ *フ*リー"
+    },
+    {
+     "label": "ていねい",
+     "en": "There is no charge for this inspection.",
+     "kana": "ゼア イズ *ノ*ウ チャージ フォー ディス インス*ペ*クション"
+    }
+   ],
+   "zh": "不收取任何费用。",
+   "responses": [
+    {
+     "they": "Really? Nothing at all?",
+     "theyJa": "本当に？まったく？",
+     "say": "Yes, it's completely free.",
+     "sayKana": "*イ*エス、イッツ コンプ*リ*ートリー *フ*リー",
+     "sayJa": "はい、完全に無料です。"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "There's no charge for the inspection. It's covered by {client}.",
+     "kana": "ゼアズ *ノ*ウ *チャ*ージ フォー ジ インス*ペ*クション。イッツ *カ*ヴァード バイ *テ*プコ"
+    }
+   }
+  },
+  {
+   "id": "greeting.time",
+   "scene": "greeting",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "時間",
+    "何分",
+    "所要時間",
+    "どのくらい"
+   ],
+   "staff": "{minutes}分くらいで終わります。",
+   "easy": "{minutes}{分|ふん}くらいで おわります。",
+   "en": "It takes about {minutes} minutes.",
+   "kana": "イット *テ*イクス ア*バ*ウト {minutes} *ミ*ニッツ",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "About {minutes} minutes.",
+     "kana": "ア*バ*ウト {minutes} *ミ*ニッツ"
+    },
+    {
+     "label": "ていねい",
+     "en": "It should only take about {minutes} minutes.",
+     "kana": "イット シュッド *オ*ウンリー テイク ア*バ*ウト {minutes} *ミ*ニッツ"
+    }
+   ],
+   "zh": "大约需要{minutes}分钟。",
+   "responses": [
+    {
+     "they": "That long?",
+     "theyJa": "そんなにかかるの？",
+     "say": "I'll be as quick as I can.",
+     "sayKana": "アイル ビー アズ ク*ウィ*ック アズ アイ *キャ*ン",
+     "sayJa": "できるだけ早く終わらせます。"
+    },
+    {
+     "they": "I only have five minutes.",
+     "theyJa": "5分しかありません。",
+     "say": "I'll do my best to finish quickly.",
+     "sayKana": "アイル ドゥ マイ *ベ*スト トゥ *フィ*ニッシュ ク*ウィ*ックリー",
+     "sayJa": "早く終わるようにがんばります。"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "The whole inspection should take about {minutes} minutes, including the insulation test.",
+     "kana": "ザ *ホ*ウル インス*ペ*クション シュッド *テ*イク ア*バ*ウト {minutes} *ミ*ニッツ、イン*ク*ルーディング ジ インス*レ*イション テスト"
+    }
+   }
+  },
+  {
+   "id": "id.show",
+   "scene": "id",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "身分証",
+    "社員証",
+    "ID",
+    "名札",
+    "証明"
+   ],
+   "staff": "こちらが身分証です。",
+   "easy": "これが わたしの {身分証|みぶんしょう}です。（{名前|なまえ}と {会社|かいしゃ}が {書|か}いて あります）",
+   "en": "This is my ID card.",
+   "kana": "ディス イズ マイ アイ*ディ*ー カード",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Here's my ID.",
+     "kana": "*ヒ*アズ マイ アイ*ディ*ー"
+    },
+    {
+     "label": "ていねい",
+     "en": "Please take a look at my identification card.",
+     "kana": "プリーズ テイク ア *ル*ック アット マイ アイデンティフィ*ケ*イション カード"
+    }
+   ],
+   "zh": "这是我的工作证。",
+   "responses": [
+    {
+     "they": "Can I call your company to check?",
+     "theyJa": "会社に電話して確かめてもいい？",
+     "say": "Of course. Here is the phone number.",
+     "sayKana": "オヴ *コ*ース。*ヒ*ア イズ ザ *フォ*ウン ナンバー",
+     "sayJa": "もちろんです。こちらが電話番号です。"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "Here's my ID. It shows that I'm authorized by {client} to do this inspection.",
+     "kana": "ヒアズ マイ アイ*ディ*ー。イット *ショ*ウズ ザット アイム *オ*ーソライズド バイ *テ*プコ トゥ ドゥ ディス インス*ペ*クション"
+    }
+   }
+  },
+  {
+   "id": "enter.may",
+   "scene": "enter",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "上がる",
+    "入る",
+    "家",
+    "お邪魔"
+   ],
+   "staff": "お家に上がってもよいですか？",
+   "easy": "おうちに {入|はい}っても いいですか？",
+   "en": "May I come in?",
+   "kana": "メイ アイ カム *イ*ン？",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Can I come in?",
+     "kana": "キャン アイ カム *イ*ン？"
+    },
+    {
+     "label": "ていねい",
+     "en": "Would it be all right if I came inside?",
+     "kana": "ウッド イット ビー オール *ラ*イト イフ アイ ケイム イン*サ*イド？"
+    }
+   ],
+   "zh": "我可以进屋吗？",
+   "responses": [
+    {
+     "they": "Please take off your shoes.",
+     "theyJa": "靴を脱いでください。",
+     "say": "Of course.",
+     "sayKana": "オヴ *コ*ース",
+     "sayJa": "もちろんです。"
+    },
+    {
+     "they": "Wait a moment, please.",
+     "theyJa": "ちょっと待ってください。",
+     "say": "Sure, take your time.",
+     "sayKana": "*シュ*ア、テイク ユア *タ*イム",
+     "sayJa": "はい、ごゆっくりどうぞ。"
+    },
+    {
+     "they": "No, sorry. Not today.",
+     "theyJa": "すみません、今日はだめです。",
+     "say": "I understand. I'll come back another day.",
+     "sayKana": "アイ アンダー*ス*タンド。アイル カム *バ*ック ア*ナ*ザー デイ",
+     "sayJa": "分かりました。また別の日に来ます。"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses"
+   ]
+  },
+  {
+   "id": "enter.shoes",
+   "scene": "enter",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "靴",
+    "脱ぐ"
+   ],
+   "staff": "靴を脱いで上がりますね。",
+   "en": "I'll take off my shoes.",
+   "kana": "アイル テイク *オ*フ マイ *シュ*ーズ",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Shoes off. OK.",
+     "kana": "*シュ*ーズ *オ*フ。オウ*ケ*イ"
+    },
+    "3": {
+     "en": "I'll take off my shoes before I come in.",
+     "kana": "アイル テイク *オ*フ マイ *シュ*ーズ ビ*フォ*ー アイ カム *イ*ン"
+    }
+   }
+  },
+  {
+   "id": "panel.show",
+   "scene": "panel",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "分電盤",
+    "ブレーカー",
+    "箱",
+    "見せて",
+    "場所"
+   ],
+   "staff": "分電盤（ブレーカーの箱）を見せてください。",
+   "easy": "ブレーカーの {箱|はこ}を {見|み}せて ください。",
+   "en": "Could you show me your breaker box?",
+   "kana": "クッジュー *ショ*ウ ミー ユア ブ*レ*イカー ボックス？",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Where is your breaker box?",
+     "kana": "*ウェ*ア イズ ユア ブ*レ*イカー ボックス？"
+    },
+    {
+     "label": "ていねい",
+     "en": "Could you please show me where your electrical panel is?",
+     "kana": "クッジュー プリーズ *ショ*ウ ミー ウェア ユア イ*レ*クトリカル *パ*ネル イズ？"
+    }
+   ],
+   "zh": "请让我看一下配电箱（电闸箱）。",
+   "responses": [
+    {
+     "they": "I don't know where it is.",
+     "theyJa": "どこにあるか分かりません。",
+     "say": "It's usually near the entrance or the kitchen. May I look?",
+     "sayKana": "イッツ *ユ*ージュアリー ニア ジ *エ*ントランス オア ザ *キ*ッチン。メイ アイ *ル*ック？",
+     "sayJa": "たいてい玄関か台所の近くにあります。探してもいいですか？"
+    },
+    {
+     "they": "What's a breaker box?",
+     "theyJa": "ブレーカーの箱って何？",
+     "say": "It's the box with the switches for your electricity.",
+     "sayKana": "イッツ ザ *ボ*ックス ウィズ ザ ス*ウィ*ッチズ フォー ユア イレク*ト*リシティ",
+     "sayJa": "電気のスイッチが並んでいる箱です。"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "Could you show me where your distribution board is? It's usually near the entrance.",
+     "kana": "クッド ユー *ショ*ウ ミー ウェア ユア ディストリ*ビュ*ーション *ボ*ード イズ？ イッツ *ユ*ージュアリー ニア ジ *エ*ントランス"
+    }
+   }
+  },
+  {
+   "id": "panel.stool",
+   "scene": "panel",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "踏み台",
+    "台",
+    "高い",
+    "届かない"
+   ],
+   "staff": "踏み台を使ってもよいですか？",
+   "easy": "{台|だい}に のっても いいですか？",
+   "en": "May I use a step stool?",
+   "kana": "メイ アイ *ユ*ーズ ア ス*テ*ップ ストゥール？",
+   "zh": "我可以用一下垫脚凳吗？",
+   "review": [
+    "en",
+    "kana",
+    "zh",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Can I use this stool?",
+     "kana": "キャン アイ *ユ*ーズ ディス ス*トゥ*ール？"
+    },
+    "3": {
+     "en": "The panel is mounted quite high. Would you mind if I used a step stool?",
+     "kana": "ザ *パ*ネル イズ *マ*ウンティッド クワイト *ハ*イ。ウッド ユー *マ*インド イフ アイ *ユ*ーズド ア ス*テ*ップ ストゥール？"
+    }
+   }
+  },
+  {
+   "id": "question.unusual",
+   "scene": "question",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "質問",
+    "いつもと違う",
+    "異常",
+    "気になる",
+    "照明"
+   ],
+   "staff": "最近、電気や照明でいつもと違うことはありましたか？",
+   "easy": "さいきん、{電気|でんき}や あかりで いつもと {違|ちが}うことは ありましたか？",
+   "en": "Have you noticed anything unusual with the electricity or lights lately?",
+   "kana": "ハヴ ユー *ノ*ウティスト *エ*ニシング アン*ユ*ージュアル ウィズ ジ イレク*ト*リシティ オア *ラ*イツ *レ*イトリー？",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Any problems with the electricity?",
+     "kana": "*エ*ニ プ*ロ*ブレムズ ウィズ ジ イレク*ト*リシティ？"
+    },
+    {
+     "label": "ていねい",
+     "en": "Have you had any trouble with the lights or the breakers recently?",
+     "kana": "ハヴ ユー ハド *エ*ニ ト*ラ*ブル ウィズ ザ *ラ*イツ オア ザ ブ*レ*イカーズ *リ*ースントリー？"
+    }
+   ],
+   "zh": "最近，电灯或用电方面有没有什么异常？",
+   "responses": [
+    {
+     "they": "The lights flicker sometimes.",
+     "theyJa": "ときどき電気がチカチカします。",
+     "say": "I see. I'll check it carefully.",
+     "sayKana": "アイ *シ*ー。アイル *チェ*ック イット *ケ*アフリー",
+     "sayJa": "そうですか。よく確認しますね。"
+    },
+    {
+     "they": "The breaker trips a lot.",
+     "theyJa": "ブレーカーがよく落ちます。",
+     "say": "I see. Do you use many appliances at the same time?",
+     "sayKana": "アイ *シ*ー。ドゥ ユー ユーズ *メ*ニ ア*プラ*イアンスィズ アット ザ セイム *タ*イム？",
+     "sayJa": "そうですか。電気製品を同時にたくさん使いますか？"
+    },
+    {
+     "they": "No, nothing.",
+     "theyJa": "いいえ、何もありません。",
+     "say": "Good. Thank you.",
+     "sayKana": "*グ*ッド。*サ*ンキュー",
+     "sayJa": "よかったです。ありがとうございます。"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "Have you had any issues lately, like the breaker tripping, lights flickering, or outlets getting hot?",
+     "kana": "ハヴ ユー ハッド *エ*ニ *イ*シューズ *レ*イトリー、ライク ザ ブ*レ*イカー ト*リ*ッピング、*ラ*イツ フ*リ*ッカリング、オア *ア*ウトレッツ ゲッティング *ホ*ット？"
+    }
+   }
+  },
+  {
+   "id": "checking.start",
+   "scene": "checking",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "点検",
+    "始める",
+    "待って"
+   ],
+   "staff": "今から点検します。少しお待ちください。",
+   "easy": "いまから チェック します。すこし {待|ま}って ください。",
+   "en": "I'll start the check now. Please wait a moment.",
+   "kana": "アイル *ス*タート ザ チェック *ナ*ウ。プリーズ *ウェ*イト ア *モ*ウメント",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "I'll check it now. Just a moment.",
+     "kana": "アイル *チェ*ック イット *ナ*ウ。ジャスト ア *モ*ウメント"
+    }
+   ],
+   "zh": "现在开始检查，请稍等。",
+   "responses": [
+    {
+     "they": "Will the power go off?",
+     "theyJa": "電気は止まりますか？",
+     "say": "Usually, the power stays on.",
+     "sayKana": "*ユ*ージュアリー、ザ *パ*ワー ステイズ *オ*ン",
+     "sayJa": "通常、電気は止まりません。"
+    },
+    {
+     "they": "How long will it take?",
+     "theyJa": "どのくらいかかりますか？",
+     "say": "Just a few minutes.",
+     "sayKana": "ジャスト ア *フュ*ー *ミ*ニッツ",
+     "sayJa": "数分で終わります。"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "I'll start the inspection now. I'll measure the insulation resistance of each circuit.",
+     "kana": "アイル *ス*タート ジ インス*ペ*クション *ナ*ウ。アイル *メ*ジャー ジ インス*レ*イション リ*ジ*スタンス オヴ *イ*ーチ *サ*ーキット"
+    }
+   }
+  },
+  {
+   "id": "checking.measure",
+   "scene": "checking",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "測定",
+    "測る",
+    "計器",
+    "もれ",
+    "漏電"
+   ],
+   "staff": "この測定器で、電気がもれていないか調べています。",
+   "en": "I'm using this meter to check for electrical leaks.",
+   "kana": "アイム *ユ*ージング ディス *ミ*ーター トゥ *チェ*ック フォー イ*レ*クトリカル *リー*クス",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "This checks for leaks.",
+     "kana": "ディス *チェ*ックス フォー *リ*ークス"
+    },
+    "3": {
+     "en": "This is an insulation resistance tester. It checks whether any current is leaking to the ground.",
+     "kana": "ディス イズ アン インス*レ*イション リ*ジ*スタンス *テ*スター。イット *チェ*ックス *ウェ*ザー *エ*ニ *カ*レント イズ *リ*ーキング トゥ ザ グ*ラ*ウンド"
+    }
+   }
+  },
+  {
+   "id": "checking.done",
+   "scene": "checking",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "終わり",
+    "完了"
+   ],
+   "staff": "終わりました。",
+   "en": "All done.",
+   "kana": "オール *ダ*ン",
+   "enAlt": [
+    {
+     "label": "ていねい",
+     "en": "The check is finished.",
+     "kana": "ザ *チェ*ック イズ *フィ*ニッシュト"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Done!",
+     "kana": "*ダ*ン！"
+    },
+    "3": {
+     "en": "The inspection is complete. Let me explain the results.",
+     "kana": "ジ インス*ペ*クション イズ コンプ*リ*ート。レット ミー イクスプ*レ*イン ザ リ*ザ*ルツ"
+    }
+   }
+  },
+  {
+   "id": "result.ok",
+   "scene": "result",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "結果",
+    "異常なし",
+    "問題ない",
+    "大丈夫"
+   ],
+   "staff": "点検の結果、異常はありませんでした。",
+   "easy": "チェックの けっか、{問題|もんだい}は ありませんでした。",
+   "en": "Everything looks fine. No problems were found.",
+   "kana": "*エ*ヴリシング ルックス *ファ*イン。*ノ*ウ プ*ロ*ブレムズ ワー *ファ*ウンド",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Everything is OK.",
+     "kana": "*エ*ヴリシング イズ オウ*ケ*イ"
+    },
+    {
+     "label": "ていねい",
+     "en": "The inspection is complete, and we found no problems.",
+     "kana": "ジ インス*ペ*クション イズ コンプ*リ*ート、アンド ウィ ファウンド *ノ*ウ プ*ロ*ブレムズ"
+    }
+   ],
+   "zh": "检查结果没有发现异常。",
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "The insulation resistance is within the normal range, and there's no sign of leakage.",
+     "kana": "ジ インス*レ*イション リ*ジ*スタンス イズ ウィ*ズィ*ン ザ *ノ*ーマル *レ*インジ、アンド ゼアズ *ノ*ウ *サ*イン オヴ *リ*ーキッジ"
+    }
+   }
+  },
+  {
+   "id": "result.consult1",
+   "scene": "result",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "結果",
+    "要相談",
+    "気になる",
+    "問題"
+   ],
+   "staff": "気になるところがありました。",
+   "easy": "{気|き}になる ところが ありました。",
+   "en": "I found something that needs attention.",
+   "kana": "アイ ファウンド *サ*ムシング ザット ニーズ ア*テ*ンション",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "I found a small problem.",
+     "kana": "アイ ファウンド ア スモール プ*ロ*ブレム"
+    }
+   ],
+   "zh": "发现了一个需要注意的地方。",
+   "responses": [
+    {
+     "they": "Is it dangerous?",
+     "theyJa": "危ないですか？",
+     "say": "It's not an emergency, but please have it checked soon.",
+     "sayKana": "イッツ ノット アン イ*マ*ージェンシー、バット プリーズ ハヴ イット *チェ*ックト *ス*ーン",
+     "sayJa": "今すぐ危ないわけではありませんが、早めに見てもらってください。"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "I found an issue with one of the circuits that should be looked at by an electrician.",
+     "kana": "アイ *ファ*ウンド アン *イ*シュー ウィズ *ワ*ン オヴ ザ *サ*ーキッツ ザット シュッド ビー *ル*ックト アット バイ アン イレク*トゥ*リシャン"
+    }
+   }
+  },
+  {
+   "id": "result.consult2",
+   "scene": "result",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "電気工事店",
+    "相談",
+    "修理",
+    "電気屋"
+   ],
+   "staff": "電気工事店に相談してください。",
+   "easy": "{電気|でんき}の {工事|こうじ}を する お{店|みせ}に {相談|そうだん}して ください。",
+   "en": "Please contact an electrician.",
+   "kana": "プリーズ *コ*ンタクト アン イレク*トゥ*リシャン",
+   "enAlt": [
+    {
+     "label": "ていねい",
+     "en": "We recommend that you talk to a licensed electrician.",
+     "kana": "ウィ レコ*メ*ンド ザット ユー *ト*ーク トゥ ア *ラ*イセンスト イレク*トゥ*リシャン"
+    }
+   ],
+   "zh": "请联系电工（电气施工店）咨询。",
+   "responses": [
+    {
+     "they": "Do you know a good electrician?",
+     "theyJa": "いい電気工事店を知っていますか？",
+     "say": "Let me check with my office.",
+     "sayKana": "レット ミー *チェ*ック ウィズ マイ *オ*フィス",
+     "sayJa": "会社に確認しますね。"
+    },
+    {
+     "they": "Can you fix it?",
+     "theyJa": "あなたが直せますか？",
+     "say": "Sorry, I can't repair it. An electrician can.",
+     "sayKana": "*ソ*ーリー、アイ *キャ*ント リ*ペ*ア イット。アン イレク*トゥ*リシャン *キャ*ン",
+     "sayJa": "すみません、私は修理できません。電気工事店ならできます。"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Please call an electrician.",
+     "kana": "プ*リ*ーズ *コ*ール アン イレク*トゥ*リシャン"
+    },
+    "3": {
+     "en": "I'd recommend having a licensed electrician inspect and repair it.",
+     "kana": "アイド レコ*メ*ンド *ハ*ヴィング ア *ラ*イセンスト イレク*トゥ*リシャン イン*ス*ペクト アンド リ*ペ*ア イット"
+    }
+   }
+  },
+  {
+   "id": "result.paper",
+   "scene": "result",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "結果",
+    "紙",
+    "用紙",
+    "お知らせ"
+   ],
+   "staff": "結果はこちらの紙に書いてあります。",
+   "easy": "けっかは この {紙|かみ}に {書|か}いて あります。",
+   "en": "The results are written on this sheet.",
+   "kana": "ザ リ*ザ*ルツ アー *リ*トゥン オン ディス *シ*ート",
+   "zh": "检查结果写在这张纸上。",
+   "review": [
+    "staff",
+    "en",
+    "kana",
+    "zh",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Here are the results.",
+     "kana": "*ヒ*ア アー ザ リ*ザ*ルツ"
+    },
+    "3": {
+     "en": "Here's the inspection report. The measured values and my comments are written here.",
+     "kana": "ヒアズ ジ インス*ペ*クション リ*ポ*ート。ザ *メ*ジャード *ヴァ*リューズ アンド マイ *コ*メンツ アー *リ*トゥン ヒア"
+    }
+   }
+  },
+  {
+   "id": "thanks.main",
+   "scene": "thanks",
+   "modes": [
+    "show",
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "お礼",
+    "ありがとう",
+    "協力"
+   ],
+   "staff": "ご協力ありがとうございました。",
+   "easy": "{協力|きょうりょく}して くれて、ありがとう ございました。",
+   "en": "Thank you for your cooperation.",
+   "kana": "*サ*ンキュー フォー ユア コウアパ*レ*イション",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Thank you so much!",
+     "kana": "*サ*ンキュー ソウ *マ*ッチ！"
+    },
+    {
+     "label": "ていねい",
+     "en": "Thank you very much for your time today.",
+     "kana": "*サ*ンキュー ヴェリ *マ*ッチ フォー ユア *タ*イム トゥ*デ*イ"
+    }
+   ],
+   "zh": "感谢您的配合。",
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "zh",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "Thank you for your cooperation. The next inspection will be in about four years.",
+     "kana": "*サ*ンキュー フォー ユア コウオペ*レ*イション。ザ *ネ*クスト インス*ペ*クション ウィル ビー イン ア*バ*ウト *フォ*ー *イ*ヤーズ"
+    }
+   }
+  },
+  {
+   "id": "thanks.bye",
+   "scene": "thanks",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "さようなら",
+    "失礼します"
+   ],
+   "staff": "失礼します。良い一日を。",
+   "en": "Have a nice day.",
+   "kana": "ハヴ ア *ナ*イス デイ",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "Have a nice day. Please feel free to call us if you have any concerns.",
+     "kana": "ハヴ ア *ナ*イス デイ。プリーズ フィール *フ*リー トゥ *コ*ール アス イフ ユー ハヴ エニ コン*サ*ーンズ"
+    }
+   }
+  },
+  {
+   "id": "problem.leak",
+   "scene": "problem",
+   "group": "漏電",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "漏電",
+    "ろうでん",
+    "電気がもれる",
+    "感電",
+    "もれ"
+   ],
+   "staff": "電気が少しもれている可能性があります。",
+   "en": "There may be a small electrical leak.",
+   "kana": "ゼア メイ ビー ア スモール イ*レ*クトリカル *リー*ク",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Some electricity may be leaking.",
+     "kana": "*サ*ム イレク*ト*リシティ メイ ビー *リー*キング"
+    },
+    {
+     "label": "くわしく",
+     "en": "My meter shows a small leak. It can cause an electric shock or a fire.",
+     "kana": "マイ *ミ*ーター ショウズ ア スモール *リー*ク。イット キャン *コ*ーズ アン イ*レ*クトリック *ショ*ック オア ア *ファ*イア"
+    }
+   ],
+   "responses": [
+    {
+     "they": "Is it dangerous?",
+     "theyJa": "危ないですか？",
+     "say": "It's not urgent, but please contact an electrician soon.",
+     "sayKana": "イッツ ノット *ア*ージェント、バット プリーズ *コ*ンタクト アン イレク*トゥ*リシャン *ス*ーン",
+     "sayJa": "急ぎではありませんが、早めに電気工事店に連絡してください。"
+    },
+    {
+     "they": "Where is it leaking?",
+     "theyJa": "どこでもれているの？",
+     "say": "I can't tell exactly. An electrician can find out.",
+     "sayKana": "アイ *キャ*ント テル イグ*ザ*クトリー。アン イレク*トゥ*リシャン キャン ファインド *ア*ウト",
+     "sayJa": "はっきりとは分かりません。電気工事店なら調べられます。"
+    }
+   ],
+   "review": [
+    "staff",
+    "en",
+    "enAlt",
+    "kana",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "The insulation resistance on this circuit is low. There may be a ground fault.",
+     "kana": "ジ インス*レ*イション リ*ジ*スタンス オン ディス *サ*ーキット イズ *ロ*ウ。ゼア メイ ビー ア グ*ラ*ウンド フォルト"
+    }
+   }
+  },
+  {
+   "id": "problem.leak.cause",
+   "scene": "problem",
+   "group": "漏電",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "漏電",
+    "火事",
+    "感電",
+    "危険"
+   ],
+   "staff": "漏電は、感電や火事の原因になることがあります。",
+   "en": "An electrical leak can cause an electric shock or a fire.",
+   "kana": "アン イ*レ*クトリカル *リー*ク キャン *コ*ーズ アン イ*レ*クトリック *ショ*ック オア ア *ファ*イア",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "A leak is dangerous. Shock or fire.",
+     "kana": "ア *リ*ーク イズ *デ*インジャラス。*ショ*ック オア *ファ*イア"
+    },
+    "3": {
+     "en": "Current leakage can cause electric shocks, and in the worst case, an electrical fire.",
+     "kana": "*カ*レント *リ*ーキッジ キャン *コ*ーズ イ*レ*クトリック *ショ*ックス、アンド イン ザ *ワ*ースト ケイス、アン イ*レ*クトリカル *ファ*イア"
+    }
+   }
+  },
+  {
+   "id": "problem.leak.nobreaker",
+   "scene": "problem",
+   "group": "漏電",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "漏電ブレーカー",
+    "ない",
+    "付いていない"
+   ],
+   "staff": "この家には漏電ブレーカーが付いていません。付けることをおすすめします。",
+   "en": "This home doesn't have a safety breaker. I recommend installing one.",
+   "kana": "ディス *ホ*ウム *ダ*ズント ハヴ ア *セ*イフティ ブ*レ*イカー。アイ レコ*メ*ンド イン*ス*トーリング *ワ*ン",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "No safety breaker here. Please get one.",
+     "kana": "*ノ*ウ *セ*イフティ ブレイカー ヒア。プリーズ *ゲ*ット ワン"
+    },
+    "3": {
+     "en": "There's no earth leakage circuit breaker in this panel. I strongly recommend having one installed.",
+     "kana": "ゼアズ *ノ*ウ *ア*ース *リ*ーキッジ *サ*ーキット ブレイカー イン ディス *パ*ネル。アイ ストロングリー レコ*メ*ンド ハヴィング ワン イン*ス*トールド"
+    }
+   }
+  },
+  {
+   "id": "problem.outlet.burn",
+   "scene": "problem",
+   "group": "コンセント",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "コンセント",
+    "焦げ",
+    "こげ",
+    "黒い",
+    "熱い"
+   ],
+   "staff": "このコンセントに焦げた跡があります。",
+   "en": "There's a burn mark on this outlet.",
+   "kana": "ゼアズ ア *バ*ーン マーク オン ディス *ア*ウトレット",
+   "responses": [
+    {
+     "they": "Can I still use it?",
+     "theyJa": "まだ使えますか？",
+     "say": "Please stop using it until an electrician checks it.",
+     "sayKana": "プリーズ *ス*トップ *ユ*ージング イット アン*ティ*ル アン イレク*トゥ*リシャン *チェ*ックス イット",
+     "sayJa": "電気工事店に見てもらうまで、使わないでください。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "responses",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "This outlet is burned.",
+     "kana": "ディス *ア*ウトレット イズ *バ*ーンド"
+    },
+    "3": {
+     "en": "There's a scorch mark on this outlet. It may have overheated.",
+     "kana": "ゼアズ ア ス*コ*ーチ マーク オン ディス *ア*ウトレット。イット メイ ハヴ オウヴァー*ヒ*ーティッド"
+    }
+   }
+  },
+  {
+   "id": "problem.outlet.loose",
+   "scene": "problem",
+   "group": "コンセント",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "コンセント",
+    "ゆるい",
+    "ぐらぐら",
+    "抜ける"
+   ],
+   "staff": "このコンセントがゆるくなっています。",
+   "en": "This outlet is loose.",
+   "kana": "ディス *ア*ウトレット イズ *ル*ース",
+   "enAlt": [
+    {
+     "label": "くわしく",
+     "en": "The plug doesn't fit tightly. That can make it get hot.",
+     "kana": "ザ プ*ラ*グ ダズント フィット *タ*イトリー。ザット キャン メイク イット ゲット *ホ*ット"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "This outlet is loose.",
+     "kana": "ディス *ア*ウトレット イズ *ル*ース"
+    },
+    "3": {
+     "en": "The contacts in this outlet are worn, so the plug is loose. That can cause overheating.",
+     "kana": "ザ *コ*ンタクツ イン ディス *ア*ウトレット アー *ウォ*ーン、ソウ ザ プ*ラ*グ イズ *ル*ース。ザット キャン *コ*ーズ オウヴァー*ヒ*ーティング"
+    }
+   }
+  },
+  {
+   "id": "problem.outlet.crack",
+   "scene": "problem",
+   "group": "コンセント",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "コンセント",
+    "ひび",
+    "割れ",
+    "交換"
+   ],
+   "staff": "コンセントにひびがあります。交換をおすすめします。",
+   "en": "This outlet has a crack. I recommend replacing it.",
+   "kana": "ディス *ア*ウトレット ハズ ア ク*ラ*ック。アイ レコ*メ*ンド リプ*レ*イスィング イット",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "This outlet is broken.",
+     "kana": "ディス *ア*ウトレット イズ ブ*ロ*ウクン"
+    },
+    "3": {
+     "en": "The cover of this outlet is cracked. I recommend having it replaced to prevent shocks.",
+     "kana": "ザ *カ*ヴァー オヴ ディス *ア*ウトレット イズ ク*ラ*ックト。アイ レコ*メ*ンド ハヴィング イット リプ*レ*イスト トゥ プリ*ヴェ*ント *ショ*ックス"
+    }
+   }
+  },
+  {
+   "id": "problem.outlet.dust",
+   "scene": "problem",
+   "group": "コンセント",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "コンセント",
+    "ほこり",
+    "掃除",
+    "トラッキング",
+    "火事"
+   ],
+   "staff": "プラグのまわりにほこりがたまっています。火事の原因になるので、掃除してください。",
+   "en": "There's dust around this plug. It can cause a fire, so please clean it.",
+   "kana": "ゼアズ *ダ*スト ア*ラ*ウンド ディス プ*ラ*グ。イット キャン *コ*ーズ ア *ファ*イア、ソウ プリーズ *ク*リーン イット",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Dust here is dangerous. Please clean it.",
+     "kana": "*ダ*スト ヒア イズ *デ*インジャラス。プリーズ ク*リ*ーン イット"
+    },
+    "3": {
+     "en": "Dust and moisture between the plug and outlet can cause tracking, which may lead to a fire.",
+     "kana": "*ダ*スト アンド *モ*イスチャー ビト*ウィ*ーン ザ プ*ラ*グ アンド *ア*ウトレット キャン *コ*ーズ ト*ラ*ッキング、ウィッチ メイ リード トゥ ア *ファ*イア"
+    }
+   }
+  },
+  {
+   "id": "problem.capacity",
+   "scene": "problem",
+   "group": "ブレーカーの容量",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "ブレーカー",
+    "落ちる",
+    "容量",
+    "アンペア",
+    "使いすぎ"
+   ],
+   "staff": "電気製品を同時にたくさん使うと、ブレーカーが落ちやすくなります。",
+   "en": "If you use many appliances at the same time, the breaker may trip.",
+   "kana": "イフ ユー ユーズ *メ*ニ ア*プラ*イアンスィズ アット ザ セイム *タ*イム、ザ ブ*レ*イカー メイ ト*リ*ップ",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Too many things at once can turn off the power.",
+     "kana": "*トゥ*ー メニ *シ*ングズ アット *ワ*ンス キャン ターン *オ*フ ザ *パ*ワー"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "If the total load exceeds your contract amperage, the main breaker will trip.",
+     "kana": "イフ ザ *ト*ウタル *ロ*ウド イク*シ*ーズ ユア *コ*ントラクト *ア*ンペレッジ、ザ *メ*イン ブレイカー ウィル ト*リ*ップ"
+    }
+   }
+  },
+  {
+   "id": "problem.capacity.contract",
+   "scene": "problem",
+   "group": "ブレーカーの容量",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "アンペア",
+    "契約",
+    "容量",
+    "上げる"
+   ],
+   "staff": "契約のアンペアを上げることもできます。電気の契約先にご相談ください。",
+   "en": "You may be able to increase your contract amps. Please ask your electricity company.",
+   "kana": "ユー メイ ビー エイブル トゥ イン*ク*リース ユア *コ*ントラクト *ア*ンプス。プリーズ *ア*スク ユア イレク*ト*リシティ カンパニー",
+   "review": [
+    "staff",
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "You can get more amps. Ask your power company.",
+     "kana": "ユー キャン ゲット *モ*ア *ア*ンプス。*ア*スク ユア *パ*ワー カンパニー"
+    },
+    "3": {
+     "en": "You may be able to raise your contract amperage. Please contact your electricity retailer.",
+     "kana": "ユー メイ ビー エイブル トゥ *レ*イズ ユア *コ*ントラクト *ア*ンペレッジ。プリーズ *コ*ンタクト ユア イレク*トゥ*リシティ *リ*ーテイラー"
+    }
+   }
+  },
+  {
+   "id": "problem.capacity.share",
+   "scene": "problem",
+   "group": "ブレーカーの容量",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "電子レンジ",
+    "エアコン",
+    "ドライヤー",
+    "同時",
+    "分ける"
+   ],
+   "staff": "電子レンジやドライヤーは、同時に使わないようにしてください。",
+   "en": "Please try not to use the microwave and the hair dryer at the same time.",
+   "kana": "プリーズ トライ *ノ*ット トゥ ユーズ ザ *マ*イクロウェイヴ アンド ザ *ヘ*ア ドライヤー アット ザ セイム *タ*イム",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Microwave and hair dryer together: no.",
+     "kana": "*マ*イクロウェイヴ アンド *ヘ*ア ドライヤー トゥ*ゲ*ザー：*ノ*ウ"
+    },
+    "3": {
+     "en": "High-wattage appliances, like the microwave and hair dryer, shouldn't be used on the same circuit at once.",
+     "kana": "ハイ *ワ*ッテッジ ア*プラ*イアンスィズ、ライク ザ *マ*イクロウェイヴ アンド *ヘ*ア ドライヤー、*シュ*ドゥント ビー ユーズド オン ザ *セ*イム *サ*ーキット アット *ワ*ンス"
+    }
+   }
+  },
+  {
+   "id": "problem.wiring.old",
+   "scene": "problem",
+   "group": "配線・延長コード",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "配線",
+    "古い",
+    "劣化"
+   ],
+   "staff": "配線が古くなっています。",
+   "en": "The wiring is getting old.",
+   "kana": "ザ *ワ*イアリング イズ ゲッティング *オ*ウルド",
+   "enAlt": [
+    {
+     "label": "くわしく",
+     "en": "The wiring is old. I recommend having an electrician check it.",
+     "kana": "ザ *ワ*イアリング イズ *オ*ウルド。アイ レコ*メ*ンド ハヴィング アン イレク*トゥ*リシャン *チェ*ック イット"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "The wires are old.",
+     "kana": "ザ *ワ*イアーズ アー *オ*ウルド"
+    },
+    "3": {
+     "en": "The wiring insulation has deteriorated with age. I recommend having it checked.",
+     "kana": "ザ *ワ*イアリング インス*レ*イション ハズ ディ*ティ*アリオレイティッド ウィズ *エ*イジ。アイ レコ*メ*ンド ハヴィング イット *チェ*ックト"
+    }
+   }
+  },
+  {
+   "id": "problem.wiring.cord",
+   "scene": "problem",
+   "group": "配線・延長コード",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "延長コード",
+    "タコ足",
+    "つなぎすぎ",
+    "電源タップ"
+   ],
+   "staff": "1つの延長コードにたくさんつなぐと危ないです。",
+   "en": "Plugging too many things into one extension cord is dangerous.",
+   "kana": "プ*ラ*ギング *トゥ*ー メニ シングズ イントゥ *ワ*ン イクス*テ*ンション コード イズ *デ*インジャラス",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Too many plugs here is dangerous.",
+     "kana": "*トゥ*ー メニ プ*ラ*グズ ヒア イズ *デ*インジャラス"
+    },
+    "3": {
+     "en": "Daisy-chaining power strips can overload the cord and cause it to overheat.",
+     "kana": "*デ*イズィ チェイニング *パ*ワー ストリップス キャン オウヴァー*ロ*ウド ザ *コ*ード アンド *コ*ーズ イット トゥ オウヴァー*ヒ*ート"
+    }
+   }
+  },
+  {
+   "id": "problem.wiring.under",
+   "scene": "problem",
+   "group": "配線・延長コード",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "コード",
+    "家具",
+    "下",
+    "踏む",
+    "束ねる"
+   ],
+   "staff": "コードを家具の下に置いたり、束ねたりしないでください。",
+   "en": "Please don't put cords under furniture or bundle them up.",
+   "kana": "プリーズ *ド*ウント プット *コ*ーズ アンダー *ファ*ーニチャー オア *バ*ンドル ゼム *ア*ップ",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "No cords under furniture, please.",
+     "kana": "*ノ*ウ *コ*ーズ アンダー *ファ*ーニチャー、プリーズ"
+    },
+    "3": {
+     "en": "Cords that are pinched under furniture or tightly bundled can overheat and damage the insulation.",
+     "kana": "*コ*ーズ ザット アー *ピ*ンチト アンダー *ファ*ーニチャー オア *タ*イトリー *バ*ンドルド キャン オウヴァー*ヒ*ート アンド *ダ*メッジ ジ インス*レ*イション"
+    }
+   }
+  },
+  {
+   "id": "problem.electrician",
+   "scene": "problem",
+   "group": "電気工事店へ",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "電気工事店",
+    "修理",
+    "電気屋",
+    "頼む"
+   ],
+   "staff": "近くの電気工事店に修理を頼んでください。",
+   "en": "Please ask a local electrician to repair it.",
+   "kana": "プリーズ *ア*スク ア *ロ*ウカル イレク*トゥ*リシャン トゥ リ*ペ*ア イット",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Please call an electrician to fix it.",
+     "kana": "プリーズ *コ*ール アン イレク*トゥ*リシャン トゥ *フィ*ックス イット"
+    },
+    "3": {
+     "en": "Please have a licensed electrical contractor in your area carry out the repair.",
+     "kana": "プリーズ ハヴ ア *ラ*イセンスト イ*レ*クトリカル *コ*ントラクター イン ユア *エ*リア キャリー *ア*ウト ザ リ*ペ*ア"
+    }
+   }
+  },
+  {
+   "id": "problem.electrician.cost",
+   "scene": "problem",
+   "group": "電気工事店へ",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "修理代",
+    "費用",
+    "有料",
+    "お金"
+   ],
+   "staff": "点検は無料ですが、修理は電気工事店への支払いが必要です。",
+   "en": "The check is free, but you will need to pay the electrician for repairs.",
+   "kana": "ザ *チェ*ック イズ *フ*リー、バット ユー ウィル ニード トゥ *ペ*イ ジ イレク*トゥ*リシャン フォー リ*ペ*アズ",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "The check is free. The repair is not free.",
+     "kana": "ザ *チェ*ック イズ フ*リ*ー。ザ リ*ペ*ア イズ *ノ*ット フリー"
+    },
+    "3": {
+     "en": "The inspection itself is free, but any repair work will be charged by the contractor.",
+     "kana": "ジ インス*ペ*クション イット*セ*ルフ イズ フ*リ*ー、バット エニ リ*ペ*ア ワーク ウィル ビー *チャ*ージド バイ ザ *コ*ントラクター"
+    }
+   }
+  },
+  {
+   "id": "problem.electrician.choice",
+   "scene": "problem",
+   "group": "電気工事店へ",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "判断",
+    "決める",
+    "お客さん"
+   ],
+   "staff": "修理するかどうかは、お客様のご判断です。",
+   "en": "It's up to you whether to repair it.",
+   "kana": "イッツ *ア*ップ トゥ ユー *ウェ*ザー トゥ リ*ペ*ア イット",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "You can decide.",
+     "kana": "*ユ*ー キャン ディ*サ*イド"
+    },
+    "3": {
+     "en": "Whether or not to have it repaired is entirely your decision.",
+     "kana": "*ウェ*ザー オア *ノ*ット トゥ ハヴ イット リ*ペ*アド イズ イン*タ*イアリー ユア ディ*シ*ジョン"
+    }
+   }
+  },
+  {
+   "id": "problem.office",
+   "scene": "problem",
+   "group": "会社に確認",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "会社",
+    "確認",
+    "電話",
+    "待って",
+    "分からない"
+   ],
+   "staff": "会社に確認するので、少しお待ちください。",
+   "en": "Let me call my office to check. Please wait a moment.",
+   "kana": "レット ミー *コ*ール マイ *オ*フィス トゥ *チェ*ック。プリーズ *ウェ*イト ア *モ*ウメント",
+   "enAlt": [
+    {
+     "label": "かんたん",
+     "en": "Let me check with my office.",
+     "kana": "レット ミー *チェ*ック ウィズ マイ *オ*フィス"
+    }
+   ],
+   "review": [
+    "en",
+    "enAlt",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "I need to confirm this with my office. Could you give me a few minutes?",
+     "kana": "アイ ニード トゥ コン*ファ*ーム ディス ウィズ マイ *オ*フィス。クッド ユー *ギ*ヴ ミー ア *フュ*ー *ミ*ニッツ？"
+    }
+   }
+  },
+  {
+   "id": "problem.office.number",
+   "scene": "problem",
+   "group": "会社に確認",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "問い合わせ",
+    "電話番号",
+    "会社",
+    "聞いて"
+   ],
+   "staff": "詳しくは、こちらの番号にお問い合わせください。",
+   "en": "For more details, please call this number.",
+   "kana": "フォー *モ*ア *デ*ィテイルズ、プリーズ *コ*ール ディス *ナ*ンバー",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Please call here.",
+     "kana": "プリーズ *コ*ール *ヒ*ア"
+    },
+    "3": {
+     "en": "If you have any further questions, please contact us at this number.",
+     "kana": "イフ ユー ハヴ エニ *ファ*ーザー *ク*エスチョンズ、プリーズ *コ*ンタクト アス アット ディス *ナ*ンバー"
+    }
+   }
+  },
+  {
+   "id": "problem.office.notsure",
+   "scene": "problem",
+   "group": "会社に確認",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "分からない",
+    "はっきり",
+    "断定"
+   ],
+   "staff": "はっきりとは言えません。",
+   "en": "I can't say for sure.",
+   "kana": "アイ *キャ*ント セイ フォー *シュ*ア",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "I don't know, sorry.",
+     "kana": "アイ *ド*ウント *ノ*ウ、*ソ*ーリー"
+    },
+    "3": {
+     "en": "I'm afraid I can't give you a definite answer on that.",
+     "kana": "アイム ア*フ*レイド アイ *キャ*ント ギヴ ユー ア *デ*フィニット *ア*ンサー オン ザット"
+    }
+   }
+  },
+  {
+   "id": "handy.again",
+   "scene": "handy",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "もう一度",
+    "聞き返す",
+    "聞こえない"
+   ],
+   "staff": "もう一度言ってください。",
+   "en": "Sorry, could you say that again?",
+   "kana": "*ソ*ーリー、クッジュー セイ ザット ア*ゲ*ン？",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Sorry?",
+     "kana": "*ソ*ーリー？"
+    },
+    "3": {
+     "en": "I'm sorry, I didn't quite catch that. Could you repeat it?",
+     "kana": "アイム *ソ*ーリー、アイ *ディ*ドゥント クワイト *キャ*ッチ ザット。クッド ユー リ*ピ*ート イット？"
+    }
+   }
+  },
+  {
+   "id": "handy.slow",
+   "scene": "handy",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "ゆっくり",
+    "速い"
+   ],
+   "staff": "ゆっくり話してください。",
+   "en": "Could you speak more slowly, please?",
+   "kana": "クッジュー スピーク モア *ス*ロウリー、プリーズ？",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Slowly, please.",
+     "kana": "ス*ロ*ウリー、プリーズ"
+    },
+    "3": {
+     "en": "Would you mind speaking a little more slowly?",
+     "kana": "ウッド ユー *マ*インド スピーキング ア リトル モア ス*ロ*ウリー？"
+    }
+   }
+  },
+  {
+   "id": "handy.english",
+   "scene": "handy",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "英語",
+    "少し",
+    "話せない"
+   ],
+   "staff": "英語は少しだけ話せます。",
+   "en": "I only speak a little English.",
+   "kana": "アイ *オ*ウンリー スピーク ア *リ*トル *イ*ングリッシュ",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "A little English.",
+     "kana": "ア *リ*トル *イ*ングリッシュ"
+    },
+    "3": {
+     "en": "My English isn't perfect, so please bear with me.",
+     "kana": "マイ *イ*ングリッシュ *イ*ズント *パ*ーフェクト、ソウ プリーズ *ベ*ア ウィズ ミー"
+    }
+   }
+  },
+  {
+   "id": "handy.screen",
+   "scene": "handy",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "画面",
+    "見て",
+    "スマホ"
+   ],
+   "staff": "この画面を見てください。",
+   "en": "Please look at this screen.",
+   "kana": "プリーズ *ル*ック アット ディス ス*ク*リーン",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Look, please.",
+     "kana": "*ル*ック、プリーズ"
+    },
+    "3": {
+     "en": "Let me show you on this screen. It explains things more clearly.",
+     "kana": "レット ミー *ショ*ウ ユー オン ディス スク*リ*ーン。イット イクスプ*レ*インズ シングズ モア ク*リ*アリー"
+    }
+   }
+  },
+  {
+   "id": "handy.wait",
+   "scene": "handy",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "待って",
+    "少々"
+   ],
+   "staff": "少々お待ちください。",
+   "en": "Just a moment, please.",
+   "kana": "ジャスト ア *モ*ウメント、プリーズ",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Wait, please.",
+     "kana": "*ウェ*イト、プリーズ"
+    },
+    "3": {
+     "en": "Could you bear with me for just a moment?",
+     "kana": "クッド ユー *ベ*ア ウィズ ミー フォー ジャスト ア *モ*ウメント？"
+    }
+   }
+  },
+  {
+   "id": "handy.see",
+   "scene": "handy",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "分かりました",
+    "了解",
+    "相づち"
+   ],
+   "staff": "分かりました。",
+   "en": "I see. / I understand.",
+   "kana": "アイ *シ*ー ／ アイ アンダー*ス*タンド",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "3": {
+     "en": "I see what you mean.",
+     "kana": "アイ *シ*ー ワット ユー *ミ*ーン"
+    }
+   }
+  },
+  {
+   "id": "handy.light",
+   "scene": "handy",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "電気をつける",
+    "暗い",
+    "照明"
+   ],
+   "staff": "電気をつけてもいいですか？",
+   "en": "May I turn on the light?",
+   "kana": "メイ アイ ターン *オ*ン ザ *ラ*イト？",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Light on, OK?",
+     "kana": "*ラ*イト *オ*ン、オウ*ケ*イ？"
+    },
+    "3": {
+     "en": "It's a bit dark here. Would it be OK if I turned on the light?",
+     "kana": "イッツ ア ビット *ダ*ーク ヒア。ウッド イット ビー オウ*ケ*イ イフ アイ *タ*ーンド オン ザ *ラ*イト？"
+    }
+   }
+  },
+  {
+   "id": "handy.move",
+   "scene": "handy",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "どかす",
+    "物",
+    "荷物",
+    "届かない"
+   ],
+   "staff": "こちらの物を少しどかしていただけますか？",
+   "en": "Could you move this a little, please?",
+   "kana": "クッジュー *ム*ーヴ ディス ア *リ*トル、プリーズ？",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Move this, please.",
+     "kana": "*ム*ーヴ ディス、プリーズ"
+    },
+    "3": {
+     "en": "Would you mind moving this a little so I can reach the panel?",
+     "kana": "ウッド ユー *マ*インド *ム*ーヴィング ディス ア リトル ソウ アイ キャン *リ*ーチ ザ *パ*ネル？"
+    }
+   }
+  },
+  {
+   "id": "handy.sorry",
+   "scene": "handy",
+   "modes": [
+    "speak",
+    "practice"
+   ],
+   "tags": [
+    "すみません",
+    "失礼",
+    "謝る"
+   ],
+   "staff": "失礼しました。",
+   "en": "Sorry about that.",
+   "kana": "*ソ*ーリー ア*バ*ウト ザット",
+   "review": [
+    "en",
+    "kana",
+    "lv"
+   ],
+   "lv": {
+    "1": {
+     "en": "Sorry.",
+     "kana": "*ソ*ーリー"
+    },
+    "3": {
+     "en": "I apologize for the inconvenience.",
+     "kana": "アイ ア*ポ*ロジャイズ フォー ジ インコン*ヴィ*ーニエンス"
+    }
+   }
+  }
+ ],
+ "choices": [
+  {
+   "id": "flicker",
+   "icon": "lightbulb",
+   "staff": "電気がチカチカする",
+   "easy": "あかりが チカチカ する",
+   "en": "The lights flicker",
+   "zh": "灯一闪一闪的",
+   "review": [
+    "en",
+    "zh"
+   ]
+  },
+  {
+   "id": "trip",
+   "icon": "zap-off",
+   "staff": "ブレーカーがよく落ちる",
+   "easy": "{電気|でんき}が よく {急|きゅう}に {消|き}える",
+   "en": "The power often goes off (the breaker trips)",
+   "zh": "经常跳闸（突然断电）",
+   "review": [
+    "en",
+    "zh"
+   ]
+  },
+  {
+   "id": "smell",
+   "icon": "flame",
+   "staff": "焦げたにおいがする",
+   "easy": "こげた においが する",
+   "en": "I smell something burning",
+   "zh": "有烧焦的味道",
+   "review": [
+    "en",
+    "zh"
+   ]
+  },
+  {
+   "id": "none",
+   "icon": "circle-check",
+   "staff": "特にない",
+   "easy": "とくに ない",
+   "en": "Nothing unusual",
+   "zh": "没有特别的问题",
+   "review": [
+    "en",
+    "zh"
+   ]
+  }
+ ],
+ "results": [
+  {
+   "id": "ok",
+   "button": "異常なし",
+   "tone": "ok",
+   "icon": "circle-check",
+   "phrases": [
+    "result.ok",
+    "result.paper"
+   ]
+  },
+  {
+   "id": "consult",
+   "button": "要相談",
+   "tone": "warn",
+   "icon": "triangle-alert",
+   "phrases": [
+    "result.consult1",
+    "result.consult2",
+    "result.paper"
+   ]
+  }
+ ],
+ "replies": [
+  {
+   "id": "yes",
+   "icon": "check",
+   "staff": "はい",
+   "easy": "はい",
+   "en": "Yes",
+   "zh": "是的",
+   "review": [
+    "zh"
+   ]
+  },
+  {
+   "id": "no",
+   "icon": "x",
+   "staff": "いいえ",
+   "easy": "いいえ",
+   "en": "No",
+   "zh": "不是",
+   "review": [
+    "zh"
+   ]
+  },
+  {
+   "id": "wait",
+   "icon": "hand",
+   "staff": "ちょっと待って",
+   "easy": "ちょっと {待|ま}って",
+   "en": "Wait a moment",
+   "zh": "请稍等",
+   "review": [
+    "en",
+    "zh"
+   ]
+  },
+  {
+   "id": "dunno",
+   "icon": "circle-help",
+   "staff": "分かりません",
+   "easy": "わかりません",
+   "en": "I don't understand",
+   "zh": "我不明白",
+   "review": [
+    "en",
+    "zh"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "id": "faq.cost",
+   "icon": "circle-check",
+   "q": {
+    "staff": "お金はかかりますか？",
+    "easy": "お{金|かね}は かかりますか？",
+    "en": "Does this cost money?",
+    "zh": "需要付钱吗？"
+   },
+   "a": {
+    "staff": "かかりません。点検は無料です。",
+    "easy": "かかりません。チェックは ただ（{無料|むりょう}）です。",
+    "en": "No. The check is free of charge.",
+    "kana": "*ノ*ウ。ザ *チェ*ック イズ *フ*リー オヴ *チャ*ージ",
+    "zh": "不需要。检查是免费的。"
+   },
+   "review": [
+    "en",
+    "kana",
+    "zh"
+   ]
+  },
+  {
+   "id": "faq.scam",
+   "icon": "id-card",
+   "q": {
+    "staff": "詐欺ではありませんか？",
+    "easy": "うその {人|ひと}じゃ ないですか？",
+    "en": "Is this a scam?",
+    "zh": "这是诈骗吗？"
+   },
+   "a": {
+    "staff": "{client}の委託で点検しています。心配なときは、こちらに電話して確かめてください。{phone}",
+    "easy": "{client}に たのまれて チェックして います。しんぱいな ときは、ここに {電話|でんわ}して ください。{phone}",
+    "en": "No. We do this check on behalf of {client}. If you are worried, please call this number: {phone}",
+    "kana": "*ノ*ウ。ウィ ドゥ ディス *チェ*ック オン ビ*ハ*ーフ オヴ *テ*プコ。イフ ユー アー *ワ*リード、プリーズ *コ*ール ディス *ナ*ンバー",
+    "zh": "不是。我们受{client}委托进行检查。如果您不放心，请拨打这个电话确认：{phone}"
+   },
+   "showCompany": true,
+   "review": [
+    "en",
+    "kana",
+    "zh"
+   ]
+  },
+  {
+   "id": "faq.time",
+   "icon": "hourglass",
+   "q": {
+    "staff": "どのくらい時間がかかりますか？",
+    "easy": "どのくらい {時間|じかん}が かかりますか？",
+    "en": "How long will it take?",
+    "zh": "需要多长时间？"
+   },
+   "a": {
+    "staff": "{minutes}分くらいです。",
+    "easy": "{minutes}{分|ふん}くらいです。",
+    "en": "About {minutes} minutes.",
+    "kana": "ア*バ*ウト {minutes} *ミ*ニッツ",
+    "zh": "大约{minutes}分钟。"
+   },
+   "review": [
+    "en",
+    "kana",
+    "zh"
+   ]
+  },
+  {
+   "id": "faq.busy",
+   "icon": "calendar",
+   "q": {
+    "staff": "今日は都合が悪いです。",
+    "easy": "きょうは つごうが わるいです。",
+    "en": "Today is not a good day.",
+    "zh": "今天不方便。"
+   },
+   "a": {
+    "staff": "分かりました。また後日伺います。お知らせに書いてある番号にお電話ください。",
+    "easy": "わかりました。また べつの {日|ひ}に {来|き}ます。お{知|し}らせに {書|か}いて ある {番号|ばんごう}に {電話|でんわ}して ください。",
+    "en": "No problem. We will come back another day. You can also call the number on the notice.",
+    "kana": "*ノ*ウ プ*ロ*ブレム。ウィ ウィル カム *バ*ック ア*ナ*ザー デイ。ユー キャン *オ*ールソウ *コ*ール ザ *ナ*ンバー オン ザ *ノ*ウティス",
+    "zh": "没关系。我们改天再来。您也可以拨打通知上的电话号码。"
+   },
+   "review": [
+    "en",
+    "kana",
+    "zh"
+   ]
+  }
+ ],
+ "breakerImage": "img/breaker.svg",
+ "breaker": [
+  {
+   "no": 1,
+   "id": "main",
+   "x": 18,
+   "y": 12,
+   "name": {
+    "staff": "メインブレーカー",
+    "easy": "いちばん {大|おお}きい スイッチ",
+    "en": "Main breaker",
+    "kana": "*メ*イン ブ*レ*イカー",
+    "zh": "总开关"
+   },
+   "desc": {
+    "staff": "家全体の電気をまとめて止めるスイッチです。電気を一度に使いすぎると切れます。",
+    "easy": "{家|いえ} ぜんぶの {電気|でんき}を まとめて {止|と}める スイッチです。{電気|でんき}を いっぺんに つかいすぎると {切|き}れます。",
+    "en": "This switch turns off all the power in your home at once. It switches off if you use too much electricity at the same time.",
+    "kana": "ディス ス*ウィ*ッチ ターンズ *オ*フ オール ザ *パ*ワー イン ユア *ホ*ウム アット *ワ*ンス",
+    "zh": "这个开关可以一次切断全家的电。同时用电过多时，它会自动跳闸。"
+   },
+   "review": [
+    "en",
+    "kana",
+    "zh"
+   ]
+  },
+  {
+   "no": 2,
+   "id": "safety",
+   "x": 47,
+   "y": 12,
+   "name": {
+    "staff": "漏電ブレーカー",
+    "easy": "あんぜんの スイッチ",
+    "en": "Safety breaker",
+    "kana": "*セ*イフティ ブ*レ*イカー",
+    "zh": "漏电保护开关"
+   },
+   "desc": {
+    "staff": "電気がもれたら自動で電気を止めて、感電や火事を防ぐスイッチです。",
+    "easy": "{電気|でんき}が もれたら、じどうで {電気|でんき}を {止|と}めて、ビリッと する ことや {火事|かじ}を ふせぐ スイッチです。",
+    "en": "If electricity leaks, this switch turns off the power automatically. It protects you from electric shock and fire.",
+    "kana": "イフ イレク*ト*リシティ *リー*クス、ディス ス*ウィ*ッチ ターンズ オフ ザ *パ*ワー オートゥ*マ*ティカリー",
+    "zh": "一旦漏电，这个开关会自动断电，防止触电和火灾。"
+   },
+   "review": [
+    "en",
+    "kana",
+    "zh"
+   ]
+  },
+  {
+   "no": 3,
+   "id": "branch",
+   "x": 80,
+   "y": 12,
+   "name": {
+    "staff": "分岐ブレーカー（小さいブレーカー）",
+    "easy": "へやごとの {小|ちい}さい スイッチ",
+    "en": "Circuit breakers",
+    "kana": "*サ*ーキット ブ*レ*イカーズ",
+    "zh": "分路开关（小开关）"
+   },
+   "desc": {
+    "staff": "部屋や場所ごとの電気のスイッチです。使いすぎた場所だけ電気が切れます。",
+    "easy": "へやや ばしょ ごとの {電気|でんき}の スイッチです。つかいすぎた ところ だけ {電気|でんき}が {切|き}れます。",
+    "en": "Each small switch controls one area, like the kitchen or a bedroom. If one area uses too much power, only that switch turns off.",
+    "kana": "*イ*ーチ スモール ス*ウィ*ッチ コント*ロ*ウルズ *ワ*ン *エ*アリア、ライク ザ *キ*ッチン オア ア *ベ*ッドルーム",
+    "zh": "每个小开关控制一个区域，比如厨房或卧室。某个区域用电过多时，只有那个开关会跳闸。"
+   },
+   "review": [
+    "en",
+    "kana",
+    "zh"
+   ]
+  }
+ ],
+ "words": [
+  {
+   "id": "w.electrician",
+   "en": "electrician",
+   "kana": "イレク*トゥ*リシャン",
+   "ja": "電気工事店・電気屋さん",
+   "note": "Please contact an electrician.（電気工事店に相談してください）",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ɪˌlekˈtrɪʃən/",
+   "tip": "「トゥ*リ*」を強く。最後の「シャン」は軽く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Please call an electrician.",
+     "kana": "プリーズ *コ*ール アン イレク*トゥ*リシャン",
+     "ja": "電気屋さんに電話してください。"
+    },
+    {
+     "lv": 2,
+     "en": "I recommend asking an electrician to check it.",
+     "kana": "アイ レコ*メ*ンド *ア*スキング アン イレク*トゥ*リシャン トゥ *チェ*ック イット",
+     "ja": "電気工事店に見てもらうことをおすすめします。"
+    },
+    {
+     "lv": 3,
+     "en": "A licensed electrician should replace the damaged wiring.",
+     "kana": "ア *ラ*イセンスト イレク*トゥ*リシャン シュッド リプ*レ*イス ザ *ダ*メッジド *ワ*イアリング",
+     "ja": "傷んだ配線は、資格のある電気工事店が交換するべきです。"
+    }
+   ]
+  },
+  {
+   "id": "w.main",
+   "en": "main breaker",
+   "kana": "*メ*イン ブ*レ*イカー",
+   "ja": "メインブレーカー",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/meɪn ˈbreɪkər/",
+   "tip": "ブレイカーの「レ」を強く。「ブ」は軽く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is the main breaker.",
+     "kana": "ディス イズ ザ *メ*イン ブ*レ*イカー",
+     "ja": "これがメインブレーカーです。"
+    },
+    {
+     "lv": 2,
+     "en": "If the main breaker trips, all the power goes off.",
+     "kana": "イフ ザ *メ*イン ブレイカー ト*リ*ップス、*オ*ール ザ *パ*ワー ゴウズ *オ*フ",
+     "ja": "メインブレーカーが落ちると、家中の電気が止まります。"
+    },
+    {
+     "lv": 3,
+     "en": "The main breaker limits the total current to your contract amperage.",
+     "kana": "ザ *メ*イン ブレイカー *リ*ミッツ ザ *ト*ウタル *カ*レント トゥ ユア *コ*ントラクト *ア*ンペレッジ",
+     "ja": "メインブレーカーは、全体の電流を契約アンペア以内に抑えます。"
+    }
+   ]
+  },
+  {
+   "id": "w.safety",
+   "en": "safety breaker / earth leakage breaker",
+   "kana": "*セ*イフティ ブ*レ*イカー ／ *ア*ース *リー*キッジ ブ*レ*イカー",
+   "ja": "漏電ブレーカー",
+   "note": "お客さんには safety breaker のほうが伝わりやすい",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ˈseɪfti ˈbreɪkər/ ・ /ɜːrθ ˈliːkɪdʒ/",
+   "tip": "leakage は「*リー*キッジ」。リーを長く、最後のジは弱く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is the safety breaker.",
+     "kana": "ディス イズ ザ *セ*イフティ ブレイカー",
+     "ja": "これが漏電ブレーカーです。"
+    },
+    {
+     "lv": 2,
+     "en": "The safety breaker turns off the power if there's a leak.",
+     "kana": "ザ *セ*イフティ ブレイカー ターンズ *オ*フ ザ *パ*ワー イフ ゼアズ ア *リ*ーク",
+     "ja": "漏電があると、漏電ブレーカーが電気を止めます。"
+    },
+    {
+     "lv": 3,
+     "en": "The earth leakage breaker trips when it detects current flowing to the ground.",
+     "kana": "ジ *ア*ース *リ*ーキッジ ブレイカー ト*リ*ップス ウェン イット ディ*テ*クツ *カ*レント フ*ロ*ウイング トゥ ザ グ*ラ*ウンド",
+     "ja": "漏電ブレーカーは、地面に流れる電気を見つけると落ちます。"
+    }
+   ]
+  },
+  {
+   "id": "w.circuit",
+   "en": "circuit breaker",
+   "kana": "*サ*ーキット ブ*レ*イカー",
+   "ja": "分岐ブレーカー（小さいブレーカー）",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ˈsɜːrkɪt ˈbreɪkər/",
+   "tip": "circuit は「*サ*ーキット」。cir の「サー」を強く、最後の t はほぼ言わない",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "These are the circuit breakers.",
+     "kana": "ジーズ アー ザ *サ*ーキット ブレイカーズ",
+     "ja": "これが分岐ブレーカーです。"
+    },
+    {
+     "lv": 2,
+     "en": "Each circuit breaker controls one room or area.",
+     "kana": "*イ*ーチ *サ*ーキット ブレイカー コント*ロ*ウルズ *ワ*ン *ル*ーム オア *エ*リア",
+     "ja": "分岐ブレーカーは、部屋や場所ごとに分かれています。"
+    },
+    {
+     "lv": 3,
+     "en": "The branch circuit breaker protects the wiring from overcurrent.",
+     "kana": "ザ ブ*ラ*ンチ *サ*ーキット ブレイカー プロ*テ*クツ ザ *ワ*イアリング フロム *オ*ウヴァーカレント",
+     "ja": "分岐ブレーカーは、電気の流れすぎから配線を守ります。"
+    }
+   ]
+  },
+  {
+   "id": "w.panel",
+   "en": "breaker box / electrical panel",
+   "kana": "ブ*レ*イカー ボックス ／ イ*レ*クトリカル *パ*ネル",
+   "ja": "分電盤",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈbreɪkər bɑːks/ ・ /ɪˈlektrɪkəl ˈpænəl/",
+   "tip": "panel は「*パ*ネル」。パを強く、日本語の「パネル」より短く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Where is your breaker box?",
+     "kana": "*ウェ*ア イズ ユア ブ*レ*イカー ボックス？",
+     "ja": "分電盤はどこですか？"
+    },
+    {
+     "lv": 2,
+     "en": "The breaker box is usually near the entrance.",
+     "kana": "ザ ブレイカー ボックス イズ *ユ*ージュアリー ニア ジ *エ*ントランス",
+     "ja": "分電盤はたいてい玄関の近くにあります。"
+    },
+    {
+     "lv": 3,
+     "en": "I'll check each circuit in the electrical panel.",
+     "kana": "アイル *チェ*ック *イ*ーチ *サ*ーキット イン ジ イ*レ*クトリカル *パ*ネル",
+     "ja": "分電盤の回路をひとつずつ点検します。"
+    }
+   ]
+  },
+  {
+   "id": "w.outlet",
+   "en": "outlet",
+   "kana": "*ア*ウトレット",
+   "ja": "コンセント",
+   "note": "「コンセント」は英語では通じない",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈaʊtlet/",
+   "tip": "「*ア*ウト」を強く。「コンセント」は英語では通じない",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This outlet is OK.",
+     "kana": "ディス *ア*ウトレット イズ オウ*ケ*イ",
+     "ja": "このコンセントは大丈夫です。"
+    },
+    {
+     "lv": 2,
+     "en": "Please don't plug too many things into one outlet.",
+     "kana": "プリーズ ドウント プ*ラ*グ トゥー メニ シングズ イントゥ *ワ*ン *ア*ウトレット",
+     "ja": "1つのコンセントにたくさん差さないでください。"
+    },
+    {
+     "lv": 3,
+     "en": "This outlet shows signs of overheating, so it should be replaced.",
+     "kana": "ディス *ア*ウトレット *ショ*ウズ *サ*インズ オヴ オウヴァー*ヒ*ーティング、ソウ イット シュッド ビー リプ*レ*イスト",
+     "ja": "このコンセントは熱を持った跡があるので、交換したほうがいいです。"
+    }
+   ]
+  },
+  {
+   "id": "w.plug",
+   "en": "plug",
+   "kana": "プ*ラ*グ",
+   "ja": "プラグ（差し込む側）",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/plʌɡ/",
+   "tip": "「プ」は軽く「*ラ*グ」。u は「ア」に近い",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Please pull out the plug.",
+     "kana": "プリーズ *プ*ル アウト ザ プ*ラ*グ",
+     "ja": "プラグを抜いてください。"
+    },
+    {
+     "lv": 2,
+     "en": "Please push the plug in all the way.",
+     "kana": "プリーズ *プ*ッシュ ザ プ*ラ*グ イン *オ*ール ザ ウェイ",
+     "ja": "プラグを奥までしっかり差してください。"
+    },
+    {
+     "lv": 3,
+     "en": "A loose plug can cause arcing and heat up the outlet.",
+     "kana": "ア *ル*ース プ*ラ*グ キャン *コ*ーズ *ア*ーキング アンド ヒート *ア*ップ ジ *ア*ウトレット",
+     "ja": "ゆるいプラグは火花が出て、コンセントが熱くなることがあります。"
+    }
+   ]
+  },
+  {
+   "id": "w.wiring",
+   "en": "wiring",
+   "kana": "*ワ*イアリング",
+   "ja": "配線",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ˈwaɪərɪŋ/",
+   "tip": "「*ワ*イア」を強く。r は舌を丸める",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "The wiring is old.",
+     "kana": "ザ *ワ*イアリング イズ *オ*ウルド",
+     "ja": "配線が古いです。"
+    },
+    {
+     "lv": 2,
+     "en": "The wiring inside the wall may need to be checked.",
+     "kana": "ザ *ワ*イアリング イン*サ*イド ザ ウォール メイ ニード トゥ ビー *チェ*ックト",
+     "ja": "壁の中の配線を点検したほうがいいかもしれません。"
+    },
+    {
+     "lv": 3,
+     "en": "Deteriorated wiring insulation can cause leakage or a short circuit.",
+     "kana": "ディ*ティ*アリオレイティッド *ワ*イアリング インス*レ*イション キャン *コ*ーズ *リ*ーキッジ オア ア *ショ*ート *サ*ーキット",
+     "ja": "配線の被覆が古くなると、漏電やショートの原因になります。"
+    }
+   ]
+  },
+  {
+   "id": "w.meter",
+   "en": "meter",
+   "kana": "*ミ*ーター",
+   "ja": "メーター・測定器",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈmiːtər/",
+   "tip": "「*ミ*ーター」。ミを長く強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is my meter.",
+     "kana": "ディス イズ マイ *ミ*ーター",
+     "ja": "これは測定器です。"
+    },
+    {
+     "lv": 2,
+     "en": "I'll use this meter to check for leaks.",
+     "kana": "アイル *ユ*ーズ ディス *ミ*ーター トゥ *チェ*ック フォー *リ*ークス",
+     "ja": "この測定器で漏電を調べます。"
+    },
+    {
+     "lv": 3,
+     "en": "This insulation tester applies a test voltage to each circuit.",
+     "kana": "ディス インス*レ*イション *テ*スター アプ*ラ*イズ ア *テ*スト *ヴォ*ウルテッジ トゥ *イ*ーチ *サ*ーキット",
+     "ja": "この絶縁抵抗計は、回路ごとに試験用の電圧をかけます。"
+    }
+   ]
+  },
+  {
+   "id": "w.inspection",
+   "en": "inspection / safety check",
+   "kana": "インス*ペ*クション ／ *セ*イフティ チェック",
+   "ja": "点検",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ɪnˈspekʃən/",
+   "tip": "「イン*ス*ペクション」。スペを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is a safety check.",
+     "kana": "ディス イズ ア *セ*イフティ チェック",
+     "ja": "これは安全点検です。"
+    },
+    {
+     "lv": 2,
+     "en": "The inspection takes about twenty minutes.",
+     "kana": "ジ インス*ペ*クション *テ*イクス ア*バ*ウト ト*ウェ*ンティ *ミ*ニッツ",
+     "ja": "点検は20分くらいかかります。"
+    },
+    {
+     "lv": 3,
+     "en": "This periodic inspection is required under the Electricity Business Act.",
+     "kana": "ディス ピアリ*オ*ディカル インス*ペ*クション イズ リク*ワ*イアド アンダー ジ イレク*トゥ*リシティ *ビ*ズネス *ア*クト",
+     "ja": "この定期点検は、電気事業法で決められています。"
+    }
+   ]
+  },
+  {
+   "id": "w.shock",
+   "en": "electric shock",
+   "kana": "イ*レ*クトリック *ショ*ック",
+   "ja": "感電",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ɪˈlektrɪk ʃɑːk/",
+   "tip": "shock は「*シャ*ック」に近い短い音",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Be careful. You could get a shock.",
+     "kana": "ビー *ケ*アフル。ユー クッド ゲット ア *ショ*ック",
+     "ja": "気をつけて。感電するかもしれません。"
+    },
+    {
+     "lv": 2,
+     "en": "Wet hands can give you an electric shock.",
+     "kana": "*ウェ*ット *ハ*ンズ キャン ギヴ ユー アン イ*レ*クトリック *ショ*ック",
+     "ja": "ぬれた手でさわると感電することがあります。"
+    },
+    {
+     "lv": 3,
+     "en": "A ground wire reduces the risk of electric shock if the appliance leaks.",
+     "kana": "ア グ*ラ*ウンド ワイア リ*デュ*ースィズ ザ *リ*スク オヴ イ*レ*クトリック *ショ*ック イフ ジ ア*プラ*イアンス *リ*ークス",
+     "ja": "家電が漏電しても、アース線があれば感電の危険が下がります。"
+    }
+   ]
+  },
+  {
+   "id": "w.leak",
+   "en": "electrical leak",
+   "kana": "イ*レ*クトリカル *リー*ク",
+   "ja": "漏電",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ɪˈlektrɪkəl liːk/ ・ /ˈliːkɪdʒ/",
+   "tip": "leak は「*リー*ク」と長く。lick（リック）にならないように",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "There is a small leak.",
+     "kana": "ゼア イズ ア ス*モ*ール *リ*ーク",
+     "ja": "少し漏電しています。"
+    },
+    {
+     "lv": 2,
+     "en": "My meter shows a small electrical leak in this room.",
+     "kana": "マイ *ミ*ーター *ショ*ウズ ア スモール イ*レ*クトリカル *リ*ーク イン ディス *ル*ーム",
+     "ja": "測定器で、この部屋に少し漏電があると出ています。"
+    },
+    {
+     "lv": 3,
+     "en": "I detected current leakage on the kitchen circuit.",
+     "kana": "アイ ディ*テ*クティッド *カ*レント *リ*ーキッジ オン ザ *キ*ッチン *サ*ーキット",
+     "ja": "台所の回路で漏電を見つけました。"
+    }
+   ]
+  },
+  {
+   "id": "w.fire",
+   "en": "fire",
+   "kana": "*ファ*イア",
+   "ja": "火事",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/faɪər/",
+   "tip": "「*ファ*イア」。f は下くちびるに歯を当てる",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "It can cause a fire.",
+     "kana": "イット キャン *コ*ーズ ア *ファ*イア",
+     "ja": "火事の原因になります。"
+    },
+    {
+     "lv": 2,
+     "en": "Dust on plugs can start a fire.",
+     "kana": "*ダ*スト オン プ*ラ*グズ キャン スタート ア *ファ*イア",
+     "ja": "プラグのほこりから火事になることがあります。"
+    },
+    {
+     "lv": 3,
+     "en": "Overloaded extension cords are a common cause of electrical fires.",
+     "kana": "オウヴァー*ロ*ウディッド イクス*テ*ンション コーズ アー ア *コ*モン *コ*ーズ オヴ イ*レ*クトリカル *ファ*イアーズ",
+     "ja": "延長コードの使いすぎは、電気火災のよくある原因です。"
+    }
+   ]
+  },
+  {
+   "id": "w.cord",
+   "en": "extension cord",
+   "kana": "イクス*テ*ンション コード",
+   "ja": "延長コード",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ɪkˈstenʃən kɔːrd/",
+   "tip": "extension は「イクス*テ*ンション」。テを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This cord is old.",
+     "kana": "ディス *コ*ード イズ *オ*ウルド",
+     "ja": "このコードは古いです。"
+    },
+    {
+     "lv": 2,
+     "en": "Please don't use extension cords for the heater.",
+     "kana": "プリーズ ドウント ユーズ イクス*テ*ンション コーズ フォー ザ *ヒ*ーター",
+     "ja": "ヒーターには延長コードを使わないでください。"
+    },
+    {
+     "lv": 3,
+     "en": "This extension cord is rated for 1,500 watts, so don't exceed that.",
+     "kana": "ディス イクス*テ*ンション コード イズ *レ*イティッド フォー フィフ*ティ*ーン *ハ*ンドレッド *ワ*ッツ、ソウ ドウント イク*シ*ード ザット",
+     "ja": "この延長コードは1500ワットまでなので、超えないでください。"
+    }
+   ]
+  },
+  {
+   "id": "w.strip",
+   "en": "power strip",
+   "kana": "*パ*ワー ストリップ",
+   "ja": "電源タップ（タコ足）",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈpaʊər strɪp/",
+   "tip": "「*パ*ワー」を強く。strip の i は短く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is a power strip.",
+     "kana": "ディス イズ ア *パ*ワー ストリップ",
+     "ja": "これは電源タップです。"
+    },
+    {
+     "lv": 2,
+     "en": "Please don't connect one power strip to another.",
+     "kana": "プリーズ ドウント コ*ネ*クト ワン *パ*ワー ストリップ トゥ ア*ナ*ザー",
+     "ja": "電源タップをつなげて使わないでください。"
+    },
+    {
+     "lv": 3,
+     "en": "A power strip with a built-in breaker is safer.",
+     "kana": "ア *パ*ワー ストリップ ウィズ ア *ビ*ルト イン ブ*レ*イカー イズ *セ*イファー",
+     "ja": "ブレーカー付きの電源タップのほうが安全です。"
+    }
+   ]
+  },
+  {
+   "id": "w.appliance",
+   "en": "appliance",
+   "kana": "ア*プラ*イアンス",
+   "ja": "電気製品・家電",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/əˈplaɪəns/",
+   "tip": "「ア*プラ*イアンス」。プラを強く。最初のアは弱く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Please turn off this appliance.",
+     "kana": "プリーズ ターン *オ*フ ディス ア*プラ*イアンス",
+     "ja": "この家電を止めてください。"
+    },
+    {
+     "lv": 2,
+     "en": "Which appliances do you use at the same time?",
+     "kana": "ウィッチ ア*プラ*イアンスィズ ドゥ ユー ユーズ アット ザ *セ*イム *タ*イム？",
+     "ja": "どの家電を同時に使いますか？"
+    },
+    {
+     "lv": 3,
+     "en": "Appliances with a high wattage should have their own dedicated circuit.",
+     "kana": "ア*プラ*イアンスィズ ウィズ ア ハイ *ワ*ッテッジ シュッド ハヴ ゼア *オ*ウン *デ*ディケイティッド *サ*ーキット",
+     "ja": "消費電力の大きい家電は、専用の回路にしたほうがいいです。"
+    }
+   ]
+  },
+  {
+   "id": "w.switch",
+   "en": "switch",
+   "kana": "ス*ウィ*ッチ",
+   "ja": "スイッチ",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/swɪtʃ/",
+   "tip": "「ス*ウィ*ッチ」。w のくちびるを丸める",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Please turn off the switch.",
+     "kana": "プリーズ ターン *オ*フ ザ ス*ウィ*ッチ",
+     "ja": "スイッチを切ってください。"
+    },
+    {
+     "lv": 2,
+     "en": "I'll turn off this switch for a moment.",
+     "kana": "アイル ターン *オ*フ ディス ス*ウィ*ッチ フォー ア *モ*ウメント",
+     "ja": "少しの間、このスイッチを切ります。"
+    },
+    {
+     "lv": 3,
+     "en": "Please flip the lever back up after the breaker has cooled down.",
+     "kana": "プリーズ フ*リ*ップ ザ *レ*ヴァー バック *ア*ップ アフター ザ ブレイカー ハズ クールド *ダ*ウン",
+     "ja": "ブレーカーが冷めてから、レバーを上げてください。"
+    }
+   ]
+  },
+  {
+   "id": "w.trip",
+   "en": "trip (The breaker trips.)",
+   "kana": "ト*リ*ップ",
+   "ja": "（ブレーカーが）落ちる",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/trɪp/",
+   "tip": "「ト*リ*ップ」。トゥリと一息で",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "The breaker tripped.",
+     "kana": "ザ ブレイカー ト*リ*ップト",
+     "ja": "ブレーカーが落ちました。"
+    },
+    {
+     "lv": 2,
+     "en": "Does the breaker trip often?",
+     "kana": "ダズ ザ ブレイカー ト*リ*ップ *オ*フン？",
+     "ja": "ブレーカーはよく落ちますか？"
+    },
+    {
+     "lv": 3,
+     "en": "If the breaker trips repeatedly, there may be a short circuit or an overload.",
+     "kana": "イフ ザ ブレイカー ト*リ*ップス リ*ピ*ーティッドリー、ゼア メイ ビー ア *ショ*ート *サ*ーキット オア アン *オ*ウヴァーロウド",
+     "ja": "何度も落ちるなら、ショートか使いすぎかもしれません。"
+    }
+   ]
+  },
+  {
+   "id": "w.flicker",
+   "en": "flicker",
+   "kana": "フ*リ*ッカー",
+   "ja": "チカチカする",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ˈflɪkər/",
+   "tip": "「フ*リ*ッカー」。リを強く短く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Do the lights flicker?",
+     "kana": "ドゥ ザ *ラ*イツ フ*リ*ッカー？",
+     "ja": "電気がチカチカしますか？"
+    },
+    {
+     "lv": 2,
+     "en": "The lights sometimes flicker when the heater is on.",
+     "kana": "ザ *ラ*イツ *サ*ムタイムズ フ*リ*ッカー ウェン ザ *ヒ*ーター イズ *オ*ン",
+     "ja": "ヒーターをつけると、ときどき電気がチカチカします。"
+    },
+    {
+     "lv": 3,
+     "en": "Flickering lights may indicate a loose connection in the circuit.",
+     "kana": "フ*リ*ッカリング *ラ*イツ メイ *イ*ンディケイト ア *ル*ース コ*ネ*クション イン ザ *サ*ーキット",
+     "ja": "チカチカするのは、回路の接続がゆるいサインかもしれません。"
+    }
+   ]
+  },
+  {
+   "id": "w.burn",
+   "en": "burn mark",
+   "kana": "*バ*ーン マーク",
+   "ja": "焦げ跡",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/bɜːrn mɑːrk/",
+   "tip": "burn は「*バ*ーン」。口を少しだけ開けてこもった音",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Look. A burn mark.",
+     "kana": "*ル*ック。ア *バ*ーン マーク",
+     "ja": "見てください。焦げ跡です。"
+    },
+    {
+     "lv": 2,
+     "en": "There's a burn mark around this plug.",
+     "kana": "ゼアズ ア *バ*ーン マーク ア*ラ*ウンド ディス プ*ラ*グ",
+     "ja": "このプラグのまわりに焦げ跡があります。"
+    },
+    {
+     "lv": 3,
+     "en": "The scorch mark suggests the outlet has been overheating.",
+     "kana": "ザ ス*コ*ーチ マーク サ*ジェ*スツ ジ *ア*ウトレット ハズ ビーン オウヴァー*ヒ*ーティング",
+     "ja": "焦げ跡から、コンセントが熱を持っていたと考えられます。"
+    }
+   ]
+  },
+  {
+   "id": "w.crack",
+   "en": "crack",
+   "kana": "ク*ラ*ック",
+   "ja": "ひび",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/kræk/",
+   "tip": "「ク*ラ*ック」。ラは口を横に開く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "There's a crack here.",
+     "kana": "ゼアズ ア ク*ラ*ック *ヒ*ア",
+     "ja": "ここにひびがあります。"
+    },
+    {
+     "lv": 2,
+     "en": "The outlet cover has a crack.",
+     "kana": "ジ *ア*ウトレット *カ*ヴァー ハズ ア ク*ラ*ック",
+     "ja": "コンセントのカバーにひびがあります。"
+    },
+    {
+     "lv": 3,
+     "en": "A cracked cover can expose live parts and cause a shock.",
+     "kana": "ア ク*ラ*ックト *カ*ヴァー キャン イクス*ポ*ウズ *ラ*イヴ パーツ アンド *コ*ーズ ア *ショ*ック",
+     "ja": "カバーが割れると電気の通った部分が出て、感電することがあります。"
+    }
+   ]
+  },
+  {
+   "id": "w.loose",
+   "en": "loose",
+   "kana": "*ル*ース",
+   "ja": "ゆるい・ぐらぐら",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/luːs/",
+   "tip": "「*ル*ース」。lose（ルーズ）と違い、最後は「ス」",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is loose.",
+     "kana": "ディス イズ *ル*ース",
+     "ja": "これはゆるいです。"
+    },
+    {
+     "lv": 2,
+     "en": "The plug is loose in the outlet.",
+     "kana": "ザ プ*ラ*グ イズ *ル*ース イン ジ *ア*ウトレット",
+     "ja": "プラグがコンセントにゆるく差さっています。"
+    },
+    {
+     "lv": 3,
+     "en": "A loose connection increases resistance and generates heat.",
+     "kana": "ア *ル*ース コ*ネ*クション イン*ク*リーセズ リ*ジ*スタンス アンド *ジェ*ネレイツ *ヒ*ート",
+     "ja": "接続がゆるいと抵抗が増えて、熱が出ます。"
+    }
+   ]
+  },
+  {
+   "id": "w.dust",
+   "en": "dust",
+   "kana": "*ダ*スト",
+   "ja": "ほこり",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/dʌst/",
+   "tip": "「*ダ*スト」。最後の t は軽く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Please clean the dust.",
+     "kana": "プリーズ ク*リ*ーン ザ *ダ*スト",
+     "ja": "ほこりをきれいにしてください。"
+    },
+    {
+     "lv": 2,
+     "en": "Dust around plugs can be dangerous.",
+     "kana": "*ダ*スト ア*ラ*ウンド プ*ラ*グズ キャン ビー *デ*インジャラス",
+     "ja": "プラグのまわりのほこりは危ないです。"
+    },
+    {
+     "lv": 3,
+     "en": "Wipe off the dust regularly to prevent tracking fires.",
+     "kana": "ワイプ *オ*フ ザ *ダ*スト *レ*ギュラリー トゥ プリ*ヴェ*ント ト*ラ*ッキング ファイアーズ",
+     "ja": "トラッキング火災を防ぐため、ほこりを定期的にふいてください。"
+    }
+   ]
+  },
+  {
+   "id": "w.moisture",
+   "en": "moisture",
+   "kana": "*モ*イスチャー",
+   "ja": "湿気",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ˈmɔɪstʃər/",
+   "tip": "「*モ*イスチャー」。モを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "It's wet here.",
+     "kana": "イッツ *ウェ*ット *ヒ*ア",
+     "ja": "ここはぬれています。"
+    },
+    {
+     "lv": 2,
+     "en": "Moisture near outlets can be dangerous.",
+     "kana": "*モ*イスチャー ニア *ア*ウトレッツ キャン ビー *デ*インジャラス",
+     "ja": "コンセントの近くの湿気は危ないです。"
+    },
+    {
+     "lv": 3,
+     "en": "High humidity can lower the insulation resistance of the wiring.",
+     "kana": "*ハ*イ ヒュー*ミ*ディティ キャン *ロ*ウアー ジ インス*レ*イション リ*ジ*スタンス オヴ ザ *ワ*イアリング",
+     "ja": "湿気が多いと、配線の絶縁抵抗が下がることがあります。"
+    }
+   ]
+  },
+  {
+   "id": "w.repair",
+   "en": "repair",
+   "kana": "リ*ペ*ア",
+   "ja": "修理する",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/rɪˈper/",
+   "tip": "「リ*ペ*ア」。ペを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Please repair it.",
+     "kana": "プリーズ リ*ペ*ア イット",
+     "ja": "修理してください。"
+    },
+    {
+     "lv": 2,
+     "en": "An electrician can repair this outlet.",
+     "kana": "アン イレク*トゥ*リシャン キャン リ*ペ*ア ディス *ア*ウトレット",
+     "ja": "電気工事店がこのコンセントを直せます。"
+    },
+    {
+     "lv": 3,
+     "en": "The repair should be done by a licensed contractor.",
+     "kana": "ザ リ*ペ*ア シュッド ビー *ダ*ン バイ ア *ラ*イセンスト *コ*ントラクター",
+     "ja": "修理は資格のある工事店がするべきです。"
+    }
+   ]
+  },
+  {
+   "id": "w.replace",
+   "en": "replace",
+   "kana": "リプ*レ*イス",
+   "ja": "交換する",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/rɪˈpleɪs/",
+   "tip": "「リプ*レ*イス」。レイを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Please replace it.",
+     "kana": "プリーズ リプ*レ*イス イット",
+     "ja": "交換してください。"
+    },
+    {
+     "lv": 2,
+     "en": "I recommend replacing this old outlet.",
+     "kana": "アイ レコ*メ*ンド リプ*レ*イスィング ディス *オ*ウルド *ア*ウトレット",
+     "ja": "この古いコンセントの交換をおすすめします。"
+    },
+    {
+     "lv": 3,
+     "en": "Replacing the breaker would require an electrical contractor.",
+     "kana": "リプ*レ*イスィング ザ ブ*レ*イカー ウッド リク*ワ*イア アン イ*レ*クトリカル *コ*ントラクター",
+     "ja": "ブレーカーの交換には、電気工事店が必要です。"
+    }
+   ]
+  },
+  {
+   "id": "w.free",
+   "en": "free of charge",
+   "kana": "*フ*リー オヴ *チャ*ージ",
+   "ja": "無料",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/friː əv tʃɑːrdʒ/",
+   "tip": "「*フ*リー」。f は下くちびる。charge は「*チャ*ージ」",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "It's free.",
+     "kana": "イッツ *フ*リー",
+     "ja": "無料です。"
+    },
+    {
+     "lv": 2,
+     "en": "The safety check is free of charge.",
+     "kana": "ザ *セ*イフティ チェック イズ *フ*リー オヴ *チャ*ージ",
+     "ja": "安全点検は無料です。"
+    },
+    {
+     "lv": 3,
+     "en": "There's no fee for the inspection, but repairs are charged separately.",
+     "kana": "ゼアズ *ノ*ウ *フィ*ー フォー ジ インス*ペ*クション、バット リ*ペ*アズ アー *チャ*ージド *セ*パレットリー",
+     "ja": "点検は無料ですが、修理は別にお金がかかります。"
+    }
+   ]
+  },
+  {
+   "id": "w.id",
+   "en": "ID card",
+   "kana": "アイ*ディ*ー カード",
+   "ja": "身分証",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˌaɪˈdiː kɑːrd/",
+   "tip": "「アイ*ディ*ー」。ディを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Here is my ID.",
+     "kana": "*ヒ*ア イズ マイ アイ*ディ*ー",
+     "ja": "これが私の身分証です。"
+    },
+    {
+     "lv": 2,
+     "en": "Would you like to see my ID card?",
+     "kana": "ウッド ユー ライク トゥ *シ*ー マイ アイ*ディ*ー カード？",
+     "ja": "身分証をご覧になりますか？"
+    },
+    {
+     "lv": 3,
+     "en": "My ID shows that I'm authorized to carry out this inspection.",
+     "kana": "マイ アイ*ディ*ー *ショ*ウズ ザット アイム *オ*ーソライズド トゥ キャリー *ア*ウト ディス インス*ペ*クション",
+     "ja": "身分証に、この点検をする資格があると書いてあります。"
+    }
+   ]
+  },
+  {
+   "id": "w.notice",
+   "en": "notice",
+   "kana": "*ノ*ウティス",
+   "ja": "お知らせ",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈnoʊtɪs/",
+   "tip": "「*ノ*ウティス」。ノを強く、ノウと伸ばす",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Here is the notice.",
+     "kana": "*ヒ*ア イズ ザ *ノ*ウティス",
+     "ja": "これがお知らせです。"
+    },
+    {
+     "lv": 2,
+     "en": "Did you get our notice last week?",
+     "kana": "ディッド ユー *ゲ*ット アワ *ノ*ウティス ラスト *ウィ*ーク？",
+     "ja": "先週、お知らせは届きましたか？"
+    },
+    {
+     "lv": 3,
+     "en": "We sent a notice in advance to let you know about the inspection date.",
+     "kana": "ウィ *セ*ント ア *ノ*ウティス イン アド*ヴァ*ンス トゥ レット ユー *ノ*ウ アバウト ジ インス*ペ*クション *デ*イト",
+     "ja": "点検の日をお伝えするため、前もってお知らせを入れました。"
+    }
+   ]
+  },
+  {
+   "id": "w.mailbox",
+   "en": "mailbox",
+   "kana": "*メ*イルボックス",
+   "ja": "郵便受け・ポスト",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈmeɪlbɑːks/",
+   "tip": "「*メ*イル」を強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "It was in your mailbox.",
+     "kana": "イット ワズ イン ユア *メ*イルボックス",
+     "ja": "郵便受けに入っていました。"
+    },
+    {
+     "lv": 2,
+     "en": "We put a notice in your mailbox last week.",
+     "kana": "ウィ *プ*ット ア *ノ*ウティス イン ユア *メ*イルボックス ラスト *ウィ*ーク",
+     "ja": "先週、郵便受けにお知らせを入れました。"
+    },
+    {
+     "lv": 3,
+     "en": "If you're not home, we'll leave a card in your mailbox with a new date.",
+     "kana": "イフ ユア *ノ*ット ホウム、ウィール *リ*ーヴ ア *カ*ード イン ユア *メ*イルボックス ウィズ ア ニュー *デ*イト",
+     "ja": "お留守のときは、次の日にちを書いたカードを郵便受けに入れます。"
+    }
+   ]
+  },
+  {
+   "id": "w.amps",
+   "en": "amps (contract amps)",
+   "kana": "*ア*ンプス",
+   "ja": "アンペア（契約アンペア）",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/æmps/ ・ /ˈæmpərɪdʒ/",
+   "tip": "「*ア*ンプス」。アは口を横に大きく",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "How many amps?",
+     "kana": "ハウ メニ *ア*ンプス？",
+     "ja": "何アンペアですか？"
+    },
+    {
+     "lv": 2,
+     "en": "Your contract is for thirty amps.",
+     "kana": "ユア *コ*ントラクト イズ フォー *サ*ーティ *ア*ンプス",
+     "ja": "契約は30アンペアです。"
+    },
+    {
+     "lv": 3,
+     "en": "Raising your contract amperage will also change your basic charge.",
+     "kana": "*レ*イズィング ユア *コ*ントラクト *ア*ンペレッジ ウィル *オ*ールソウ チェインジ ユア *ベ*イスィック *チャ*ージ",
+     "ja": "契約アンペアを上げると、基本料金も変わります。"
+    }
+   ]
+  },
+  {
+   "id": "w.outage",
+   "en": "power outage",
+   "kana": "*パ*ワー *ア*ウテッジ",
+   "ja": "停電",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ˈpaʊər ˈaʊtɪdʒ/",
+   "tip": "outage は「*ア*ウテッジ」。アウを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "No power now.",
+     "kana": "*ノ*ウ *パ*ワー *ナ*ウ",
+     "ja": "いま電気が来ていません。"
+    },
+    {
+     "lv": 2,
+     "en": "The power will be off for a few seconds.",
+     "kana": "ザ *パ*ワー ウィル ビー *オ*フ フォー ア *フュ*ー *セ*カンズ",
+     "ja": "数秒だけ電気が止まります。"
+    },
+    {
+     "lv": 3,
+     "en": "If there's a power outage in your building only, please check the main breaker first.",
+     "kana": "イフ ゼアズ ア *パ*ワー *ア*ウテッジ イン ユア *ビ*ルディング *オ*ウンリー、プリーズ *チェ*ック ザ *メ*イン ブレイカー *ファ*ースト",
+     "ja": "お宅だけ停電したときは、まずメインブレーカーを見てください。"
+    }
+   ]
+  },
+  {
+   "id": "w.ground",
+   "en": "ground wire",
+   "kana": "グ*ラ*ウンド ワイア",
+   "ja": "アース線",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 3,
+   "ipa": "/ɡraʊnd waɪər/",
+   "tip": "「グ*ラ*ウンド」。グは軽く、ラウを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is the ground wire.",
+     "kana": "ディス イズ ザ グ*ラ*ウンド ワイア",
+     "ja": "これがアース線です。"
+    },
+    {
+     "lv": 2,
+     "en": "Please connect the ground wire for the washing machine.",
+     "kana": "プリーズ コ*ネ*クト ザ グ*ラ*ウンド ワイア フォー ザ *ワ*ッシング マシーン",
+     "ja": "洗濯機のアース線をつないでください。"
+    },
+    {
+     "lv": 3,
+     "en": "Grounding the appliance lets leaked current flow safely to the earth.",
+     "kana": "グ*ラ*ウンディング ジ ア*プラ*イアンス レッツ *リ*ークト *カ*レント フロウ *セ*イフリー トゥ ジ *ア*ース",
+     "ja": "アースをつなぐと、もれた電気が安全に地面へ流れます。"
+    }
+   ]
+  },
+  {
+   "id": "w.aircon",
+   "en": "air conditioner",
+   "kana": "*エ*ア コン*ディ*ショナー",
+   "ja": "エアコン",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈer kənˌdɪʃənər/",
+   "tip": "「エア コン*ディ*ショナー」。ディを強く。aircon は通じにくい",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Please turn off the air conditioner.",
+     "kana": "プリーズ ターン *オ*フ ジ *エ*ア コン*ディ*ショナー",
+     "ja": "エアコンを止めてください。"
+    },
+    {
+     "lv": 2,
+     "en": "The air conditioner uses a lot of power.",
+     "kana": "ジ *エ*ア コンディショナー *ユ*ーズィズ ア *ロ*ット オヴ *パ*ワー",
+     "ja": "エアコンはたくさん電気を使います。"
+    },
+    {
+     "lv": 3,
+     "en": "The air conditioner should be on a dedicated circuit with its own breaker.",
+     "kana": "ジ *エ*ア コンディショナー シュッド ビー オン ア *デ*ディケイティッド *サ*ーキット ウィズ イッツ *オ*ウン ブ*レ*イカー",
+     "ja": "エアコンは、専用のブレーカーがある専用回路にするべきです。"
+    }
+   ]
+  },
+  {
+   "id": "w.microwave",
+   "en": "microwave",
+   "kana": "*マ*イクロウェイヴ",
+   "ja": "電子レンジ",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈmaɪkrəweɪv/",
+   "tip": "「*マ*イクロ」を強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Microwave and dryer? Not together.",
+     "kana": "*マ*イクロウェイヴ アンド *ド*ライヤー？ *ノ*ット トゥ*ゲ*ザー",
+     "ja": "レンジとドライヤーは一緒に使わないで。"
+    },
+    {
+     "lv": 2,
+     "en": "Please don't use the microwave and the kettle at the same time.",
+     "kana": "プリーズ ドウント ユーズ ザ *マ*イクロウェイヴ アンド ザ *ケ*トル アット ザ *セ*イム *タ*イム",
+     "ja": "電子レンジと電気ケトルを同時に使わないでください。"
+    },
+    {
+     "lv": 3,
+     "en": "The microwave draws about fifteen amps, so it can overload the circuit.",
+     "kana": "ザ *マ*イクロウェイヴ *ド*ローズ ア*バ*ウト フィフ*ティ*ーン *ア*ンプス、ソウ イット キャン オウヴァー*ロ*ウド ザ *サ*ーキット",
+     "ja": "電子レンジは約15アンペア使うので、回路の使いすぎになりがちです。"
+    }
+   ]
+  },
+  {
+   "id": "w.stool",
+   "en": "step stool",
+   "kana": "ス*テ*ップ ストゥール",
+   "ja": "踏み台",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/step stuːl/",
+   "tip": "stool は「ス*トゥ*ール」。ウを長く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Can I use a stool?",
+     "kana": "キャン アイ *ユ*ーズ ア ス*トゥ*ール？",
+     "ja": "踏み台を使ってもいいですか？"
+    },
+    {
+     "lv": 2,
+     "en": "I brought my own step stool.",
+     "kana": "アイ ブ*ロ*ート マイ *オ*ウン ス*テ*ップ ストゥール",
+     "ja": "自分の踏み台を持ってきました。"
+    },
+    {
+     "lv": 3,
+     "en": "I'll put a cloth under the step stool so it won't scratch your floor.",
+     "kana": "アイル プット ア ク*ロ*ス アンダー ザ ス*テ*ップ ストゥール ソウ イット *ウォ*ウント ス*ク*ラッチ ユア *フ*ロア",
+     "ja": "床に傷がつかないよう、踏み台の下に布を敷きます。"
+    }
+   ]
+  },
+  {
+   "id": "w.entrance",
+   "en": "entrance",
+   "kana": "*エ*ントランス",
+   "ja": "玄関",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈentrəns/",
+   "tip": "「*エ*ントランス」。エを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "It's at the entrance.",
+     "kana": "イッツ アット ジ *エ*ントランス",
+     "ja": "玄関にあります。"
+    },
+    {
+     "lv": 2,
+     "en": "The breaker box is above the entrance.",
+     "kana": "ザ ブレイカー ボックス イズ ア*バ*ヴ ジ *エ*ントランス",
+     "ja": "分電盤は玄関の上にあります。"
+    },
+    {
+     "lv": 3,
+     "en": "In most homes, the distribution board is installed near the entrance.",
+     "kana": "イン *モ*ウスト *ホ*ウムズ、ザ ディストリ*ビュ*ーション ボード イズ イン*ス*トールド ニア ジ *エ*ントランス",
+     "ja": "たいていの家では、分電盤は玄関の近くにあります。"
+    }
+   ]
+  },
+  {
+   "id": "w.office",
+   "en": "office",
+   "kana": "*オ*フィス",
+   "ja": "会社・事務所",
+   "note": "Let me call my office.（会社に電話します）",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈɔːfɪs/",
+   "tip": "「*オ*フィス」。f は下くちびる",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "I'll call my office.",
+     "kana": "アイル *コ*ール マイ *オ*フィス",
+     "ja": "会社に電話します。"
+    },
+    {
+     "lv": 2,
+     "en": "Let me check with my office.",
+     "kana": "レット ミー *チェ*ック ウィズ マイ *オ*フィス",
+     "ja": "会社に確認します。"
+    },
+    {
+     "lv": 3,
+     "en": "My office will contact you to arrange another visit.",
+     "kana": "マイ *オ*フィス ウィル *コ*ンタクト ユー トゥ ア*レ*インジ ア*ナ*ザー *ヴィ*ズィット",
+     "ja": "会社から、次の訪問の日程についてご連絡します。"
+    }
+   ]
+  },
+  {
+   "id": "w.dangerous",
+   "en": "dangerous",
+   "kana": "*デ*インジャラス",
+   "ja": "危ない",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 1,
+   "ipa": "/ˈdeɪndʒərəs/",
+   "tip": "「*デ*インジャラス」。デを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is dangerous.",
+     "kana": "ディス イズ *デ*インジャラス",
+     "ja": "これは危ないです。"
+    },
+    {
+     "lv": 2,
+     "en": "It's dangerous to touch this with wet hands.",
+     "kana": "イッツ *デ*インジャラス トゥ *タ*ッチ ディス ウィズ *ウェ*ット *ハ*ンズ",
+     "ja": "ぬれた手でさわるのは危ないです。"
+    },
+    {
+     "lv": 3,
+     "en": "Leaving this as it is could be dangerous, so please have it fixed soon.",
+     "kana": "*リ*ーヴィング ディス アズ イット イズ クッド ビー *デ*インジャラス、ソウ プリーズ ハヴ イット *フィ*ックスト *ス*ーン",
+     "ja": "このままにすると危ないので、早めに直してください。"
+    }
+   ]
+  },
+  {
+   "id": "w.urgent",
+   "en": "urgent",
+   "kana": "*ア*ージェント",
+   "ja": "急ぎの",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ˈɜːrdʒənt/",
+   "tip": "「*ア*ージェント」。アーは口をあまり開けずにこもった音",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "It's not urgent.",
+     "kana": "イッツ *ノ*ット *ア*ージェント",
+     "ja": "急ぎではありません。"
+    },
+    {
+     "lv": 2,
+     "en": "This is urgent. Please call an electrician today.",
+     "kana": "ディス イズ *ア*ージェント。プリーズ コール アン イレク*トゥ*リシャン トゥ*デ*イ",
+     "ja": "急ぎです。今日、電気工事店に電話してください。"
+    },
+    {
+     "lv": 3,
+     "en": "It's not an emergency, but I'd recommend having it repaired within a few weeks.",
+     "kana": "イッツ *ノ*ット アン イ*マ*ージェンスィ、バット アイド レコ*メ*ンド ハヴィング イット リ*ペ*アド ウィ*ズィ*ン ア *フュ*ー *ウィ*ークス",
+     "ja": "緊急ではありませんが、数週間のうちに直すことをおすすめします。"
+    }
+   ]
+  },
+  {
+   "id": "w.recommend",
+   "en": "recommend",
+   "kana": "レコ*メ*ンド",
+   "ja": "すすめる",
+   "note": "I recommend replacing it.（交換をおすすめします）",
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "lv": 2,
+   "ipa": "/ˌrekəˈmend/",
+   "tip": "「レコ*メ*ンド」。メを強く。リコメンドではなくレコ",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "I recommend this.",
+     "kana": "アイ レコ*メ*ンド *ディ*ス",
+     "ja": "これをおすすめします。"
+    },
+    {
+     "lv": 2,
+     "en": "I recommend replacing it.",
+     "kana": "アイ レコ*メ*ンド リプ*レ*イスィング イット",
+     "ja": "交換をおすすめします。"
+    },
+    {
+     "lv": 3,
+     "en": "I'd strongly recommend having an earth leakage breaker installed.",
+     "kana": "アイド ストロングリー レコ*メ*ンド ハヴィング アン *ア*ース *リ*ーキッジ ブレイカー イン*ス*トールド",
+     "ja": "漏電ブレーカーをつけることを強くおすすめします。"
+    }
+   ]
+  },
+  {
+   "id": "w.insulation",
+   "en": "insulation resistance",
+   "kana": "インス*レ*イション リ*ジ*スタンス",
+   "ja": "絶縁抵抗",
+   "lv": 3,
+   "ipa": "/ˌɪnsəˈleɪʃən rɪˈzɪstəns/",
+   "tip": "insulation は「インス*レ*イション」レを強く。resistance は「リ*ジ*スタンス」ジを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This checks the wires.",
+     "kana": "ディス *チェ*ックス ザ *ワ*イアーズ",
+     "ja": "これで電線を調べます。"
+    },
+    {
+     "lv": 2,
+     "en": "I'm measuring the insulation resistance.",
+     "kana": "アイム *メ*ジャリング ジ インス*レ*イション リ*ジ*スタンス",
+     "ja": "絶縁抵抗を測っています。"
+    },
+    {
+     "lv": 3,
+     "en": "The insulation resistance should be at least 0.1 megohms for a 100-volt circuit.",
+     "kana": "ジ インス*レ*イション リ*ジ*スタンス シュッド ビー アット *リ*ースト ポイント *ワ*ン *メ*ゴウムズ フォー ア ワン *ハ*ンドレッド *ヴォ*ウルト *サ*ーキット",
+     "ja": "100ボルトの回路なら、絶縁抵抗は0.1メガオーム以上必要です。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "note": "電気がもれにくいかどうかの値。点検で測るもの"
+  },
+  {
+   "id": "w.groundfault",
+   "en": "ground fault",
+   "kana": "グ*ラ*ウンド *フォ*ールト",
+   "ja": "地絡（電気が地面にもれること）",
+   "lv": 3,
+   "ipa": "/ɡraʊnd fɔːlt/",
+   "tip": "fault は「*フォ*ールト」。最後の lt は舌を上につけて軽く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Electricity is leaking.",
+     "kana": "イ*レ*クトリシティ イズ *リ*ーキング",
+     "ja": "電気がもれています。"
+    },
+    {
+     "lv": 2,
+     "en": "There may be a ground fault in this circuit.",
+     "kana": "ゼア メイ ビー ア グ*ラ*ウンド *フォ*ールト イン ディス *サ*ーキット",
+     "ja": "この回路で地絡しているかもしれません。"
+    },
+    {
+     "lv": 3,
+     "en": "A ground fault occurs when current flows to the earth through damaged insulation.",
+     "kana": "ア グ*ラ*ウンド *フォ*ールト オ*カ*ーズ ウェン *カ*レント フロウズ トゥ ジ *ア*ース スルー *ダ*メッジド インス*レ*イション",
+     "ja": "地絡は、傷んだ被覆から電気が地面へ流れることで起きます。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "note": "漏電とほぼ同じ意味で使える"
+  },
+  {
+   "id": "w.short",
+   "en": "short circuit",
+   "kana": "*ショ*ート *サ*ーキット",
+   "ja": "ショート（短絡）",
+   "lv": 3,
+   "ipa": "/ʃɔːrt ˈsɜːrkɪt/",
+   "tip": "「*ショ*ート *サ*ーキット」。どちらも頭を強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "It's a short.",
+     "kana": "イッツ ア *ショ*ート",
+     "ja": "ショートしています。"
+    },
+    {
+     "lv": 2,
+     "en": "A damaged cord can cause a short circuit.",
+     "kana": "ア *ダ*メッジド *コ*ード キャン *コ*ーズ ア *ショ*ート *サ*ーキット",
+     "ja": "傷んだコードはショートの原因になります。"
+    },
+    {
+     "lv": 3,
+     "en": "A short circuit causes a sudden surge of current, which trips the breaker instantly.",
+     "kana": "ア *ショ*ート *サ*ーキット *コ*ーズィズ ア *サ*ドン *サ*ージ オヴ *カ*レント、ウィッチ ト*リ*ップス ザ ブレイカー *イ*ンスタントリー",
+     "ja": "ショートすると急に大きな電流が流れ、すぐにブレーカーが落ちます。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ]
+  },
+  {
+   "id": "w.overload",
+   "en": "overload",
+   "kana": "*オ*ウヴァーロウド",
+   "ja": "使いすぎ（過負荷）",
+   "lv": 3,
+   "ipa": "/ˈoʊvərloʊd/",
+   "tip": "名詞は「*オ*ウヴァーロウド」、動詞は「オウヴァー*ロ*ウド」",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Too much power.",
+     "kana": "*トゥ*ー マッチ *パ*ワー",
+     "ja": "電気の使いすぎです。"
+    },
+    {
+     "lv": 2,
+     "en": "This circuit is overloaded.",
+     "kana": "ディス *サ*ーキット イズ オウヴァー*ロ*ウディッド",
+     "ja": "この回路は使いすぎです。"
+    },
+    {
+     "lv": 3,
+     "en": "Running the heater and the dryer together overloads the circuit and trips the breaker.",
+     "kana": "*ラ*ニング ザ *ヒ*ーター アンド ザ *ド*ライヤー トゥゲザー オウヴァー*ロ*ウズ ザ *サ*ーキット アンド ト*リ*ップス ザ ブレイカー",
+     "ja": "ヒーターとドライヤーを一緒に使うと過負荷でブレーカーが落ちます。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ]
+  },
+  {
+   "id": "w.current",
+   "en": "current",
+   "kana": "*カ*レント",
+   "ja": "電流",
+   "lv": 3,
+   "ipa": "/ˈkɜːrənt/",
+   "tip": "「*カ*レント」。カはこもった「カー」。curry（カレー）に近い",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Electricity is flowing.",
+     "kana": "イ*レ*クトリシティ イズ フ*ロ*ウイング",
+     "ja": "電気が流れています。"
+    },
+    {
+     "lv": 2,
+     "en": "The current is too high.",
+     "kana": "ザ *カ*レント イズ *トゥ*ー *ハ*イ",
+     "ja": "電流が大きすぎます。"
+    },
+    {
+     "lv": 3,
+     "en": "The leakage current is measured in milliamps.",
+     "kana": "ザ *リ*ーキッジ *カ*レント イズ *メ*ジャード イン *ミ*リアンプス",
+     "ja": "漏れている電流は、ミリアンペアで測ります。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ]
+  },
+  {
+   "id": "w.voltage",
+   "en": "voltage",
+   "kana": "*ヴォ*ウルテッジ",
+   "ja": "電圧",
+   "lv": 3,
+   "ipa": "/ˈvoʊltɪdʒ/",
+   "tip": "「*ヴォ*ウルテッジ」。v は下くちびるを軽くかむ",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is 100 volts.",
+     "kana": "ディス イズ ワン *ハ*ンドレッド *ヴォ*ウルツ",
+     "ja": "これは100ボルトです。"
+    },
+    {
+     "lv": 2,
+     "en": "I'll check the voltage at this outlet.",
+     "kana": "アイル *チェ*ック ザ *ヴォ*ウルテッジ アット ディス *ア*ウトレット",
+     "ja": "このコンセントの電圧を調べます。"
+    },
+    {
+     "lv": 3,
+     "en": "Homes in Japan use 100 volts, and some appliances use 200 volts.",
+     "kana": "*ホ*ウムズ イン ジャ*パ*ン ユーズ ワン ハンドレッド *ヴォ*ウルツ、アンド サム ア*プラ*イアンスィズ ユーズ トゥー ハンドレッド *ヴォ*ウルツ",
+     "ja": "日本の家は100ボルトで、200ボルトを使う家電もあります。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "note": "家庭は100ボルト・200ボルト"
+  },
+  {
+   "id": "w.tracking",
+   "en": "tracking (tracking fire)",
+   "kana": "ト*ラ*ッキング",
+   "ja": "トラッキング現象（ほこりと湿気で火が出ること）",
+   "lv": 3,
+   "ipa": "/ˈtrækɪŋ/",
+   "tip": "「ト*ラ*ッキング」。ラは口を横に開く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Dust can start a fire.",
+     "kana": "*ダ*スト キャン スタート ア *ファ*イア",
+     "ja": "ほこりから火が出ることがあります。"
+    },
+    {
+     "lv": 2,
+     "en": "Dust and moisture can cause tracking.",
+     "kana": "*ダ*スト アンド *モ*イスチャー キャン *コ*ーズ ト*ラ*ッキング",
+     "ja": "ほこりと湿気でトラッキングが起きることがあります。"
+    },
+    {
+     "lv": 3,
+     "en": "Tracking happens when dust absorbs moisture and current flows between the prongs.",
+     "kana": "ト*ラ*ッキング *ハ*プンズ ウェン *ダ*スト アブ*ゾ*ーブズ *モ*イスチャー アンド *カ*レント フロウズ ビトウィーン ザ プ*ロ*ングズ",
+     "ja": "ほこりが湿気を吸って、プラグの刃の間に電気が流れるのがトラッキングです。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ]
+  },
+  {
+   "id": "w.dedicated",
+   "en": "dedicated circuit",
+   "kana": "*デ*ディケイティッド *サ*ーキット",
+   "ja": "専用回路",
+   "lv": 3,
+   "ipa": "/ˈdedɪkeɪtɪd ˈsɜːrkɪt/",
+   "tip": "「*デ*ディケイティッド」。デを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is only for the air conditioner.",
+     "kana": "ディス イズ *オ*ウンリー フォー ジ *エ*ア コンディショナー",
+     "ja": "これはエアコンだけ用です。"
+    },
+    {
+     "lv": 2,
+     "en": "The air conditioner has a dedicated circuit.",
+     "kana": "ジ *エ*ア コンディショナー ハズ ア *デ*ディケイティッド *サ*ーキット",
+     "ja": "エアコンには専用回路があります。"
+    },
+    {
+     "lv": 3,
+     "en": "Adding a dedicated circuit for the kitchen would reduce the risk of tripping.",
+     "kana": "*ア*ディング ア *デ*ディケイティッド *サ*ーキット フォー ザ *キ*ッチン ウッド リ*デュ*ース ザ *リ*スク オヴ ト*リ*ッピング",
+     "ja": "台所に専用回路を足すと、ブレーカーが落ちにくくなります。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "note": "エアコンや電子レンジなど、その家電だけの回路"
+  },
+  {
+   "id": "w.contractor",
+   "en": "electrical contractor",
+   "kana": "イ*レ*クトリカル *コ*ントラクター",
+   "ja": "電気工事店（会社）",
+   "lv": 3,
+   "ipa": "/ɪˈlektrɪkəl ˈkɑːntræktər/",
+   "tip": "「*コ*ントラクター」。コを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "Please call a repair company.",
+     "kana": "プリーズ *コ*ール ア リ*ペ*ア カンパニー",
+     "ja": "修理の会社に電話してください。"
+    },
+    {
+     "lv": 2,
+     "en": "A local electrical contractor can fix this.",
+     "kana": "ア *ロ*ウカル イ*レ*クトリカル *コ*ントラクター キャン *フィ*ックス ディス",
+     "ja": "地元の電気工事店が直せます。"
+    },
+    {
+     "lv": 3,
+     "en": "Please get a quote from a licensed electrical contractor before the work.",
+     "kana": "プリーズ ゲット ア ク*ウォ*ウト フロム ア *ラ*イセンスト イ*レ*クトリカル *コ*ントラクター ビフォー ザ *ワ*ーク",
+     "ja": "工事の前に、資格のある工事店から見積もりをもらってください。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "note": "electrician は人、contractor は会社"
+  },
+  {
+   "id": "w.deteriorate",
+   "en": "deteriorate",
+   "kana": "ディ*ティ*アリオレイト",
+   "ja": "古くなって傷む（劣化する）",
+   "lv": 3,
+   "ipa": "/dɪˈtɪriəreɪt/",
+   "tip": "「ディ*ティ*アリオレイト」。ティを強く。長いので3つに分けて練習",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "It's old and worn.",
+     "kana": "イッツ *オ*ウルド アンド *ウォ*ーン",
+     "ja": "古くて傷んでいます。"
+    },
+    {
+     "lv": 2,
+     "en": "The cord has deteriorated.",
+     "kana": "ザ *コ*ード ハズ ディ*ティ*アリオレイティッド",
+     "ja": "コードが劣化しています。"
+    },
+    {
+     "lv": 3,
+     "en": "The rubber insulation deteriorates over time, especially near heat sources.",
+     "kana": "ザ *ラ*バー インス*レ*イション ディ*ティ*アリオレイツ オウヴァー *タ*イム、イス*ペ*シャリー ニア *ヒ*ート ソースィズ",
+     "ja": "ゴムの被覆は、とくに熱の近くで時間とともに劣化します。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ]
+  },
+  {
+   "id": "w.overheat",
+   "en": "overheat",
+   "kana": "オウヴァー*ヒ*ート",
+   "ja": "熱くなりすぎる（過熱）",
+   "lv": 3,
+   "ipa": "/ˌoʊvərˈhiːt/",
+   "tip": "「オウヴァー*ヒ*ート」。ヒを強く長く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "It's hot. Be careful.",
+     "kana": "イッツ *ホ*ット。ビー *ケ*アフル",
+     "ja": "熱いです。気をつけてください。"
+    },
+    {
+     "lv": 2,
+     "en": "This plug is overheating.",
+     "kana": "ディス プ*ラ*グ イズ オウヴァー*ヒ*ーティング",
+     "ja": "このプラグが熱くなりすぎています。"
+    },
+    {
+     "lv": 3,
+     "en": "Bundling a cord prevents heat from escaping and causes it to overheat.",
+     "kana": "*バ*ンドリング ア *コ*ード プリ*ヴェ*ンツ *ヒ*ート フロム イス*ケ*イピング アンド *コ*ーズィズ イット トゥ オウヴァー*ヒ*ート",
+     "ja": "コードを束ねると熱が逃げず、熱くなりすぎます。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ]
+  },
+  {
+   "id": "w.distribution",
+   "en": "distribution board",
+   "kana": "ディストリ*ビュ*ーション *ボ*ード",
+   "ja": "分電盤（専門的な言い方）",
+   "lv": 3,
+   "ipa": "/ˌdɪstrɪˈbjuːʃən bɔːrd/",
+   "tip": "「ディストリ*ビュ*ーション」。ビュを強く",
+   "ex": [
+    {
+     "lv": 1,
+     "en": "This is the breaker box.",
+     "kana": "ディス イズ ザ ブ*レ*イカー ボックス",
+     "ja": "これが分電盤です。"
+    },
+    {
+     "lv": 2,
+     "en": "Your distribution board has a safety breaker.",
+     "kana": "ユア ディストリ*ビュ*ーション ボード ハズ ア *セ*イフティ ブレイカー",
+     "ja": "お宅の分電盤には漏電ブレーカーがあります。"
+    },
+    {
+     "lv": 3,
+     "en": "The distribution board divides the incoming power into separate branch circuits.",
+     "kana": "ザ ディストリ*ビュ*ーション ボード ディ*ヴァ*イズ ジ *イ*ンカミング *パ*ワー イントゥ *セ*パレット ブ*ラ*ンチ サーキッツ",
+     "ja": "分電盤は、入ってきた電気をいくつかの回路に分けます。"
+    }
+   ],
+   "review": [
+    "en",
+    "kana",
+    "ex",
+    "ipa",
+    "tip"
+   ],
+   "note": "お客さんには breaker box のほうが伝わりやすい"
+  }
+ ]
 }
