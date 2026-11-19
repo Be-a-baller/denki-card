@@ -1,0 +1,17 @@
+{
+  "name": "点検カード（電気の安全点検 説明・英会話）",
+  "short_name": "点検カード",
+  "description": "電気の安全点検で使う、お客さん説明カードと英会話練習のアプリ",
+  "lang": "ja",
+  "start_url": "./#home",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F1F6FA",
+  "theme_color": "#0B4F7C",
+  "icons": [
+    { "src": "app-icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "app-icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "app-icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

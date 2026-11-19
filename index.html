@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0B4F7C">
+  <meta name="description" content="電気の安全点検で使う、お客さん説明カードと英会話練習のアプリ">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="点検カード">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>点検カード</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="app-icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="app-icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="view" class="view"></div>
+
+  <!-- 全画面の表示（お客さんの返事など。タップで閉じる） -->
+  <div id="overlay" class="overlay" hidden role="dialog" aria-modal="true">
+    <div class="overlay-inner">
+      <div id="overlay-content"></div>
+      <p class="overlay-hint" id="overlay-hint">タップで閉じる</p>
+    </div>
+  </div>
+
+  <!-- 下から出るシート（目次・よくある質問など） -->
+  <div id="sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet-panel" id="sheet-panel">
+      <div class="sheet-head">
+        <h2 id="sheet-title"></h2>
+        <button type="button" id="sheet-close" class="tb-btn" aria-label="閉じる"><span class="icon i-x" aria-hidden="true"></span><span>閉じる</span></button>
+      </div>
+      <div class="sheet-body" id="sheet-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="js/vendor/motion.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/show.js"></script>
+  <script src="js/speak.js"></script>
+  <script src="js/words.js"></script>
+  <script src="js/practice.js"></script>
+  <script src="js/qa.js"></script>
+  <script src="js/config.js"></script>
+  <script>App.init();</script>
+</body>
+</html>

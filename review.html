@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>フレーズ確認一覧</title>
+<style>
+  :root { --bg:#F1F6FA; --surface:#fff; --text:#0B1B2B; --sub:#33475B; --primary:#0B4F7C; --soft:#E3EEF6; --line:#C9D6E2; --warn:#9A4A00; --warn-soft:#FFF1DE; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 "Hiragino Sans","Noto Sans JP",system-ui,sans-serif; }
+  header { position:sticky; top:0; z-index:2; background:var(--primary); color:#fff; padding:12px 16px; }
+  header h1 { margin:0 0 4px; font-size:20px; }
+  header p { margin:0; font-size:14px; opacity:.9; }
+  .bar { display:flex; flex-wrap:wrap; gap:8px; padding:10px 16px; background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:62px; z-index:1; }
+  .bar button, .bar label { min-height:44px; padding:0 14px; border-radius:10px; border:2px solid var(--line); background:#fff; font:inherit; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:6px; }
+  .bar button[aria-pressed=true] { background:var(--primary); color:#fff; border-color:var(--primary); }
+  main { max-width:820px; margin:0 auto; padding:16px; }
+  h2 { font-size:20px; margin:28px 0 10px; color:var(--primary); border-bottom:3px solid var(--primary); padding-bottom:4px; }
+  h3 { font-size:16px; margin:18px 0 8px; color:var(--sub); }
+  .item { background:var(--surface); border-radius:14px; padding:14px 16px; margin:0 0 12px; box-shadow:0 1px 3px rgba(11,27,43,.08); }
+  .id { font:12px ui-monospace,Menlo,monospace; color:var(--sub); }
+  .row { display:grid; grid-template-columns:7.5em 1fr; gap:8px; padding:5px 0; border-top:1px dashed var(--line); }
+  .row:first-of-type { border-top:0; }
+  .k { font-size:13px; font-weight:700; color:var(--sub); padding-top:2px; }
+  .v.en { font-size:18px; font-weight:700; }
+  .v.easy { line-height:2.1; }
+  .v.kana b { color:var(--primary); font-size:1.15em; }
+  rt { font-size:.55em; color:var(--sub); }
+  .ph { background:#FFF7C2; border-radius:4px; padding:0 3px; font-family:ui-monospace,Menlo,monospace; font-size:.9em; }
+  .rv { display:inline-block; margin-left:6px; font-size:11px; font-weight:800; color:var(--warn); background:var(--warn-soft); border:1px solid var(--warn); border-radius:6px; padding:0 5px; vertical-align:2px; }
+  .alt, .resp { margin:2px 0; }
+  .lbl { display:inline-block; font-size:12px; font-weight:700; background:var(--soft); color:var(--primary); border-radius:6px; padding:0 6px; margin-right:6px; }
+  .resp { padding:6px 0; }
+  .resp .they { color:var(--sub); }
+  .tags { font-size:13px; color:var(--sub); }
+  .count { font-size:14px; color:var(--sub); margin:8px 0 0; }
+  table { width:100%; border-collapse:collapse; background:var(--surface); border-radius:14px; overflow:hidden; }
+  td, th { padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th { background:var(--soft); font-size:13px; }
+  @media (max-width:560px) { .row { grid-template-columns:1fr; gap:0; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>フレーズ確認一覧（phrases.json の下書き）</h1>
+  <p><span class="rv">要確認</span> が付いた項目は下書きです。直すときは phrases.json を編集して、review から項目名を消します。</p>
+</header>
+<div class="bar">
+  <button type="button" data-f="all" aria-pressed="true">すべて</button>
+  <button type="button" data-f="phrases">フレーズ</button>
+  <button type="button" data-f="show">見せるモード用</button>
+  <button type="button" data-f="extra">選択肢・返事・FAQ・分電盤</button>
+  <button type="button" data-f="words">単語帳</button>
+</div>
+<main id="out"><p>読み込み中…</p></main>
+
+<script>
+(async () => {
+  const P = await (await fetch('phrases.json', { cache: 'no-cache' })).json();
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  const ph = (s) => s.replace(/\{(minutes|company|client|phone)\}/g, '<span class="ph">{$1}</span>');
+  const ruby = (s) => ph(esc(s)).replace(/\{([^{}|]+)\|([^{}]+)\}/g, '<ruby>$1<rt>$2</rt></ruby>');
+  const kana = (s) => ph(esc(s)).replace(/\*([^*]+)\*/g, '<b>$1</b>');
+  const rv = (o, k) => (o.review || []).includes(k) ? '<span class="rv">要確認</span>' : '';
+  const row = (k, v, cls = '') => v ? `<div class="row"><div class="k">${k}</div><div class="v ${cls}">${v}</div></div>` : '';
+  const scene = Object.fromEntries(P.scenes.map((s) => [s.id, s]));
+
+  function phraseHTML(p) {
+    let h = `<div class="item"><div class="id">${esc(p.id)}${p.group ? '　［' + esc(p.group) + '］' : ''}　modes: ${esc((p.modes || []).join(', '))}</div>`;
+    h += row('意味（日本語）' + rv(p, 'staff'), ph(esc(p.staff)));
+    h += row('やさしい日本語' + rv(p, 'easy'), p.easy && ruby(p.easy), 'easy');
+    h += row('英語' + rv(p, 'en'), p.en && ph(esc(p.en)), 'en');
+    h += row('カタカナ' + rv(p, 'kana'), p.kana && kana(p.kana), 'kana');
+    if (p.enAlt) h += row('別の言い方' + rv(p, 'enAlt'), p.enAlt.map((a) => `<div class="alt"><span class="lbl">${esc(a.label)}</span><b>${ph(esc(a.en))}</b><br><span class="kana v">${kana(a.kana)}</span></div>`).join(''));
+    h += row('中国語' + rv(p, 'zh'), p.zh && ph(esc(p.zh)));
+    if (p.ifNoCompany) h += row('会社名が空のとき', `${ph(esc(p.ifNoCompany.staff))}<br><b>${ph(esc(p.ifNoCompany.en))}</b>`);
+    if (p.responses) h += row('こう言われたら' + rv(p, 'responses'), p.responses.map((r) => `<div class="resp"><div class="they">客：${esc(r.they)}（${esc(r.theyJa)}）</div><div>→ <b>${ph(esc(r.say))}</b>（${esc(r.sayJa)}）<br><span class="kana v">${kana(r.sayKana)}</span></div></div>`).join(''));
+    h += row('検索キーワード', p.tags && `<span class="tags">${esc(p.tags.join('・'))}</span>`);
+    return h + '</div>';
+  }
+
+  function simpleHTML(o, title) {
+    let h = `<div class="item"><div class="id">${esc(o.id)}</div>`;
+    if (title) h += `<h3 style="margin:4px 0">${title}</h3>`;
+    h += row('日本語', ph(esc(o.staff)));
+    h += row('やさしい日本語', o.easy && ruby(o.easy), 'easy');
+    h += row('英語' + rv(o, 'en'), o.en && ph(esc(o.en)), 'en');
+    h += row('カタカナ' + rv(o, 'kana'), o.kana && kana(o.kana), 'kana');
+    h += row('中国語' + rv(o, 'zh'), o.zh && ph(esc(o.zh)));
+    return h + '</div>';
+  }
+
+  function render(f) {
+    let h = '';
+    const reviewCount = [...P.phrases, ...P.choices, ...P.replies, ...P.faq, ...P.breaker, ...P.words].filter((x) => (x.review || []).length).length;
+    h += `<p class="count">フレーズ ${P.phrases.length}件 ／ 選択肢 ${P.choices.length}・返事 ${P.replies.length}・FAQ ${P.faq.length}・分電盤 ${P.breaker.length} ／ 単語 ${P.words.length}語 ― 要確認を含むもの ${reviewCount}件</p>`;
+
+    if (f === 'all' || f === 'phrases' || f === 'show') {
+      const list = P.scenes.filter((s) => f !== 'show' || s.flow).sort((a, b) => (a.flow || 99) - (b.flow || 99));
+      for (const s of list) {
+        const ps = P.phrases.filter((p) => p.scene === s.id && (f !== 'show' || p.modes.includes('show')));
+        if (!ps.length) continue;
+        h += `<h2>${s.flow ? s.flow + '. ' : ''}${esc(s.title)}</h2>`;
+        if (s.groups) for (const g of s.groups) { h += `<h3>${esc(g)}</h3>`; h += ps.filter((p) => p.group === g).map(phraseHTML).join(''); }
+        else h += ps.map(phraseHTML).join('');
+      }
+    }
+    if (f === 'all' || f === 'extra' || f === 'show') {
+      h += '<h2>⑥ 質問の選択肢</h2>' + P.choices.map((c) => simpleHTML(c)).join('');
+      h += '<h2>お客さんの返事ボタン</h2>' + P.replies.map((c) => simpleHTML(c)).join('');
+      h += '<h2>よくある質問（見せるモード）</h2>' + P.faq.map((q) => simpleHTML({ id: q.id + ' 質問', ...q.q, review: q.review }) + simpleHTML({ id: q.id + ' 答え', ...q.a, review: q.review })).join('');
+      h += '<h2>分電盤の説明</h2>' + P.breaker.map((b) => simpleHTML({ id: `${b.no}. ${b.id} 名前`, ...b.name, review: b.review }) + simpleHTML({ id: `${b.no}. ${b.id} 説明`, ...b.desc, review: b.review })).join('');
+    }
+    if (f === 'all' || f === 'words') {
+      h += '<h2>単語帳</h2><table><tr><th>英語</th><th>カタカナ</th><th>日本語</th></tr>' +
+        P.words.map((w) => `<tr><td><b>${esc(w.en)}</b>${rv(w, 'en')}${w.note ? `<br><small>${esc(w.note)}</small>` : ''}</td><td class="v kana">${kana(w.kana)}${rv(w, 'kana')}</td><td>${esc(w.ja)}</td></tr>`).join('') + '</table>';
+    }
+    document.getElementById('out').innerHTML = h;
+  }
+
+  document.querySelectorAll('.bar button').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('.bar button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+    render(b.dataset.f);
+  }));
+  render('all');
+})();
+</script>
+</body>
+</html>

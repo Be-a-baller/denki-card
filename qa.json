@@ -1,0 +1,306 @@
+{
+  "version": 1,
+  "_howto": [
+    "困ったときQ&Aのデータ。答えは「回答の型」(1 受け止める → 2 危険性を正直に → 3 判断はお客様 → 4 電気工事店へ → 5 断定しない・会社に確認) で書く。",
+    "a.easy=やさしい日本語（{漢字|かんじ}でふりがな）/ a.polite=丁寧な日本語 / a.en=英語 / a.kana=英語のカタカナ読み（a.en と同じ数・同じ順番。*…*が強く言うところ）",
+    "review=要確認の印。会社の公式の言い方・ネイティブの確認で直したら、その項目名を消す。"
+  ],
+
+  "disclaimer": "最終判断は電気工事店・会社の指示に従ってください",
+
+  "categories": [
+    { "id": "outlet",  "title": "コンセント",       "icon": "plug" },
+    { "id": "breaker", "title": "ブレーカー",       "icon": "zap-off" },
+    { "id": "wiring",  "title": "配線・延長コード", "icon": "lightbulb" },
+    { "id": "leak",    "title": "漏電",             "icon": "triangle-alert" },
+    { "id": "cost",    "title": "費用・手続き",     "icon": "clipboard-check" },
+    { "id": "other",   "title": "その他",           "icon": "circle-help" }
+  ],
+
+  "aiPrompt": "あなたは、日本で電気の安全点検（{client}の委託）をしている点検員です。お客様のお宅で、次の質問をされました。\n\n質問：「{question}」\n\n次の「回答の型」で、その場で口で答えられる短い答えを作ってください。\n1. まず質問を受け止める（「ご心配ですよね」など）\n2. 危険性を正直に、やさしく伝える（使っていなくても危険はある、火災・感電のリスクはゼロではない、など）\n3. 交換・修理するかはお客様の判断であることを伝える（押し付けない）\n4. 対応する場合は電気工事店に相談するよう案内する\n5. 断定できないことは言い切らず、必要なら「会社に確認します」と伝える\n\n出力は次の4つにしてください。\n・やさしい日本語（短い文、専門用語なし）\n・丁寧な日本語\n・英語（短い文、やさしい単語）\n・英語のカタカナ読み（強く読むところを【】で囲む）\n\n料金・法律・会社の決まりなど、確かでないことは推測で書かず「会社に確認します」としてください。",
+
+  "items": [
+    {
+      "id": "outlet_crack", "category": "outlet",
+      "tags": ["コンセント", "ひび", "割れ", "差し込み口", "交換", "使わない"],
+      "q": { "ja": "差し込み口にひびがあるけど、使わないなら交換しなくていい？", "en": "There's a small crack in the outlet. Since I don't use it, do I need to replace it?" },
+      "a": {
+        "easy": ["しんぱい ですよね。", "コンセントは、つかって いなくても {電気|でんき}が きて います。", "ひびから ほこりや しめりけが {入|はい}ると、{火事|かじ}の もとに なる ことが あります。", "{取|と}りかえるか どうかは お{客|きゃく}さまが きめて ください。", "{取|と}りかえる ときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に {相談|そうだん}して ください。"],
+        "polite": ["ご心配ですよね。", "軽いひびでも、コンセントは電気が通っている場所なので、ほこりや湿気が入ると思わぬトラブルや火災の原因になることがあります。", "使っていなくても危険がゼロとは言えないので、交換をおすすめします。", "交換されるかはお客様のご判断ですが、その際は電気工事店にご相談ください。"],
+        "en": ["I understand your concern.", "Even if you don't use it, the outlet still has electricity running to it.", "Dust or moisture can get into the crack and, in rare cases, cause a fire.", "So I recommend replacing it.", "It's your decision, but if you do, please contact an electrician."],
+        "kana": ["アイ アンダー*ス*タンド ユア コン*サ*ーン", "*イ*ーヴン イフ ユー *ド*ウント ユーズ イット、ジ *ア*ウトレット スティル ハズ イレク*ト*リシティ *ラ*ニング トゥ イット", "*ダ*スト オア *モ*イスチャー キャン ゲット イントゥ ザ ク*ラ*ック アンド、イン *レ*ア *ケ*イスィズ、コーズ ア *ファ*イア", "ソウ アイ レコ*メ*ンド リプ*レ*イスィング イット", "イッツ ユア ディ*シ*ジョン、バット イフ ユー *ドゥ*ー、プリーズ *コ*ンタクト アン イレク*トゥ*リシャン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "outlet_burn", "category": "outlet",
+      "tags": ["コンセント", "焦げ", "こげ", "熱い", "黒い", "におい"],
+      "q": { "ja": "コンセントが焦げている・熱くなる", "en": "My outlet has burn marks / gets hot." },
+      "a": {
+        "easy": ["それは しんぱい ですね。", "あつく なったり、こげたり するのは、あぶない サインの ことが あります。", "そのままだと {火事|かじ}に なる ことも あります。", "その コンセントは つかうのを やめて ください。", "なおす ときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に {相談|そうだん}して ください。"],
+        "polite": ["それはご心配ですね。", "コンセントやプラグが熱くなったり焦げたりするのは、差し込みがゆるくなっていたり、電気を使いすぎていたりするサインのことがあります。", "そのまま使い続けると、火災につながるおそれがあります。", "まずはそのコンセントの使用をお控えください。", "修理されるかはお客様のご判断ですが、早めに電気工事店にご相談ください。"],
+        "en": ["That must be worrying.", "An outlet that gets hot or has burn marks can be a warning sign.", "If you keep using it, it could cause a fire.", "Please stop using that outlet for now.", "It's your decision, but please contact an electrician soon."],
+        "kana": ["ザット マスト ビー *ワ*ーリイング", "アン *ア*ウトレット ザット ゲッツ *ホ*ット オア ハズ *バ*ーン マークス キャン ビー ア *ウォ*ーニング サイン", "イフ ユー キープ *ユ*ージング イット、イット クッド コーズ ア *ファ*イア", "プリーズ *ス*トップ ユージング ザット *ア*ウトレット フォー *ナ*ウ", "イッツ ユア ディ*シ*ジョン、バット プリーズ *コ*ンタクト アン イレク*トゥ*リシャン *ス*ーン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "outlet_loose", "category": "outlet",
+      "tags": ["コンセント", "ゆるい", "抜ける", "ぐらぐら", "プラグ"],
+      "q": { "ja": "プラグがゆるくて、すぐ抜ける", "en": "The plug is loose and comes out easily." },
+      "a": {
+        "easy": ["こまり ますよね。", "ゆるい ところは、あつく なりやすく、あぶない ことが あります。", "{取|と}りかえるか どうかは お{客|きゃく}さまが きめて ください。", "{取|と}りかえる ときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に {相談|そうだん}して ください。"],
+        "polite": ["使いにくくてお困りですよね。", "差し込みがゆるいと、その部分が熱を持ちやすくなり、焦げや火災の原因になることがあります。", "コンセントの交換をおすすめしますが、されるかはお客様のご判断です。", "交換の際は電気工事店にご相談ください。"],
+        "en": ["That's annoying, isn't it?", "A loose connection can get hot and, in some cases, cause a fire.", "I recommend replacing the outlet, but it's up to you.", "If you do, please ask an electrician."],
+        "kana": ["ザッツ ア*ノ*イイング、*イ*ズント イット？", "ア *ル*ース コ*ネ*クション キャン ゲット *ホ*ット アンド、イン *サ*ム *ケ*イスィズ、コーズ ア *ファ*イア", "アイ レコ*メ*ンド リプ*レ*イスィング ジ *ア*ウトレット、バット イッツ *ア*ップ トゥ ユー", "イフ ユー *ドゥ*ー、プリーズ *ア*スク アン イレク*トゥ*リシャン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "outlet_dust", "category": "outlet",
+      "tags": ["コンセント", "ほこり", "掃除", "トラッキング", "冷蔵庫", "テレビの裏"],
+      "q": { "ja": "冷蔵庫やテレビの裏のコンセントにほこりがたまっている", "en": "There's dust on the outlet behind my fridge and TV." },
+      "a": {
+        "easy": ["{気|き}が つきにくい ところ ですよね。", "ほこりに しめりけが つくと、{火|ひ}が でる ことが あります。", "ときどき プラグを ぬいて、かわいた ぬので ふいて ください。", "こげて いたら、{電気|でんき}の {工事|こうじ}の お{店|みせ}に {相談|そうだん}して ください。"],
+        "polite": ["なかなか目が届かない場所ですよね。", "プラグのまわりにたまったほこりが湿気を吸うと、火花が出て火災になることがあります（トラッキング現象）。", "ときどきプラグを抜いて、乾いた布でほこりを拭き取っていただくと安心です。", "焦げた跡などがある場合は、電気工事店にご相談ください。"],
+        "en": ["Those places are hard to see, aren't they?", "Dust around a plug can absorb moisture and cause sparks or a fire.", "Please unplug it sometimes and wipe the dust off with a dry cloth.", "If you see burn marks, please contact an electrician."],
+        "kana": ["*ゾ*ウズ プ*レ*イスィズ アー *ハ*ード トゥ *シ*ー、*ア*ーント ゼイ？", "*ダ*スト ア*ラ*ウンド ア プ*ラ*グ キャン アブ*ゾ*ーブ *モ*イスチャー アンド コーズ ス*パ*ークス オア ア *ファ*イア", "プリーズ アン*プ*ラグ イット *サ*ムタイムズ アンド *ワ*イプ ザ *ダ*スト オフ ウィズ ア *ド*ライ クロス", "イフ ユー *シ*ー *バ*ーン マークス、プリーズ *コ*ンタクト アン イレク*トゥ*リシャン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+
+    {
+      "id": "breaker_trip", "category": "breaker",
+      "tags": ["ブレーカー", "落ちる", "よく落ちる", "停電", "原因", "なぜ"],
+      "q": { "ja": "ブレーカーがよく落ちるのはなぜ？", "en": "Why does my breaker trip so often?" },
+      "a": {
+        "easy": ["それは こまり ますね。", "{電気|でんき}を いっぺんに つかいすぎると、{落|お}ちる ことが あります。", "{電気|でんき}が もれて いて {落|お}ちる ことも あります。", "どの スイッチが {落|お}ちたか で、りゆうが ちがいます。", "なんども {落|お}ちる ときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に {相談|そうだん}して ください。"],
+        "polite": ["何度も落ちるとお困りですよね。", "電気製品を同時にたくさん使って容量を超えたときや、どこかで電気がもれているときに落ちることがあります。", "どのブレーカーが落ちたかで原因が違うので、私からははっきりとは申し上げられません。", "何度も続くようでしたら、電気工事店にご相談ください。"],
+        "en": ["That must be frustrating.", "A breaker can trip when you use too many appliances at once, or when electricity is leaking somewhere.", "The cause depends on which breaker trips, so I can't say for sure.", "If it keeps happening, please contact an electrician."],
+        "kana": ["ザット マスト ビー フ*ラ*ストレイティング", "ア ブ*レ*イカー キャン ト*リ*ップ ウェン ユー ユーズ *トゥ*ー メニ ア*プラ*イアンスィズ アット *ワ*ンス、オア ウェン イレク*ト*リシティ イズ *リー*キング *サ*ムウェア", "ザ *コ*ーズ ディ*ペ*ンズ オン ウィッチ ブ*レ*イカー トリップス、ソウ アイ *キャ*ント セイ フォー *シュ*ア", "イフ イット キープス *ハ*プニング、プリーズ *コ*ンタクト アン イレク*トゥ*リシャン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "breaker_reset", "category": "breaker",
+      "tags": ["ブレーカー", "戻し方", "上げる", "復旧", "停電", "落ちた"],
+      "q": { "ja": "ブレーカーが落ちたときは、どうやって戻せばいい？", "en": "How do I turn the breaker back on?" },
+      "a": {
+        "easy": ["いっしょに かくにん しましょう。", "まず、つかって いる {電気|でんき}の ものを へらして ください。", "それから、{落|お}ちた スイッチを {上|うえ}に あげて ください。", "あんぜんの スイッチ（{漏電|ろうでん}ブレーカー）が {落|お}ちた ときは、また すぐ {落|お}ちる ことが あります。", "そのときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に {相談|そうだん}して ください。"],
+        "polite": ["いざというときに困りますよね。", "まず使っている電気製品を減らしてから、落ちたブレーカーのつまみを「入」の方へ上げてください。", "漏電ブレーカーが落ちた場合は、小さいブレーカーをいったん全部切ってから漏電ブレーカーを入れ、小さいブレーカーを1つずつ入れていきます。", "入れたときにまた落ちるブレーカーがあれば、その回路で漏電しているおそれがありますので、そこは切ったままにして電気工事店にご相談ください。", "ぬれた手では触らないようにしてください。"],
+        "en": ["Good question. Let me show you.", "First, turn off some of the appliances you are using.", "Then push the switch that went down back up.", "If the safety breaker tripped, turn off all the small breakers first, turn the safety breaker on, and then turn the small ones on one by one.", "If one of them trips again, leave it off and contact an electrician.", "Please don't touch the breakers with wet hands."],
+        "kana": ["グッド *ク*エスチョン。レット ミー *ショ*ウ ユー", "*ファ*ースト、ターン *オ*フ サム オヴ ジ ア*プラ*イアンスィズ ユー アー *ユ*ージング", "*ゼ*ン プッシュ ザ ス*ウィ*ッチ ザット ウェント *ダ*ウン バック *ア*ップ", "イフ ザ *セ*イフティ ブレイカー ト*リ*ップト、ターン オフ オール ザ スモール ブ*レ*イカーズ *ファ*ースト、ターン ザ *セ*イフティ ブレイカー *オ*ン、アンド ゼン ターン ザ スモール ワンズ オン *ワ*ン バイ *ワ*ン", "イフ *ワ*ン オヴ ゼム トリップス ア*ゲ*ン、*リ*ーヴ イット *オ*フ アンド *コ*ンタクト アン イレク*トゥ*リシャン", "プリーズ *ド*ウント タッチ ザ ブ*レ*イカーズ ウィズ *ウェ*ット *ハ*ンズ"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "breaker_amp", "category": "breaker",
+      "tags": ["アンペア", "契約", "容量", "上げたい", "増やす", "基本料金"],
+      "q": { "ja": "ブレーカーがすぐ落ちるので、アンペアを上げたい", "en": "I want to increase my amps because the breaker trips often." },
+      "a": {
+        "easy": ["それは こまり ますね。", "{電気|でんき}の けいやくを かえると、つかえる {量|りょう}を ふやせる ことが あります。", "{電気|でんき}の けいやくを して いる {会社|かいしゃ}に {聞|き}いて ください。", "{料金|りょうきん}が かわる ことも あります。"],
+        "polite": ["すぐに落ちるとご不便ですよね。", "契約アンペアを変えると、一度に使える電気の量を増やせる場合があります。", "お申し込みは、ご契約の電力会社へのご相談になります。", "基本料金が変わったり、工事が必要になったりすることもあるので、詳しくは電力会社にお問い合わせください。"],
+        "en": ["That must be inconvenient.", "You may be able to increase your contract amps so you can use more power at once.", "Please ask the electricity company you have a contract with.", "Your basic fee may change, and some work may be needed, so please check with them."],
+        "kana": ["ザット マスト ビー インコン*ヴィ*ーニエント", "ユー メイ ビー エイブル トゥ イン*ク*リース ユア *コ*ントラクト *ア*ンプス ソウ ユー キャン ユーズ *モ*ア *パ*ワー アット *ワ*ンス", "プリーズ *ア*スク ジ イレク*ト*リシティ カンパニー ユー ハヴ ア *コ*ントラクト ウィズ", "ユア *ベ*イスィック *フィ*ー メイ *チェ*インジ、アンド サム *ワ*ーク メイ ビー *ニ*ーディッド、ソウ プリーズ *チェ*ック ウィズ ゼム"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "breaker_test", "category": "breaker",
+      "tags": ["漏電ブレーカー", "テストボタン", "押す", "テスト", "点検"],
+      "q": { "ja": "漏電ブレーカーのテストボタンは押していいの？", "en": "Can I press the test button on the safety breaker?" },
+      "a": {
+        "easy": ["はい、おして だいじょうぶ です。", "おすと、{電気|でんき}が {止|と}まります。", "パソコンなどは さきに {保存|ほぞん}して ください。", "おしても {電気|でんき}が {止|と}まらない ときは、こわれて いるかも しれません。", "そのときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に {相談|そうだん}して ください。"],
+        "polite": ["はい、押していただいて大丈夫です。", "テストボタンを押すとブレーカーが切れて、電気が止まりますので、パソコンなどは先に保存しておいてください。", "切れたら、つまみを上げて元に戻してください。", "押しても切れない場合は、漏電ブレーカーが正しく働いていないおそれがありますので、電気工事店にご相談ください。"],
+        "en": ["Yes, you can.", "When you press it, the breaker turns off and the power stops, so please save your work on the computer first.", "Then push the switch back up.", "If it doesn't turn off when you press the button, it may not be working, so please contact an electrician."],
+        "kana": ["*イ*エス、ユー *キャ*ン", "ウェン ユー *プ*レス イット、ザ ブ*レ*イカー ターンズ *オ*フ アンド ザ *パ*ワー ストップス、ソウ プリーズ *セ*イヴ ユア ワーク オン ザ コン*ピュ*ーター *ファ*ースト", "*ゼ*ン プッシュ ザ ス*ウィ*ッチ バック *ア*ップ", "イフ イット *ダ*ズント ターン *オ*フ ウェン ユー プレス ザ *バ*トゥン、イット メイ ノット ビー *ワ*ーキング、ソウ プリーズ *コ*ンタクト アン イレク*トゥ*リシャン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+
+    {
+      "id": "wiring_strip", "category": "wiring",
+      "tags": ["タコ足", "延長コード", "電源タップ", "つなぎすぎ", "大丈夫"],
+      "q": { "ja": "タコ足配線や延長コードは大丈夫？", "en": "Is it OK to plug many things into a power strip?" },
+      "a": {
+        "easy": ["よく {聞|き}かれる ことです。", "1つの コードに たくさん つなぐと、あつく なって {火事|かじ}の もとに なる ことが あります。", "コードに {書|か}いて ある {数字|すうじ}より たくさん つかわないで ください。", "エアコンなど {大|おお}きい {電気|でんき}の ものは、かべの コンセントに じかに さして ください。"],
+        "polite": ["よくいただくご質問です。", "1つの延長コードや電源タップにたくさんつなぐと、コードが熱くなり、火災の原因になることがあります。", "コードに書かれている上限（多くは合計1500ワット）を超えないようにお使いください。", "エアコンや電子レンジなど電気を多く使うものは、壁のコンセントに直接つないでください。", "コードが傷んでいる場合は、交換をおすすめします。"],
+        "en": ["That's a common question.", "Plugging too many things into one extension cord or power strip can make it hot and cause a fire.", "Please don't go over the limit written on the cord, usually 1,500 watts in total.", "Big appliances like air conditioners and microwaves should go straight into the wall outlet.", "If the cord is damaged, I recommend replacing it."],
+        "kana": ["ザッツ ア *コ*モン *ク*エスチョン", "プ*ラ*ギング *トゥ*ー メニ シングズ イントゥ *ワ*ン イクス*テ*ンション コード オア *パ*ワー ストリップ キャン メイク イット *ホ*ット アンド コーズ ア *ファ*イア", "プリーズ *ド*ウント ゴウ オウヴァー ザ *リ*ミット *リ*トゥン オン ザ *コ*ード、*ユ*ージュアリー *ワ*ン *サ*ウザンド *ファ*イヴ *ハ*ンドレッド *ワ*ッツ イン *ト*ウタル", "*ビ*ッグ ア*プラ*イアンスィズ ライク *エ*ア コンディショナーズ アンド *マ*イクロウェイヴズ シュッド ゴウ スト*レ*イト イントゥ ザ *ウォ*ール アウトレット", "イフ ザ *コ*ード イズ *ダ*メッジド、アイ レコ*メ*ンド リプ*レ*イスィング イット"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "wiring_old", "category": "wiring",
+      "tags": ["古い家", "配線", "築年数", "古い", "劣化", "大丈夫"],
+      "q": { "ja": "古い家だけど、配線は大丈夫？", "en": "My house is old. Is the wiring OK?" },
+      "a": {
+        "easy": ["しんぱい ですよね。", "きょうの チェックで、{電気|でんき}が もれて いないかは みました。", "でも、かべの {中|なか}の せんまでは みられません。", "{古|ふる}い せんは、いたんで いる ことも あります。", "しんぱいな ときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に みて もらって ください。"],
+        "polite": ["長く住まわれているとご心配ですよね。", "今日の点検では、電気がもれていないかなどを確認しましたが、壁の中の配線までは見ることができません。", "古い配線は、見えないところで傷んでいることもあり、危険がまったくないとは言い切れません。", "詳しく調べるかはお客様のご判断ですが、ご心配でしたら電気工事店にご相談ください。"],
+        "en": ["I understand your concern.", "Today I checked for things like electrical leaks, but I can't see the wiring inside the walls.", "Old wiring can be damaged where you can't see it, so I can't say there's no risk at all.", "It's up to you, but if you're worried, please ask an electrician to check it."],
+        "kana": ["アイ アンダー*ス*タンド ユア コン*サ*ーン", "トゥ*デ*イ アイ *チェ*ックト フォー *シ*ングズ ライク イ*レ*クトリカル *リー*クス、バット アイ *キャ*ント *シ*ー ザ *ワ*イアリング インサイド ザ *ウォ*ールズ", "*オ*ウルド *ワ*イアリング キャン ビー *ダ*メッジド ウェア ユー *キャ*ント *シ*ー イット、ソウ アイ *キャ*ント セイ ゼアズ *ノ*ウ *リ*スク アット *オ*ール", "イッツ *ア*ップ トゥ ユー、バット イフ ユーア *ワ*ーリード、プリーズ *ア*スク アン イレク*トゥ*リシャン トゥ *チェ*ック イット"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "wiring_under", "category": "wiring",
+      "tags": ["コード", "家具の下", "束ねる", "踏む", "カーペット"],
+      "q": { "ja": "コードを家具の下に通したり、束ねたりしているけど大丈夫？", "en": "I run cords under furniture and keep them bundled. Is that OK?" },
+      "a": {
+        "easy": ["よく ある ことですね。", "コードを ふんだり、まとめたり すると、あつく なったり きずが ついたり します。", "それが {火事|かじ}の もとに なる ことが あります。", "できれば、コードは のばして、ものの {下|した}に おかないで ください。"],
+        "polite": ["よくあることですよね。", "コードが家具の下敷きになったり、束ねたまま使ったりすると、傷んだり熱がこもったりして、火災の原因になることがあります。", "できるだけコードは伸ばして、物の下を通さないようにお使いください。", "コードに傷や変色がある場合は、交換をおすすめします。"],
+        "en": ["That's very common.", "Cords under furniture or tied up in bundles can get damaged or hot, and that can cause a fire.", "If you can, please straighten the cords and keep them out from under things.", "If a cord is damaged or discolored, I recommend replacing it."],
+        "kana": ["ザッツ *ヴェ*リ *コ*モン", "*コ*ーズ アンダー *ファ*ーニチャー オア *タ*イド アップ イン *バ*ンドルズ キャン ゲット *ダ*メッジド オア *ホ*ット、アンド ザット キャン コーズ ア *ファ*イア", "イフ ユー *キャ*ン、プリーズ スト*レ*イトゥン ザ *コ*ーズ アンド キープ ゼム アウト フロム アンダー *シ*ングズ", "イフ ア *コ*ード イズ *ダ*メッジド オア ディス*カ*ラード、アイ レコ*メ*ンド リプ*レ*イスィング イット"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "wiring_aircon", "category": "wiring",
+      "tags": ["エアコン", "電子レンジ", "延長コード", "専用コンセント", "ドライヤー"],
+      "q": { "ja": "エアコンや電子レンジを延長コードで使っていい？", "en": "Can I use my air conditioner or microwave with an extension cord?" },
+      "a": {
+        "easy": ["{大事|だいじ}な ことですね。", "エアコンや でんしレンジは、{電気|でんき}を たくさん つかいます。", "のばす コードを つかうと、あつく なって あぶない ことが あります。", "かべの コンセントに じかに さして ください。"],
+        "polite": ["大事なご質問ですね。", "エアコンや電子レンジは電気をたくさん使うので、延長コードを使うとコードが熱くなり、火災の原因になることがあります。", "壁のコンセントに直接つないでお使いください。エアコンは専用のコンセントを使うのが基本です。", "コンセントの位置を変えたい場合は、電気工事店にご相談ください。"],
+        "en": ["That's an important question.", "Air conditioners and microwaves use a lot of power, so an extension cord can get hot and cause a fire.", "Please plug them straight into the wall outlet. An air conditioner should have its own outlet.", "If you want to move an outlet, please ask an electrician."],
+        "kana": ["ザッツ アン イン*ポ*ータント *ク*エスチョン", "*エ*ア コンディショナーズ アンド *マ*イクロウェイヴズ ユーズ ア *ロ*ット オヴ *パ*ワー、ソウ アン イクス*テ*ンション コード キャン ゲット *ホ*ット アンド コーズ ア *ファ*イア", "プリーズ *プ*ラグ ゼム スト*レ*イト イントゥ ザ *ウォ*ール アウトレット。アン *エ*ア コンディショナー シュッド ハヴ イッツ *オ*ウン *ア*ウトレット", "イフ ユー *ウォ*ント トゥ *ム*ーヴ アン *ア*ウトレット、プリーズ *ア*スク アン イレク*トゥ*リシャン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+
+    {
+      "id": "leak_what", "category": "leak",
+      "tags": ["漏電", "どうする", "費用", "修理", "お金", "言われた"],
+      "q": { "ja": "漏電していると言われたら、どうすればいい？費用はかかる？", "en": "If there's an electrical leak, what should I do? Will it cost money?" },
+      "a": {
+        "easy": ["びっくり しますよね。", "{電気|でんき}が もれると、ビリッと したり、{火事|かじ}に なったり する ことが あります。", "きょうの チェックは ただ（{無料|むりょう}）です。", "なおす ときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に たのみます。お{金|かね}は お{店|みせ}に はらいます。", "いくら かかるかは、わたしには わかりません。"],
+        "polite": ["驚かれますよね。", "漏電は、感電や火災につながることがあるので、そのままにしないことをおすすめします。", "今日の点検は無料ですが、修理は電気工事店へのご依頼になり、費用は工事店にお支払いいただくことになります。", "金額は状況によって違うので、私からは申し上げられません。工事店に見積もりをご相談ください。", "修理されるかはお客様のご判断です。"],
+        "en": ["That must be a surprise.", "A leak can cause an electric shock or a fire, so I don't recommend leaving it.", "Today's check is free, but repairs are done by an electrician, and you pay the electrician.", "The cost depends on the situation, so I can't tell you. Please ask an electrician for an estimate.", "Whether to repair it is your decision."],
+        "kana": ["ザット マスト ビー ア サプ*ラ*イズ", "ア *リー*ク キャン コーズ アン イ*レ*クトリック *ショ*ック オア ア *ファ*イア、ソウ アイ *ド*ウント レコメンド *リ*ーヴィング イット", "トゥ*デ*イズ チェック イズ *フ*リー、バット リ*ペ*アズ アー ダン バイ アン イレク*トゥ*リシャン、アンド ユー *ペ*イ ジ イレク*トゥ*リシャン", "ザ *コ*スト ディペンズ オン ザ シチュ*エ*イション、ソウ アイ *キャ*ント テル ユー。プリーズ *ア*スク アン イレク*トゥ*リシャン フォー アン *エ*スティメット", "*ウェ*ザー トゥ リ*ペ*ア イット イズ ユア ディ*シ*ジョン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "leak_effect", "category": "leak",
+      "tags": ["漏電", "何が起きる", "感電", "火事", "危ない"],
+      "q": { "ja": "漏電すると、何が起きるの？", "en": "What happens if there's an electrical leak?" },
+      "a": {
+        "easy": ["わかりにくい ですよね。", "{電気|でんき}が せんの {外|そと}に もれる ことを「{漏電|ろうでん}」と いいます。", "さわると ビリッと したり、{火事|かじ}に なったり する ことが あります。", "あんぜんの スイッチ（{漏電|ろうでん}ブレーカー）が あれば、{電気|でんき}を {止|と}めて くれます。"],
+        "polite": ["分かりにくいですよね。", "漏電とは、電気が本来通る道から外にもれてしまうことです。", "もれた電気に触れると感電したり、熱を持って火災になったりすることがあります。", "漏電ブレーカーが付いていれば、もれたときに自動で電気を止めてくれます。", "気になることがあれば、電気工事店にご相談ください。"],
+        "en": ["It's a little hard to understand.", "An electrical leak means electricity escapes from the path it should stay in.", "If you touch it, you can get a shock, and it can also get hot and cause a fire.", "A safety breaker turns off the power automatically when that happens.", "If you're worried, please contact an electrician."],
+        "kana": ["イッツ ア *リ*トル *ハ*ード トゥ アンダー*ス*タンド", "アン イ*レ*クトリカル *リー*ク *ミ*ーンズ イレク*ト*リシティ イス*ケ*イプス フロム ザ *パ*ス イット シュッド *ス*テイ イン", "イフ ユー *タ*ッチ イット、ユー キャン ゲット ア *ショ*ック、アンド イット キャン *オ*ールソウ ゲット *ホ*ット アンド コーズ ア *ファ*イア", "ア *セ*イフティ ブレイカー ターンズ オフ ザ *パ*ワー オートゥ*マ*ティカリー ウェン ザット *ハ*プンズ", "イフ ユーア *ワ*ーリード、プリーズ *コ*ンタクト アン イレク*トゥ*リシャン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "leak_nobreaker", "category": "leak",
+      "tags": ["漏電ブレーカー", "付いていない", "ない", "取り付け"],
+      "q": { "ja": "うちには漏電ブレーカーが付いていないけど、大丈夫？", "en": "My home doesn't have a safety breaker. Is that OK?" },
+      "a": {
+        "easy": ["しんぱい ですよね。", "あんぜんの スイッチが ないと、{電気|でんき}が もれても {止|と}まりません。", "ビリッと したり、{火事|かじ}に なったり する ことが あります。", "つけるか どうかは お{客|きゃく}さまが きめて ください。", "つける ときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に {相談|そうだん}して ください。"],
+        "polite": ["ご心配ですよね。", "漏電ブレーカーがないと、電気がもれても自動で止まらないため、感電や火災に気づきにくくなります。", "すぐに危ないというわけではありませんが、取り付けをおすすめします。", "取り付けるかはお客様のご判断ですが、その際は電気工事店にご相談ください。"],
+        "en": ["I understand your concern.", "Without a safety breaker, the power won't turn off by itself if electricity leaks.", "It isn't an emergency, but I recommend installing one.", "It's your decision, but if you do, please ask an electrician."],
+        "kana": ["アイ アンダー*ス*タンド ユア コン*サ*ーン", "ウィ*ザ*ウト ア *セ*イフティ ブレイカー、ザ *パ*ワー *ウォ*ウント ターン オフ バイ イット*セ*ルフ イフ イレク*ト*リシティ *リー*クス", "イット *イ*ズント アン イ*マ*ージェンシー、バット アイ レコ*メ*ンド イン*ス*トーリング *ワ*ン", "イッツ ユア ディ*シ*ジョン、バット イフ ユー *ドゥ*ー、プリーズ *ア*スク アン イレク*トゥ*リシャン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+
+    {
+      "id": "cost_result", "category": "cost",
+      "tags": ["結果", "どこで分かる", "書類", "通知", "報告"],
+      "q": { "ja": "点検の結果は、どこで分かるの？", "en": "Where can I find out the results?" },
+      "a": {
+        "easy": ["けっかは、いま ここで お{伝|つた}え します。", "{紙|かみ}で お{渡|わた}し する かは、{会社|かいしゃ}に かくにん します。"],
+        "polite": ["結果は、この場で私からお伝えします。", "書面でのお知らせについては、会社の決まりを確認してお答えします。"],
+        "en": ["I'll tell you the results right here.", "About a written report, let me check with my office."],
+        "kana": ["アイル *テ*ル ユー ザ リ*ザ*ルツ ライト *ヒ*ア", "ア*バ*ウト ア *リ*トゥン リ*ポ*ート、レット ミー *チェ*ック ウィズ マイ *オ*フィス"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "cost_repair_who", "category": "cost",
+      "tags": ["修理", "東京電力", "直してくれる", "紹介", "電気工事店", "業者"],
+      "q": { "ja": "修理は東京電力がしてくれるの？業者を紹介してくれる？", "en": "Will TEPCO fix it? Can you introduce an electrician?" },
+      "a": {
+        "easy": ["よく {聞|き}かれ ます。", "{家|いえ}の {中|なか}の せんや コンセントは、お{客|きゃく}さまの ものです。", "なおす ときは、{電気|でんき}の {工事|こうじ}の お{店|みせ}に たのみます。", "お{店|みせ}を しょうかい できるかは、{会社|かいしゃ}に かくにん します。"],
+        "polite": ["よくいただくご質問です。", "お家の中の配線やコンセントなどはお客様の設備になるので、修理は電気工事店へのご依頼になります。", "工事店のご紹介ができるかどうかは、会社に確認してお答えします。"],
+        "en": ["That's a common question.", "The wiring and outlets inside your home belong to you, so repairs are done by an electrician you choose.", "Let me check with my office whether we can introduce one."],
+        "kana": ["ザッツ ア *コ*モン *ク*エスチョン", "ザ *ワ*イアリング アンド *ア*ウトレッツ インサイド ユア *ホ*ウム ビ*ロ*ング トゥ ユー、ソウ リ*ペ*アズ アー ダン バイ アン イレク*トゥ*リシャン ユー *チュ*ーズ", "レット ミー *チェ*ック ウィズ マイ *オ*フィス *ウェ*ザー ウィ キャン イントゥ*デュ*ース *ワ*ン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "cost_price", "category": "cost",
+      "tags": ["修理代", "いくら", "値段", "費用", "見積もり", "お金"],
+      "q": { "ja": "修理代はいくらくらいかかる？", "en": "How much will the repair cost?" },
+      "a": {
+        "easy": ["{気|き}に なり ますよね。", "いくら かかるかは、わたしには わかりません。", "{電気|でんき}の {工事|こうじ}の お{店|みせ}で、さきに ねだんを {聞|き}いて ください。"],
+        "polite": ["気になりますよね。", "修理の内容や工事店によって金額が違うので、私からは申し上げられません。", "工事の前に、電気工事店に見積もりを出してもらうと安心です。"],
+        "en": ["I know you want to know.", "The cost depends on the work and the electrician, so I can't tell you.", "Please ask the electrician for an estimate before the work."],
+        "kana": ["アイ *ノ*ウ ユー *ウォ*ント トゥ *ノ*ウ", "ザ *コ*スト ディペンズ オン ザ *ワ*ーク アンド ジ イレク*トゥ*リシャン、ソウ アイ *キャ*ント テル ユー", "プリーズ *ア*スク ジ イレク*トゥ*リシャン フォー アン *エ*スティメット ビ*フォ*ー ザ ワーク"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "cost_refuse", "category": "cost",
+      "tags": ["断る", "断れる", "義務", "法律", "必要", "受けない"],
+      "q": { "ja": "この点検は断れるの？", "en": "Do I have to have this check?" },
+      "a": {
+        "easy": ["いそがしい ときも ありますよね。", "この チェックは、きまりで {定期的|ていきてき}に して いる ものです。", "きょうが むずかしければ、べつの {日|ひ}に {来|き}ます。", "くわしい ことは、{会社|かいしゃ}に かくにん します。"],
+        "polite": ["ご都合もありますよね。", "この点検は、法律にもとづいて定期的に行っているもので、お客様の安全のためにご協力をお願いしています。", "今日が難しければ、別の日に改めて伺うこともできます。", "詳しい決まりについては、会社に確認してお答えします。"],
+        "en": ["I understand you may be busy.", "This check is done regularly under the law, for your safety, so we ask for your cooperation.", "If today is not convenient, we can come back another day.", "Let me check with my office about the details."],
+        "kana": ["アイ アンダー*ス*タンド ユー メイ ビー *ビ*ズィー", "ディス *チェ*ック イズ ダン *レ*ギュラリー アンダー ザ *ロ*ー、フォー ユア *セ*イフティ、ソウ ウィ *ア*スク フォー ユア コウアパ*レ*イション", "イフ トゥ*デ*イ イズ ノット コン*ヴィ*ーニエント、ウィ キャン カム *バ*ック ア*ナ*ザー デイ", "レット ミー *チェ*ック ウィズ マイ *オ*フィス ア*バ*ウト ザ *デ*ィテイルズ"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "cost_next", "category": "cost",
+      "tags": ["次", "いつ", "何年", "頻度", "4年"],
+      "q": { "ja": "次の点検はいつ？", "en": "When is the next check?" },
+      "a": {
+        "easy": ["ふつうは、4{年|ねん}に 1かい くらい です。", "{近|ちか}く なったら、また お{知|し}らせを ポストに {入|い}れます。", "はっきり した {日|ひ}は、{会社|かいしゃ}に かくにん します。"],
+        "polite": ["通常は、4年に1回程度伺っています。", "時期が近づきましたら、また事前にお知らせをお届けします。", "はっきりした日程については、会社に確認してお答えします。"],
+        "en": ["Usually, we visit about once every four years.", "We'll put a notice in your mailbox again before the next visit.", "Let me check with my office for the exact date."],
+        "kana": ["*ユ*ージュアリー、ウィ *ヴィ*ジット ア*バ*ウト *ワ*ンス *エ*ヴリ *フォ*ー *イ*ヤーズ", "ウィル プット ア *ノ*ウティス イン ユア *メ*イルボックス ア*ゲ*ン ビフォー ザ ネクスト *ヴィ*ジット", "レット ミー *チェ*ック ウィズ マイ *オ*フィス フォー ジ イグ*ザ*クト *デ*イト"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+
+    {
+      "id": "other_real", "category": "other",
+      "tags": ["本物", "詐欺", "確かめたい", "身分証", "あやしい", "電話"],
+      "q": { "ja": "本物の点検員か確かめたい", "en": "How do I know you're a real inspector?" },
+      "a": {
+        "easy": ["しんぱい ですよね。たしかめて ください。", "これが わたしの {身分証|みぶんしょう}です。", "この {電話|でんわ}{番号|ばんごう}に かけて、たしかめて ください。", "この チェックで お{金|かね}を もらう ことは ありません。"],
+        "polite": ["ご心配ですよね。ぜひ確かめてください。", "こちらが私の身分証です。", "こちらの電話番号にお電話いただければ、確認できます。", "この点検で、お金をいただいたり、物を売ったりすることはありません。"],
+        "en": ["That's a good idea. Please check.", "This is my ID card.", "You can call this number to confirm.", "We never ask for money or sell anything during this check."],
+        "kana": ["ザッツ ア グッド アイ*ディ*ーア。プリーズ *チェ*ック", "ディス イズ マイ アイ*ディ*ー カード", "ユー キャン *コ*ール ディス *ナ*ンバー トゥ コン*ファ*ーム", "ウィ *ネ*ヴァー アスク フォー *マ*ニー オア *セ*ル *エ*ニシング デュアリング ディス チェック"]
+      },
+      "showPhone": true,
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "other_quake", "category": "other",
+      "tags": ["地震", "災害", "避難", "感震ブレーカー", "通電火災", "停電"],
+      "q": { "ja": "地震のとき、電気で気をつけることは？", "en": "What should I do about electricity during an earthquake?" },
+      "a": {
+        "easy": ["{大事|だいじ}な ことですね。", "{大|おお}きな じしんの あと、{電気|でんき}が もどった ときに {火事|かじ}に なる ことが あります。", "{家|いえ}を はなれる ときは、メインブレーカーを {切|き}って ください。", "じしんの とき じどうで {電気|でんき}を {止|と}める スイッチも あります。くわしくは {電気|でんき}の {工事|こうじ}の お{店|みせ}に {聞|き}いて ください。"],
+        "polite": ["大事なことですね。", "大きな地震のあと、停電から電気が戻ったときに、倒れた電気製品などから火災になることがあります（通電火災）。", "避難などで家を離れるときは、メインブレーカーを切ってください。", "揺れを感じると自動で電気を止める「感震ブレーカー」もあります。取り付けについては電気工事店にご相談ください。"],
+        "en": ["That's an important question.", "After a big earthquake, a fire can start when the power comes back on.", "If you leave your home, please turn off the main breaker.", "There are also breakers that turn off the power automatically during an earthquake. Please ask an electrician about them."],
+        "kana": ["ザッツ アン イン*ポ*ータント *ク*エスチョン", "*ア*フター ア ビッグ *ア*ースクウェイク、ア *ファ*イア キャン スタート ウェン ザ *パ*ワー カムズ バック *オ*ン", "イフ ユー *リ*ーヴ ユア ホウム、プリーズ ターン オフ ザ *メ*イン ブレイカー", "ゼア アー *オ*ールソウ ブ*レ*イカーズ ザット ターン オフ ザ *パ*ワー オートゥ*マ*ティカリー デュアリング アン *ア*ースクウェイク。プリーズ *ア*スク アン イレク*トゥ*リシャン ア*バ*ウト ゼム"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    },
+    {
+      "id": "other_water", "category": "other",
+      "tags": ["水回り", "お風呂", "洗面所", "台所", "洗濯機", "アース", "濡れた手"],
+      "q": { "ja": "お風呂や台所など、水のまわりの電気で気をつけることは？", "en": "What should I be careful about with electricity near water?" },
+      "a": {
+        "easy": ["{大事|だいじ}な ことですね。", "{水|みず}の まわりは、{電気|でんき}が もれると ビリッと しやすい ところです。", "ぬれた {手|て}で プラグを さわらないで ください。", "せんたくきなどの みどりの せん（アース）は、つないで おいて ください。"],
+        "polite": ["大事なことですね。", "水回りは、電気がもれたときに感電しやすい場所です。", "ぬれた手でプラグやスイッチに触らないようにしてください。", "洗濯機や電子レンジなどのアース線は、つないでおくと安心です。つなぎ方が分からない場合は電気工事店にご相談ください。"],
+        "en": ["That's an important question.", "Places near water are where electric shocks happen more easily.", "Please don't touch plugs or switches with wet hands.", "Please keep the ground wire of the washing machine connected. If you're not sure how, ask an electrician."],
+        "kana": ["ザッツ アン イン*ポ*ータント *ク*エスチョン", "プ*レ*イスィズ ニア *ウォ*ーター アー ウェア イ*レ*クトリック *ショ*ックス *ハ*プン *モ*ア *イ*ーズィリー", "プリーズ *ド*ウント タッチ プ*ラ*グズ オア ス*ウィ*ッチズ ウィズ *ウェ*ット *ハ*ンズ", "プリーズ キープ ザ グ*ラ*ウンド ワイア オヴ ザ *ワ*ッシング マシーン コ*ネ*クティッド。イフ ユーア ノット *シュ*ア *ハ*ウ、アスク アン イレク*トゥ*リシャン"]
+      },
+      "review": ["easy", "polite", "en", "kana"]
+    }
+  ]
+}

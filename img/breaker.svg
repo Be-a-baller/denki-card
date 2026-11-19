@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 250" width="360" height="250">
+  <!-- 分電盤のイラスト（実物の写真に替えるときは phrases.json の breakerImage と x,y を直す） -->
+  <rect x="4" y="4" width="352" height="242" rx="10" fill="#E9EEF2" stroke="#7D8C99" stroke-width="3"/>
+  <rect x="14" y="62" width="332" height="172" rx="6" fill="#F8FAFB" stroke="#B5C0CA" stroke-width="2"/>
+
+  <!-- ① メインブレーカー（大きいスイッチ1つ） -->
+  <g>
+    <rect x="26" y="80" width="80" height="138" rx="6" fill="#FFFFFF" stroke="#5E6E7C" stroke-width="2.5"/>
+    <rect x="46" y="104" width="40" height="70" rx="5" fill="#3B4B59"/>
+    <rect x="52" y="110" width="28" height="30" rx="3" fill="#D8DEE4"/>
+    <text x="66" y="200" font-family="sans-serif" font-size="13" font-weight="700" fill="#3B4B59" text-anchor="middle">40A</text>
+  </g>
+
+  <!-- ② 漏電ブレーカー（テストボタン付き） -->
+  <g>
+    <rect x="122" y="80" width="96" height="138" rx="6" fill="#FFFFFF" stroke="#5E6E7C" stroke-width="2.5"/>
+    <rect x="150" y="104" width="40" height="70" rx="5" fill="#3B4B59"/>
+    <rect x="156" y="110" width="28" height="30" rx="3" fill="#D8DEE4"/>
+    <circle cx="170" cy="196" r="10" fill="#E9B949" stroke="#8A6A12" stroke-width="2"/>
+    <text x="170" y="200" font-family="sans-serif" font-size="9" font-weight="700" fill="#5A4300" text-anchor="middle">TEST</text>
+  </g>
+
+  <!-- ③ 分岐ブレーカー（小さいスイッチがたくさん） -->
+  <g fill="#FFFFFF" stroke="#5E6E7C" stroke-width="2">
+    <rect x="236" y="84" width="24" height="58" rx="3"/><rect x="264" y="84" width="24" height="58" rx="3"/>
+    <rect x="292" y="84" width="24" height="58" rx="3"/><rect x="320" y="84" width="20" height="58" rx="3"/>
+    <rect x="236" y="156" width="24" height="58" rx="3"/><rect x="264" y="156" width="24" height="58" rx="3"/>
+    <rect x="292" y="156" width="24" height="58" rx="3"/><rect x="320" y="156" width="20" height="58" rx="3"/>
+  </g>
+  <g fill="#3B4B59">
+    <rect x="242" y="96" width="12" height="22" rx="2"/><rect x="270" y="96" width="12" height="22" rx="2"/>
+    <rect x="298" y="96" width="12" height="22" rx="2"/><rect x="324" y="96" width="12" height="22" rx="2"/>
+    <rect x="242" y="168" width="12" height="22" rx="2"/><rect x="270" y="168" width="12" height="22" rx="2"/>
+    <rect x="298" y="168" width="12" height="22" rx="2"/><rect x="324" y="168" width="12" height="22" rx="2"/>
+  </g>
+</svg>
