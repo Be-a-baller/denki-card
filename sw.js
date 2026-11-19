@@ -1,6 +1,6 @@
 // オフライン対応：最初に開いたときにアプリの全ファイルをスマホに保存する。
 // ★ アプリのファイルを直したら、下の VERSION の数字を1つ上げる（スマホ側が新しいものに入れ替わる）。
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = 'denki-card-' + VERSION;
 const FILES = [
     './',
